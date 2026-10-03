@@ -265,12 +265,230 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
   var K_PAD = C.prefix + "_pad";
   var K_PENDING = C.prefix + "_pending";
   var K_HOLD = C.prefix + "_hold";
+  var K_CPL_META = C.prefix + "_cpl_meta";
+  var K_CPL_A = C.prefix + "_cpl_a";
+  var K_CPL_B = C.prefix + "_cpl_b";
+  var K_CPL_SUM = C.prefix + "_cpl_sum";
+  var K_CPL_PLAN = C.prefix + "_cpl_plan";
+  var CPL = {
+  "nav": "Couples",
+  "tile": "Couples guide",
+  "tileSub": "Private questions for each partner, then a 7-day plan. Not a licensed therapist.",
+  "kicker": "Self-help for two, not couples therapy",
+  "disc": "This is a self-help couples guide. It is not a licensed couples therapist and not a substitute for one. It does not diagnose and it does not suggest medication.",
+  "whoTitle": "Who is answering?",
+  "whoBody": "Pick a name. Every screen shows who is answering. The other person's private answers stay in their own save and are not shown here.",
+  "nameA": "Partner A name",
+  "nameB": "Partner B name",
+  "saveNames": "Save the two names",
+  "needNames": "Type both names first.",
+  "editNames": "Edit the names",
+  "switchBtn": "Switch to the other partner",
+  "answering": "Answering now: {name}",
+  "notYou": "If this is not you, switch before you type. Your answers are not mixed.",
+  "noname": "no name yet",
+  "privateTag": "Private to {name}",
+  "qProgress": "Question {n} of {total}",
+  "yourAnswer": "Your private answer",
+  "next": "Next question",
+  "back": "Back",
+  "backWho": "Back to who is answering",
+  "finishMine": "Save my private answers",
+  "needText": "Write a short answer first.",
+  "waitTitle": "Your side is saved",
+  "waitBody": "{name} still has private questions. Their words are not shown here. When you have both finished, the guide writes a short shared picture, not a dump of the private venting.",
+  "theirTurn": "Hand the phone to {name}",
+  "reviewMine": "See only my answers",
+  "reviewTitle": "Your answers only",
+  "reviewNote": "This page loads your save only. It does not load the other partner's answers.",
+  "sumTitle": "A short picture, not the private notes",
+  "sumIntro": "Both of you finished. Below is only what this guide chooses to share: the problem in plain words, the cycle if one showed up, and what each person seems to need. The recent example stays hidden.",
+  "problemH": "The problem",
+  "cycleH": "The cycle",
+  "needH": "What each person seems to need",
+  "appH": "One appreciation each, shared on purpose",
+  "summaryOnly": "Shared picture only. Private venting is not copied here.",
+  "startWeek": "Start the 7-day couples plan",
+  "planTitle": "Seven days",
+  "planIntro": "Days 1 to 3 are individual. The guide alternates who the session is for: partner A, then B, then A. From day 4 the sessions are joint, and both should be present. A later day stays locked until that calendar day.",
+  "planProgress": "{done} of {total} sessions done. Started {start}.",
+  "dayLabel": "Day {n}",
+  "openDay": "Open this session",
+  "locked": "Opens on a later day",
+  "lockedBody": "This session is not open yet. The guide keeps the week in order. Come back on that day.",
+  "forPartner": "Individual session for {name}",
+  "jointTag": "Joint session · both should be present",
+  "wrongPartner": "This session is for {name}. Switch if you are {name}. Their exercise note stays hidden.",
+  "lessonH": "Lesson",
+  "methodH": "Where this comes from",
+  "exerciseH": "Exercise",
+  "bothHere": "Both of us are here for this joint session",
+  "needBoth": "Tick that you are both here before completing a joint session.",
+  "noteLabel": "Your private note for this exercise",
+  "jointNote": "One shared note from the exercise",
+  "complete": "Mark this session done",
+  "done": "Done",
+  "backPlan": "Back to the 7 days",
+  "safetyTitle": "Safety comes before any couples plan",
+  "safetyBody": "What was written describes violence, a threat, or fear of a partner. This guide will not run a normal couples plan from that. A conversation exercise is not the next step.",
+  "safetyLeave": "Leave if you are not safe.",
+  "policeLabel": "Police",
+  "eranShort": "ERAN, emotional first aid",
+  "safetyCall": "In Israel, call the police at 100 if you are in danger, and ERAN at 1201 if you need someone to talk to. Do not stay to finish an exercise.",
+  "resetAsk": "Erase the couples answers on this device",
+  "resetYes": "Yes, erase them",
+  "resetNo": "Keep them",
+  "emptyBit": "not enough words",
+  "unclearCycle": "The two answers do not show a clear pursue-and-withdraw split. That is all right. The week still practices a softer start and one clear request.",
+  "cyclePW": "{a} moves closer when it hurts (pursue). {b} steps back (withdraw). That is the pursue-withdraw loop, in the plain sense used by Emotionally Focused Therapy. The loop is what this week works on. It is not a label on either person.",
+  "cycleWP": "{a} steps back when it hurts (withdraw). {b} moves closer (pursue). Same loop, the other way around. It is not a label on either person.",
+  "cycleSameP": "Both answers lean toward moving closer and talking more. There is no clear withdraw side. Keep the requests specific so the talk does not become a chase.",
+  "cycleSameW": "Both answers lean toward going quiet or stepping back. A short, timed talk may work better than waiting for the topic to vanish.",
+  "cycleMixed": "The answers are mixed: moving closer and stepping back both showed up. Watch the moment a fight starts. That is enough for this week.",
+  "problemLine": "{a} says the fight is mostly about: {at}. {b} says it is mostly about: {bt}. These are short clips, not the full private notes.",
+  "needLine": "{a} seems to need: {an}. {b} seems to need: {bn}.",
+  "appLine": "{a} appreciates: {aa}. {b} appreciates: {ba}.",
+  "hitSample": "he hits me when he is angry",
+  "safeSample": "we argue about dishes and bills",
+  "questions": [
+    "What is the fight usually about? One or two sentences.",
+    "How does it start? Who speaks first, and in what tone?",
+    "When you are hurt, what do you do?",
+    "What do you want from your partner when things are hard?",
+    "A recent example, briefly. This one stays private and is not copied into the shared picture.",
+    "One thing you appreciate about them.",
+    "In the fight, do you move closer (talk more, follow, insist) or step back (go quiet, leave, shut the topic)?",
+    "One clear request for this week."
+  ],
+  "pursue": [
+    "talk more",
+    "follow them",
+    "move closer",
+    "keep asking",
+    "insist"
+  ],
+  "withdraw": [
+    "go quiet",
+    "leave the room",
+    "shut down",
+    "step back",
+    "say nothing"
+  ],
+  "violence": [
+    "he hits me",
+    "she hits me",
+    "he hit me",
+    "she hit me",
+    "they hit me",
+    "beats me",
+    "punched me",
+    "slapped me",
+    "choked me",
+    "strangled me",
+    "kicked me",
+    "threatened me",
+    "threatens me",
+    "threatening me",
+    "afraid of him",
+    "afraid of her",
+    "afraid of my partner",
+    "afraid of my husband",
+    "afraid of my wife",
+    "scared of him",
+    "scared of her",
+    "scared of my partner",
+    "scared of my husband",
+    "scared of my wife",
+    "fear him",
+    "fear her",
+    "fear my partner",
+    "not safe at home",
+    "not safe with him",
+    "not safe with her",
+    "will hurt me",
+    "going to hurt me",
+    "wants to hurt me",
+    "will kill me",
+    "going to kill me",
+    "threatened to kill",
+    "wont let me leave",
+    "will not let me leave",
+    "doesnt let me leave",
+    "domestic violence",
+    "abusive"
+  ],
+  "days": [
+    {
+      "id": "c1",
+      "mode": "individual",
+      "who": "a",
+      "title": "A soft start",
+      "method": "Gottman: four horsemen and a soft startup",
+      "lesson": "Gottman couple research describes four habits that heat a fight: criticism (attacking the person, not the moment), contempt (mockery or disgust), defensiveness (only the counter-charge), and stonewalling (shutting down). A soft startup is a small opposite of criticism. You name one fact, one feeling, and one request. You do not open with “you always.” This is practice on your side, not a verdict.",
+      "exercise": "Write a soft startup you could actually say. Shape: “When [one fact], I feel [one feeling], and I would like [one request].” A few lines is enough. It stays in your private note."
+    },
+    {
+      "id": "c2",
+      "mode": "individual",
+      "who": "b",
+      "title": "Your own soft start",
+      "method": "Gottman: four horsemen and a soft startup",
+      "lesson": "Same idea, your turn. Criticism, contempt, defensiveness, and stonewalling are the four horsemen. You do not need to pin them on your partner. Notice which one you reach for when you hurt, then write a startup about you, the moment, and one ask.",
+      "exercise": "Write your soft startup: “When [one fact], I feel [one feeling], and I would like [one request].” Do not write their private answers. They are not on this screen."
+    },
+    {
+      "id": "c3",
+      "mode": "individual",
+      "who": "a",
+      "title": "One clear request",
+      "method": "IBCT: acceptance plus one change",
+      "lesson": "Integrative Behavioral Couple Therapy holds two ideas together. Acceptance: some differences will not disappear this week, and calling them a character flaw keeps the fight going. Change: you can still ask for one specific behavior. A usable request has an action, a time, and what “done” looks like. “Be nicer” is not a request. “Text me if you will be late tonight” is.",
+      "exercise": "Write one difference you can leave room for this week, and one specific request: “This week, would you [action] when [situation]?” This note stays on your side."
+    },
+    {
+      "id": "c4",
+      "mode": "joint",
+      "who": "both",
+      "title": "Twenty minutes on the loop",
+      "method": "Emotionally Focused Therapy: the pursue-withdraw cycle",
+      "lesson": "Many couples get stuck in a loop. One person pursues: talks more, follows, insists. The other withdraws: goes quiet, leaves, closes the topic. Each move is an attempt to cope, and it pulls the other move. The shared picture names the loop only if your answers showed it. It is not a copy of your private stories. Sit together for 20 minutes, then stop. Agenda: (1) each person says their soft startup, about two minutes, no debate; (2) say the loop in one sentence; (3) each person says the need from the shared picture; (4) stop even if it is unfinished.",
+      "exercise": "Both of you should be in the room. After the 20 minutes, write one line you will not reopen tonight."
+    },
+    {
+      "id": "c5",
+      "mode": "joint",
+      "who": "both",
+      "title": "A request you can hear",
+      "method": "IBCT: acceptance plus change, said out loud",
+      "lesson": "Pick one difference you can accept for this week, and one change small enough to do. Say the request as an action, not as a speech about the past. If it is about a whole personality, rewrite it until it is one behavior. This is not a diagnosis of either of you.",
+      "exercise": "Each person says one specific request out loud. In the shared note, write who, the action, and when."
+    },
+    {
+      "id": "c6",
+      "mode": "joint",
+      "who": "both",
+      "title": "Time that is not the fight",
+      "method": "Behavioral couples work: a shared activity and a specific request",
+      "lesson": "Behavioral couples work is practical. Spend pleasant time together, and replace a vague complaint with a specific request. The activity is not a prize for a perfect talk. It is a reminder that you are not only the argument.",
+      "exercise": "Pick one shared activity in the next two days, about half an hour to an hour, phones down. Write the activity, the time, and one specific request each."
+    },
+    {
+      "id": "c7",
+      "mode": "joint",
+      "who": "both",
+      "title": "A repair, then stop",
+      "method": "Gottman: a repair attempt",
+      "lesson": "A repair attempt is any move that turns the heat down: “Can I start that sentence again?”, “I am flooded and I need ten minutes”, or “I get the part about being late.” It does not mean you agree. It means the talk can wait without contempt. If someone is afraid, or there is a threat, do not use this exercise. Leave and use the safety card.",
+      "exercise": "Each person says one repair line out loud. Write the two lines in the shared note, then stop for the night. This week was practice, not a finished relationship."
+    }
+  ]
+};
 
   function loadCheckins() { return loadJSON(K_CHECKINS, []); }
   function loadProgram() { return loadJSON(K_PROGRAM, null); }
   function saveProgram(p) { saveJSON(K_PROGRAM, p); }
 
-  var state = { view: "home", dayId: null, crisis: null, hold: false, guideText: "", guide: null, pad: "", pst: {}, check: null, result: null, formError: "", confirmClear: false };
+  var state = { view: "home", dayId: null, crisis: null, hold: false, guideText: "", guide: null, pad: "", pst: {}, check: null, result: null, formError: "", confirmClear: false, cplErr: "", cplReset: false };
   var breath = { running: false, timer: null, mode: "468", phaseIdx: 0, left: 4, cycle: 0, totalCycles: 5, dayId: null, finishedMsg: "" };
 
   function breathModes() {
@@ -387,7 +605,7 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
       '<button type="button" class="btn secondary block" data-action="clear-hold">' + esc(C.ui.clearHold) + "</button></div></section>";
   }
   function navHTML() {
-    var items = [["home", C.ui.navHome], ["checkin", C.ui.navCheck], ["guide", C.ui.navGuide], ["program", C.ui.navPlan], ["breathe", C.ui.navBreath]];
+    var items = [["home", C.ui.navHome], ["checkin", C.ui.navCheck], ["guide", C.ui.navGuide], ["program", C.ui.navPlan], ["breathe", C.ui.navBreath], ["couples", CPL.nav]];
     return '<nav class="nav">' + items.map(function (it) {
       var on = state.view === it[0] || (it[0] === "program" && state.view === "day");
       return '<button type="button" data-go="' + it[0] + '"' + (on ? ' class="on"' : "") + ">" + esc(it[1]) + "</button>";
@@ -407,7 +625,8 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
       '<button type="button" class="tile" data-go="checkin"><strong>' + esc(C.ui.tileCheck) + "</strong><span>" + esc(C.ui.tileCheckSub) + "</span></button>" +
       '<button type="button" class="tile" data-go="guide"><strong>' + esc(C.ui.tileGuide) + "</strong><span>" + esc(C.ui.tileGuideSub) + "</span></button>" +
       '<button type="button" class="tile" data-go="program"><strong>' + esc(C.ui.tilePlan) + "</strong><span>" + esc(C.ui.tilePlanSub) + "</span></button>" +
-      '<button type="button" class="tile" data-go="breathe"><strong>' + esc(C.ui.tileBreath) + "</strong><span>" + esc(C.ui.tileBreathSub) + "</span></button></div>" +
+      '<button type="button" class="tile" data-go="breathe"><strong>' + esc(C.ui.tileBreath) + "</strong><span>" + esc(C.ui.tileBreathSub) + "</span></button>" +
+      '<button type="button" class="tile" data-go="couples"><strong>' + esc(CPL.tile) + "</strong><span>" + esc(CPL.tileSub) + "</span></button></div>" +
       '<p class="muted">' + esc(C.ui.localNote) + "</p>" +
       '<button type="button" class="safety-link" data-action="safety-card">' + esc(C.ui.safetyLink) + "</button>";
   }
@@ -590,6 +809,7 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
       case "day": return viewDay();
       case "breathe": return viewBreathe();
       case "history": return viewHistory();
+      case "couples": return state.hold ? holdHTML() : viewCouples();
       default: return viewHome();
     }
   }
@@ -622,7 +842,7 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
   function readRoute() {
     var h = (location.hash || "#home").replace("#", "");
     if (h.indexOf("day-") === 0) { state.view = "day"; state.dayId = h.slice(4); return; }
-    var known = { home: 1, checkin: 1, guide: 1, program: 1, breathe: 1, history: 1 };
+    var known = { home: 1, checkin: 1, guide: 1, program: 1, breathe: 1, history: 1, couples: 1 };
     state.view = known[h] ? h : "home";
   }
   function go(view, dayId) {
@@ -771,6 +991,7 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
       render(); return;
     }
     var action = t.dataset.action;
+    if (action && action.indexOf("cpl-") === 0) { onCplAction(action, t); return; }
     if (action === "safety-card") { triggerCrisis("manual"); return; }
     if (action === "clear-hold") { setHold(false); render(); return; }
     if (action === "check-start") { state.check = freshCheck(); state.check.stage = "phq"; state.check.qi = 0; state.result = null; render(); return; }
@@ -822,6 +1043,7 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
   function onInput(e) {
     var el = e.target;
     if (!el) return;
+    if (el.dataset && el.dataset.cpl) { onCplInput(el); return; }
     if (el.id === "guide-text") { state.guideText = el.value; return; }
     if (el.id === "breath-cycles") { breath.totalCycles = Number(el.value) || 5; return; }
     if (el.dataset && el.dataset.area) { if (!state.check) state.check = freshCheck(); state.check.areas[el.dataset.area] = !!el.checked; return; }
@@ -837,6 +1059,563 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
       var topicId = state.guide && state.guide.topic ? state.guide.topic.id : "";
       saveJSON(K_PAD, { topic: topicId, text: state.pad });
     }
+  }
+
+  function cplBlank() {
+    return { answers: ["", "", "", "", "", "", "", ""], done: false, doneAt: null, qi: 0, notes: {} };
+  }
+  function loadCplMeta() {
+    var m = loadJSON(K_CPL_META, null) || {};
+    if (m.active !== "a" && m.active !== "b") m.active = "a";
+    m.aName = String(m.aName || "");
+    m.bName = String(m.bName || "");
+    if (!m.screen) m.screen = (m.aName && m.bName) ? "who" : "setup";
+    if (m.safety) m.screen = "safety";
+    return m;
+  }
+  function saveCplMeta(m) { saveJSON(K_CPL_META, m); }
+  function loadCplSide(which) {
+    var key = which === "b" ? K_CPL_B : K_CPL_A;
+    var rec = loadJSON(key, null);
+    if (!rec || !rec.answers || rec.answers.length !== 8) rec = cplBlank();
+    if (!rec.notes || typeof rec.notes !== "object") rec.notes = {};
+    if (typeof rec.qi !== "number") rec.qi = 0;
+    return rec;
+  }
+  function saveCplSide(which, rec) { saveJSON(which === "b" ? K_CPL_B : K_CPL_A, rec); }
+  function loadCplPlan() { return loadJSON(K_CPL_PLAN, null); }
+  function otherOf(w) { return w === "b" ? "a" : "b"; }
+  function nameOf(meta, w) { return w === "b" ? (meta.bName || "") : (meta.aName || ""); }
+  function cplClip(s) {
+    var t = String(s || "").replace(/\s+/g, " ").trim();
+    if (!t) return CPL.emptyBit;
+    if (t.length > 90) return t.slice(0, 89) + "…";
+    return t;
+  }
+  function cplViolent(raw) {
+    var t = norm(raw);
+    if (!t) return false;
+    for (var i = 0; i < CPL.violence.length; i++) {
+      var p = C.norm === "en" ? CPL.violence[i] : norm(CPL.violence[i]);
+      if (!p) continue;
+      try { if (new RegExp(p, "i").test(t)) return true; } catch (e) {}
+    }
+    return false;
+  }
+  function cplMove(rec) {
+    var t = norm((rec.answers[2] || "") + " " + (rec.answers[6] || ""));
+    var p = 0, w = 0, i;
+    for (i = 0; i < CPL.pursue.length; i++) if (t.indexOf(norm(CPL.pursue[i])) !== -1) p++;
+    for (i = 0; i < CPL.withdraw.length; i++) if (t.indexOf(norm(CPL.withdraw[i])) !== -1) w++;
+    if (p > w && p > 0) return "pursue";
+    if (w > p && w > 0) return "withdraw";
+    if (p > 0 && w > 0) return "mixed";
+    return "unclear";
+  }
+  function buildCoupleSummary(aRec, bRec, aName, bName) {
+    var ma = cplMove(aRec), mb = cplMove(bRec);
+    var cycle = CPL.unclearCycle;
+    if (ma === "pursue" && mb === "withdraw") cycle = fill(CPL.cyclePW, { a: aName, b: bName });
+    else if (ma === "withdraw" && mb === "pursue") cycle = fill(CPL.cycleWP, { a: aName, b: bName });
+    else if (ma === "pursue" && mb === "pursue") cycle = fill(CPL.cycleSameP, { a: aName, b: bName });
+    else if (ma === "withdraw" && mb === "withdraw") cycle = fill(CPL.cycleSameW, { a: aName, b: bName });
+    else if (ma === "mixed" || mb === "mixed") cycle = CPL.cycleMixed;
+    return {
+      problem: fill(CPL.problemLine, { a: aName, b: bName, at: cplClip(aRec.answers[0]), bt: cplClip(bRec.answers[0]) }),
+      cycle: cycle,
+      needs: fill(CPL.needLine, { a: aName, b: bName, an: cplClip(aRec.answers[3]), bn: cplClip(bRec.answers[3]) }),
+      appreciate: fill(CPL.appLine, { a: aName, b: bName, aa: cplClip(aRec.answers[5]), ba: cplClip(bRec.answers[5]) }),
+      moveA: ma,
+      moveB: mb
+    };
+  }
+  function cplWipe() {
+    [K_CPL_META, K_CPL_A, K_CPL_B, K_CPL_SUM, K_CPL_PLAN].forEach(function (k) {
+      try { localStorage.removeItem(k); } catch (e) {}
+    });
+    state.cplErr = "";
+    state.cplReset = false;
+  }
+  function scrubSide(which) {
+    var rec = loadCplSide(which);
+    var hitV = false, hitC = false;
+    var i;
+    for (i = 0; i < 8; i++) {
+      var v = rec.answers[i] || "";
+      if (isCrisisText(v)) { rec.answers[i] = ""; hitC = true; }
+      else if (cplViolent(v)) { rec.answers[i] = ""; hitV = true; }
+    }
+    Object.keys(rec.notes).forEach(function (k) {
+      var n = rec.notes[k] || "";
+      if (isCrisisText(n)) { rec.notes[k] = ""; hitC = true; }
+      else if (cplViolent(n)) { rec.notes[k] = ""; hitV = true; }
+    });
+    saveCplSide(which, rec);
+    return { hitV: hitV, hitC: hitC };
+  }
+  function enterSafety(meta) {
+    meta.safety = true;
+    meta.screen = "safety";
+    saveCplMeta(meta);
+    try { localStorage.removeItem(K_CPL_PLAN); localStorage.removeItem(K_CPL_SUM); } catch (e) {}
+    state.cplErr = "";
+    render();
+  }
+  function screenFor(meta, who) {
+    if (meta.safety) return "safety";
+    var rec = loadCplSide(who);
+    var o = loadCplSide(otherOf(who));
+    if (!rec.done) return "ask";
+    if (!o.done) return "wait";
+    if (!loadCplPlan()) return "summary";
+    return "plan";
+  }
+  function whoBanner(meta) {
+    var name = nameOf(meta, meta.active) || CPL.noname;
+    return '<div class="who"><b>' + esc(fill(CPL.answering, { name: name })) + "</b>" +
+      '<p class="muted">' + esc(CPL.notYou) + "</p>" +
+      '<button type="button" class="btn secondary" data-action="cpl-switch">' + esc(CPL.switchBtn) + "</button></div>";
+  }
+  function cplDayDef(id) {
+    for (var i = 0; i < CPL.days.length; i++) if (CPL.days[i].id === id) return { def: CPL.days[i], index: i };
+    return null;
+  }
+  function makeCplPlan() {
+    return {
+      startDate: jerusalemToday(),
+      days: CPL.days.map(function (d) {
+        return { id: d.id, completed: false, completedAt: null, note: "", bothHere: false };
+      })
+    };
+  }
+  function finishBothIfReady(meta) {
+    var sa = scrubSide("a"), sb = scrubSide("b");
+    if (sa.hitV || sb.hitV) {
+      meta.safety = true;
+      meta.screen = "safety";
+      saveCplMeta(meta);
+      try { localStorage.removeItem(K_CPL_PLAN); localStorage.removeItem(K_CPL_SUM); } catch (e) {}
+    }
+    if (sa.hitC || sb.hitC) { triggerCrisis("text"); return false; }
+    if (meta.safety) { render(); return false; }
+    var sum = buildCoupleSummary(loadCplSide("a"), loadCplSide("b"), meta.aName, meta.bName);
+    saveJSON(K_CPL_SUM, sum);
+    return true;
+  }
+  function readCplBox(id) {
+    if (typeof document === "undefined") return null;
+    var el = document.getElementById(id);
+    return el ? el.value : null;
+  }
+  function applyGuardToCurrent(meta) {
+    var side = meta.active === "b" ? "b" : "a";
+    var rec = loadCplSide(side);
+    var typed = readCplBox("cpl-answer");
+    if (typed != null) {
+      var i = rec.qi || 0;
+      if (isCrisisText(typed)) {
+        rec.answers[i] = "";
+        saveCplSide(side, rec);
+        triggerCrisis("text");
+        return "stop";
+      }
+      if (cplViolent(typed)) {
+        rec.answers[i] = "";
+        saveCplSide(side, rec);
+        enterSafety(meta);
+        return "stop";
+      }
+      rec.answers[i] = typed.slice(0, 500);
+      saveCplSide(side, rec);
+    }
+    var note = readCplBox("cpl-note");
+    if (note != null) {
+      if (isCrisisText(note)) { triggerCrisis("text"); return "stop"; }
+      if (cplViolent(note)) { enterSafety(meta); return "stop"; }
+    }
+    return "ok";
+  }
+  function viewCplSetup(meta) {
+    return '<section class="card"><p class="kicker">' + esc(CPL.kicker) + "</p><h1>" + esc(CPL.tile) + "</h1>" +
+      "<p>" + esc(CPL.disc) + "</p>" +
+      '<label class="field">' + esc(CPL.nameA) + '<input type="text" maxlength="40" data-cpl="name-a" value="' + esc(meta.aName) + '"></label>' +
+      '<label class="field">' + esc(CPL.nameB) + '<input type="text" maxlength="40" data-cpl="name-b" value="' + esc(meta.bName) + '"></label>' +
+      (state.cplErr ? '<p class="err">' + esc(state.cplErr) + "</p>" : "") +
+      '<button type="button" class="btn block" data-action="cpl-save-names">' + esc(CPL.saveNames) + "</button></section>";
+  }
+  function viewCplWho(meta) {
+    return '<section class="card"><p class="kicker">' + esc(CPL.kicker) + "</p><h1>" + esc(CPL.whoTitle) + "</h1>" +
+      "<p>" + esc(CPL.whoBody) + "</p><p>" + esc(CPL.disc) + "</p>" +
+      '<div class="stack">' +
+      '<button type="button" class="btn olive block" data-action="cpl-pick" data-who="a">' + esc(meta.aName) + "</button>" +
+      '<button type="button" class="btn secondary block" data-action="cpl-pick" data-who="b">' + esc(meta.bName) + "</button>" +
+      '<button type="button" class="btn secondary block" data-action="cpl-edit">' + esc(CPL.editNames) + "</button>" +
+      "</div></section>" + cplResetBlock();
+  }
+  function cplResetBlock() {
+    if (!state.cplReset) {
+      return '<p><button type="button" class="btn secondary block" data-action="cpl-reset-ask">' + esc(CPL.resetAsk) + "</button></p>";
+    }
+    return '<div class="stack"><button type="button" class="btn block" data-action="cpl-reset-yes">' + esc(CPL.resetYes) + "</button>" +
+      '<button type="button" class="btn secondary block" data-action="cpl-reset-no">' + esc(CPL.resetNo) + "</button></div>";
+  }
+  function viewCplAsk(meta) {
+    var side = meta.active === "b" ? "b" : "a";
+    var rec = loadCplSide(side);
+    var i = rec.qi || 0;
+    if (i < 0) i = 0;
+    if (i > 7) i = 7;
+    var val = rec.answers[i] || "";
+    return whoBanner(meta) + '<section class="card"><p class="kicker">' + esc(fill(CPL.privateTag, { name: nameOf(meta, side) })) + "</p>" +
+      "<h1>" + esc(CPL.tile) + "</h1>" +
+      '<p class="muted">' + esc(fill(CPL.qProgress, { n: i + 1, total: 8 })) + "</p>" +
+      "<p><strong>" + esc(CPL.questions[i]) + "</strong></p>" +
+      '<label class="field">' + esc(CPL.yourAnswer) + '<textarea id="cpl-answer" data-cpl="answer" data-qi="' + i + '">' + esc(val) + "</textarea></label>" +
+      (state.cplErr ? '<p class="err">' + esc(state.cplErr) + "</p>" : "") +
+      '<div class="stack">' +
+      (i > 0 ? '<button type="button" class="btn secondary block" data-action="cpl-prev">' + esc(CPL.back) + "</button>" : '<button type="button" class="btn secondary block" data-action="cpl-to-who">' + esc(CPL.backWho) + "</button>") +
+      '<button type="button" class="btn block" data-action="cpl-next">' + esc(i === 7 ? CPL.finishMine : CPL.next) + "</button></div></section>";
+  }
+  function viewCplWait(meta) {
+    var other = otherOf(meta.active);
+    return whoBanner(meta) + '<section class="card"><h1>' + esc(CPL.waitTitle) + "</h1>" +
+      "<p>" + esc(fill(CPL.waitBody, { name: nameOf(meta, other) })) + "</p>" +
+      '<button type="button" class="btn block" data-action="cpl-switch">' + esc(fill(CPL.theirTurn, { name: nameOf(meta, other) })) + "</button>" +
+      '<button type="button" class="btn secondary block" data-action="cpl-review">' + esc(CPL.reviewMine) + "</button></section>";
+  }
+  function viewCplReview(meta) {
+    var side = meta.active === "b" ? "b" : "a";
+    var rec = loadCplSide(side);
+    var rows = CPL.questions.map(function (q, i) {
+      return "<h3>" + esc(q) + "</h3><p>" + esc(rec.answers[i] || CPL.emptyBit) + "</p>";
+    }).join("");
+    return whoBanner(meta) + '<section class="card"><p class="kicker">' + esc(fill(CPL.privateTag, { name: nameOf(meta, side) })) + "</p>" +
+      "<h1>" + esc(CPL.reviewTitle) + "</h1><p>" + esc(CPL.reviewNote) + "</p>" + rows +
+      '<button type="button" class="btn secondary block" data-action="cpl-to-who">' + esc(CPL.backWho) + "</button></section>";
+  }
+  function viewCplSummary(meta) {
+    var sum = loadJSON(K_CPL_SUM, null);
+    if (!sum) {
+      sum = buildCoupleSummary(loadCplSide("a"), loadCplSide("b"), meta.aName, meta.bName);
+      saveJSON(K_CPL_SUM, sum);
+    }
+    return whoBanner(meta) + '<section class="card"><p class="kicker">' + esc(CPL.kicker) + "</p><h1>" + esc(CPL.sumTitle) + "</h1>" +
+      "<p>" + esc(CPL.sumIntro) + "</p>" +
+      "<h2>" + esc(CPL.problemH) + "</h2><p>" + esc(sum.problem) + "</p>" +
+      "<h2>" + esc(CPL.cycleH) + "</h2><p>" + esc(sum.cycle) + "</p>" +
+      "<h2>" + esc(CPL.needH) + "</h2><p>" + esc(sum.needs) + "</p>" +
+      "<h2>" + esc(CPL.appH) + "</h2><p>" + esc(sum.appreciate) + "</p>" +
+      '<p class="muted">' + esc(CPL.summaryOnly) + "</p>" +
+      '<button type="button" class="btn block" data-action="cpl-start-plan">' + esc(CPL.startWeek) + "</button></section>";
+  }
+  function viewCplPlan(meta) {
+    var plan = loadCplPlan();
+    if (!plan) return viewCplSummary(meta);
+    var todayIx = todayIndex(plan, jerusalemToday());
+    var done = plan.days.filter(function (d) { return d.completed; }).length;
+    var list = plan.days.map(function (d, i) {
+      var found = cplDayDef(d.id);
+      var def = found.def;
+      var open = i <= todayIx;
+      var tag = def.mode === "joint" ? CPL.jointTag : fill(CPL.forPartner, { name: nameOf(meta, def.who) });
+      return '<button type="button" class="day' + (d.completed ? " done" : "") + (open ? "" : " locked") + '" data-action="cpl-open" data-day="' + esc(d.id) + '">' +
+        '<span class="tag">' + esc(tag) + "</span> " +
+        "<strong>" + esc(fill(CPL.dayLabel, { n: i + 1 })) + " · " + esc(def.title) + "</strong>" +
+        '<div class="meta">' + esc(open ? (d.completed ? CPL.done : CPL.openDay) : CPL.locked) + "</div></button>";
+    }).join("");
+    return whoBanner(meta) + '<section class="card"><p class="kicker">' + esc(CPL.kicker) + "</p><h1>" + esc(CPL.planTitle) + "</h1>" +
+      "<p>" + esc(CPL.planIntro) + "</p>" +
+      "<p>" + esc(fill(CPL.planProgress, { done: done, total: 7, start: plan.startDate })) + "</p>" +
+      list + cplResetBlock() + "</section>";
+  }
+  function viewCplSession(meta) {
+    var plan = loadCplPlan();
+    var found = cplDayDef(meta.openDay);
+    if (!plan || !found) return viewCplPlan(meta);
+    var def = found.def, idx = found.index;
+    var day = null;
+    for (var i = 0; i < plan.days.length; i++) if (plan.days[i].id === def.id) day = plan.days[i];
+    if (!day) return viewCplPlan(meta);
+    var todayIx = todayIndex(plan, jerusalemToday());
+    var tag = def.mode === "joint" ? CPL.jointTag : fill(CPL.forPartner, { name: nameOf(meta, def.who) });
+    var head = whoBanner(meta) + '<section class="card"><p class="kicker">' + esc(tag) + "</p><h1>" + esc(def.title) + "</h1>" +
+      "<p><strong>" + esc(CPL.methodH) + "</strong> " + esc(def.method) + "</p>";
+    if (idx > todayIx) {
+      return head + "<p>" + esc(CPL.lockedBody) + "</p>" +
+        '<button type="button" class="btn secondary block" data-action="cpl-back-plan">' + esc(CPL.backPlan) + "</button></section>";
+    }
+    if (def.mode === "individual" && meta.active !== def.who) {
+      return head + "<p>" + esc(fill(CPL.wrongPartner, { name: nameOf(meta, def.who) })) + "</p>" +
+        '<button type="button" class="btn block" data-action="cpl-switch">' + esc(CPL.switchBtn) + "</button>" +
+        '<button type="button" class="btn secondary block" data-action="cpl-back-plan">' + esc(CPL.backPlan) + "</button></section>";
+    }
+    var note = "";
+    if (def.mode === "individual") note = (loadCplSide(def.who).notes || {})[def.id] || "";
+    else note = day.note || "";
+    var sumHTML = "";
+    if (def.mode === "joint") {
+      var sum = loadJSON(K_CPL_SUM, null);
+      if (sum) {
+        sumHTML = '<div class="banner"><p class="kicker">' + esc(CPL.summaryOnly) + "</p>" +
+          "<p><strong>" + esc(CPL.problemH) + "</strong> " + esc(sum.problem) + "</p>" +
+          "<p><strong>" + esc(CPL.cycleH) + "</strong> " + esc(sum.cycle) + "</p>" +
+          "<p><strong>" + esc(CPL.needH) + "</strong> " + esc(sum.needs) + "</p></div>";
+      }
+    }
+    var both = "";
+    if (def.mode === "joint") {
+      both = '<label class="check"><input type="checkbox" data-cpl="both" data-day="' + esc(def.id) + '"' + (day.bothHere ? " checked" : "") + ">" + esc(CPL.bothHere) + "</label>";
+    }
+    return head + sumHTML +
+      "<h2>" + esc(CPL.lessonH) + "</h2><p>" + esc(def.lesson) + "</p>" +
+      "<h2>" + esc(CPL.exerciseH) + "</h2><p>" + esc(def.exercise) + "</p>" +
+      both +
+      '<label class="field">' + esc(def.mode === "joint" ? CPL.jointNote : CPL.noteLabel) +
+      '<textarea id="cpl-note" data-cpl="note" data-day="' + esc(def.id) + '">' + esc(note) + "</textarea></label>" +
+      (state.cplErr ? '<p class="err">' + esc(state.cplErr) + "</p>" : "") +
+      '<label class="check"><input type="checkbox" data-action="cpl-done" data-day="' + esc(def.id) + '"' + (day.completed ? " checked" : "") + ">" + esc(day.completed ? CPL.done : CPL.complete) + "</label>" +
+      '<button type="button" class="btn secondary block" data-action="cpl-back-plan">' + esc(CPL.backPlan) + "</button></section>";
+  }
+  function viewCplSafety(meta) {
+    return '<section class="card cpl-safety"><h1>' + esc(CPL.safetyTitle) + "</h1>" +
+      "<p>" + esc(CPL.safetyBody) + "</p>" +
+      "<p><strong>" + esc(CPL.safetyLeave) + "</strong></p>" +
+      '<a class="call" href="tel:100"><span>' + esc(CPL.policeLabel) + "</span><b>100</b></a>" +
+      '<a class="call" href="tel:1201"><span>' + esc(CPL.eranShort) + "</span><b>1201</b></a>" +
+      "<p>" + esc(CPL.safetyCall) + "</p>" +
+      '<p class="disclaimer">' + esc(CPL.disc) + "</p>" +
+      cplResetBlock() + "</section>";
+  }
+  function viewCouples() {
+    var meta = loadCplMeta();
+    if (meta.safety || meta.screen === "safety") return viewCplSafety(meta);
+    if (!meta.aName || !meta.bName || meta.screen === "setup") return viewCplSetup(meta);
+    if (meta.screen === "ask") return viewCplAsk(meta);
+    if (meta.screen === "wait") return viewCplWait(meta);
+    if (meta.screen === "review") return viewCplReview(meta);
+    if (meta.screen === "summary") return viewCplSummary(meta);
+    if (meta.screen === "session") return viewCplSession(meta);
+    if (meta.screen === "plan") return viewCplPlan(meta);
+    return viewCplWho(meta);
+  }
+  function onCplInput(el) {
+    var kind = el.dataset.cpl;
+    var meta = loadCplMeta();
+    if (meta.safety && kind !== "name-a" && kind !== "name-b") return;
+    if (kind === "name-a") { meta.aName = String(el.value || "").slice(0, 40); saveCplMeta(meta); return; }
+    if (kind === "name-b") { meta.bName = String(el.value || "").slice(0, 40); saveCplMeta(meta); return; }
+    if (kind === "answer") {
+      var side = meta.active === "b" ? "b" : "a";
+      var rec = loadCplSide(side);
+      if (rec.done && loadCplSide(otherOf(side)).done) return;
+      var i = Number(el.dataset.qi);
+      if (i !== rec.qi) return;
+      var val = String(el.value || "").slice(0, 500);
+      if (isCrisisText(val)) {
+        rec.answers[i] = "";
+        saveCplSide(side, rec);
+        el.value = "";
+        triggerCrisis("text");
+        return;
+      }
+      if (cplViolent(val)) {
+        rec.answers[i] = "";
+        saveCplSide(side, rec);
+        el.value = "";
+        enterSafety(meta);
+        return;
+      }
+      rec.answers[i] = val;
+      saveCplSide(side, rec);
+      return;
+    }
+    if (kind === "note") {
+      var plan = loadCplPlan();
+      var found = cplDayDef(el.dataset.day);
+      if (!plan || !found) return;
+      var valn = String(el.value || "").slice(0, 500);
+      if (isCrisisText(valn)) { el.value = ""; triggerCrisis("text"); return; }
+      if (cplViolent(valn)) { el.value = ""; enterSafety(meta); return; }
+      if (found.def.mode === "individual") {
+        if (meta.active !== found.def.who) return;
+        var mine = loadCplSide(found.def.who);
+        mine.notes[found.def.id] = valn;
+        saveCplSide(found.def.who, mine);
+        return;
+      }
+      for (var n = 0; n < plan.days.length; n++) if (plan.days[n].id === found.def.id) plan.days[n].note = valn;
+      saveJSON(K_CPL_PLAN, plan);
+      return;
+    }
+    if (kind === "both") {
+      var plan2 = loadCplPlan();
+      if (!plan2) return;
+      for (var j = 0; j < plan2.days.length; j++) if (plan2.days[j].id === el.dataset.day) plan2.days[j].bothHere = !!el.checked;
+      saveJSON(K_CPL_PLAN, plan2);
+    }
+  }
+  function onCplAction(action, t) {
+    var meta = loadCplMeta();
+    state.cplErr = "";
+    if (action === "cpl-reset-ask") { state.cplReset = true; render(); return; }
+    if (action === "cpl-reset-no") { state.cplReset = false; render(); return; }
+    if (action === "cpl-reset-yes") { cplWipe(); render(); return; }
+    if (meta.safety && action !== "cpl-reset-ask") { render(); return; }
+    if (action === "cpl-edit") { meta.screen = "setup"; saveCplMeta(meta); render(); return; }
+    if (action === "cpl-to-who") { meta.screen = "who"; saveCplMeta(meta); render(); return; }
+    if (action === "cpl-save-names") {
+      var root = (typeof document !== "undefined") ? document.getElementById("app") : null;
+      var ia = root ? root.querySelector("[data-cpl='name-a']") : null;
+      var ib = root ? root.querySelector("[data-cpl='name-b']") : null;
+      if (ia) meta.aName = String(ia.value || "").slice(0, 40);
+      if (ib) meta.bName = String(ib.value || "").slice(0, 40);
+      var nameCrisis = isCrisisText(meta.aName) || isCrisisText(meta.bName);
+      var nameViol = cplViolent(meta.aName) || cplViolent(meta.bName);
+      if (nameCrisis || nameViol) {
+        meta.aName = "";
+        meta.bName = "";
+        saveCplMeta(meta);
+        if (nameCrisis) { triggerCrisis("text"); return; }
+        enterSafety(meta); return;
+      }
+      if (!meta.aName.trim() || !meta.bName.trim()) { state.cplErr = CPL.needNames; render(); return; }
+      meta.aName = meta.aName.trim();
+      meta.bName = meta.bName.trim();
+      meta.screen = "who";
+      saveCplMeta(meta);
+      if (loadCplSide("a").done && loadCplSide("b").done) finishBothIfReady(meta);
+      render(); return;
+    }
+    if (action === "cpl-pick" || action === "cpl-switch") {
+      if (applyGuardToCurrent(meta) === "stop") return;
+      var who = action === "cpl-pick" ? t.dataset.who : otherOf(meta.active);
+      if (who !== "a" && who !== "b") who = "a";
+      meta.active = who;
+      meta.screen = screenFor(meta, who);
+      saveCplMeta(meta);
+      render(); return;
+    }
+    if (action === "cpl-prev") {
+      if (applyGuardToCurrent(meta) === "stop") return;
+      var recp = loadCplSide(meta.active);
+      if (recp.done) { meta.screen = screenFor(meta, meta.active); saveCplMeta(meta); render(); return; }
+      recp.qi = Math.max(0, (recp.qi || 0) - 1);
+      saveCplSide(meta.active, recp);
+      render(); return;
+    }
+    if (action === "cpl-next") {
+      if (applyGuardToCurrent(meta) === "stop") return;
+      var recn = loadCplSide(meta.active);
+      if (recn.done) { meta.screen = screenFor(meta, meta.active); saveCplMeta(meta); render(); return; }
+      var qi = recn.qi || 0;
+      var text = String(recn.answers[qi] || "").trim();
+      if (text.length < 2) { state.cplErr = CPL.needText; render(); return; }
+      if (qi < 7) { recn.qi = qi + 1; saveCplSide(meta.active, recn); render(); return; }
+      recn.done = true;
+      recn.doneAt = new Date().toISOString();
+      saveCplSide(meta.active, recn);
+      if (!loadCplSide(otherOf(meta.active)).done) meta.screen = "wait";
+      else {
+        if (!finishBothIfReady(meta)) return;
+        meta.screen = "summary";
+      }
+      saveCplMeta(meta);
+      render(); return;
+    }
+    if (action === "cpl-review") { meta.screen = "review"; saveCplMeta(meta); render(); return; }
+    if (action === "cpl-start-plan") {
+      if (!loadCplSide("a").done || !loadCplSide("b").done) return;
+      if (!finishBothIfReady(meta)) return;
+      if (!loadCplPlan()) saveJSON(K_CPL_PLAN, makeCplPlan());
+      meta.screen = "plan";
+      saveCplMeta(meta);
+      render(); return;
+    }
+    if (action === "cpl-open") {
+      meta.openDay = t.dataset.day;
+      meta.screen = "session";
+      saveCplMeta(meta);
+      render(); return;
+    }
+    if (action === "cpl-back-plan") {
+      if (applyGuardToCurrent(meta) === "stop") return;
+      meta.screen = "plan";
+      saveCplMeta(meta);
+      render(); return;
+    }
+    if (action === "cpl-done") {
+      var plan = loadCplPlan();
+      var found = cplDayDef(t.dataset.day);
+      if (!plan || !found) return;
+      var todayIx = todayIndex(plan, jerusalemToday());
+      if (found.index > todayIx) { state.cplErr = CPL.lockedBody; render(); return; }
+      if (found.def.mode === "individual" && meta.active !== found.def.who) { state.cplErr = fill(CPL.wrongPartner, { name: nameOf(meta, found.def.who) }); render(); return; }
+      var want = !!t.checked;
+      var day = null;
+      for (var di = 0; di < plan.days.length; di++) if (plan.days[di].id === found.def.id) day = plan.days[di];
+      if (!day) return;
+      if (!want) {
+        day.completed = false;
+        day.completedAt = null;
+        saveJSON(K_CPL_PLAN, plan);
+        state.cplErr = "";
+        render(); return;
+      }
+      var noteVal = readCplBox("cpl-note");
+      if (noteVal == null) {
+        noteVal = found.def.mode === "individual" ? ((loadCplSide(found.def.who).notes || {})[found.def.id] || "") : (day.note || "");
+      }
+      if (isCrisisText(noteVal)) { triggerCrisis("text"); return; }
+      if (cplViolent(noteVal)) { enterSafety(meta); return; }
+      if (String(noteVal || "").trim().length < 2) { state.cplErr = CPL.needText; render(); return; }
+      if (found.def.mode === "joint" && !day.bothHere) { state.cplErr = CPL.needBoth; render(); return; }
+      if (found.def.mode === "individual") {
+        var mine2 = loadCplSide(found.def.who);
+        mine2.notes[found.def.id] = String(noteVal).slice(0, 500);
+        saveCplSide(found.def.who, mine2);
+      } else {
+        day.note = String(noteVal).slice(0, 500);
+      }
+      day.completed = true;
+      day.completedAt = new Date().toISOString();
+      saveJSON(K_CPL_PLAN, plan);
+      state.cplErr = "";
+      render(); return;
+    }
+  }
+  function selfCheckCouples() {
+    var errors = [];
+    function eq(c, m) { if (!c) errors.push(m); }
+    eq(CPL.questions.length === 8, "questions");
+    eq(CPL.days.length === 7, "days");
+    eq(CPL.days[0].mode === "individual" && CPL.days[0].who === "a", "d1");
+    eq(CPL.days[1].mode === "individual" && CPL.days[1].who === "b", "d2");
+    eq(CPL.days[2].mode === "individual" && CPL.days[2].who === "a", "d3");
+    eq(CPL.days[3].mode === "joint" && CPL.days[4].mode === "joint" && CPL.days[5].mode === "joint" && CPL.days[6].mode === "joint", "joint-from-4");
+    CPL.days.forEach(function (d) { eq(!!(d.lesson && d.exercise && d.method && d.title && d.id), "empty " + d.id); });
+    eq(cplViolent(CPL.hitSample) === true, "hit");
+    eq(cplViolent(CPL.safeSample) === false, "safe");
+    eq(viewHome().indexOf(CPL.tile) !== -1, "home tile");
+    eq(navHTML().indexOf(CPL.nav) !== -1, "nav");
+    var secretA = "PRIVATERAWexampleA9";
+    var secretB = "PRIVATERAWexampleB9";
+    var a = { answers: ["money and the chores", "it starts loud", CPL.pursue[0] + " " + CPL.pursue[1], "a calm answer", secretA, "cooking on Fridays", CPL.pursue[2] || CPL.pursue[0], "text if you will be late"], notes: {} };
+    var b = { answers: ["feeling left out", "silence", CPL.withdraw[0] + " " + CPL.withdraw[1], "some space then a time to talk", secretB, "patience", CPL.withdraw[2] || CPL.withdraw[0], "ask once"], notes: {} };
+    var sum = buildCoupleSummary(a, b, "Lina", "Omar");
+    var blob = JSON.stringify(sum);
+    eq(blob.indexOf(secretA) === -1 && blob.indexOf(secretB) === -1, "summary leak");
+    eq(sum.moveA === "pursue" && sum.moveB === "withdraw", "cycle " + sum.moveA + "/" + sum.moveB);
+    eq(blob.indexOf("money and the chores") !== -1, "topic kept");
+    cplWipe();
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "b", screen: "ask", safety: false });
+    var sideA = cplBlank(); sideA.answers[4] = secretA; sideA.done = true; saveCplSide("a", sideA);
+    var sideB = cplBlank(); sideB.qi = 0; sideB.answers[0] = "only B topic"; saveCplSide("b", sideB);
+    state.view = "couples";
+    var html = viewCouples();
+    eq(html.indexOf(secretA) === -1, "ask view leak");
+    eq(html.indexOf("only B topic") !== -1 || html.indexOf(CPL.questions[0]) !== -1, "ask shows B");
+    eq(html.indexOf("Omar") !== -1, "who banner");
+    return errors;
   }
   function init() {
     try { state.hold = sessionStorage.getItem(K_HOLD) === "1"; } catch (e) {}
@@ -875,6 +1654,9 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
     bandGad: bandGad,
     programLength: programLength,
     buildProgram: buildProgram,
+    selfCheckCouples: selfCheckCouples,
+    cplViolent: cplViolent,
+    buildCoupleSummary: buildCoupleSummary,
     selectDayIds: selectDayIds,
     todayIndex: todayIndex,
     PHQ_ITEMS: PHQ_ITEMS,
