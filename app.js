@@ -947,12 +947,13 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
     if (typeof document === "undefined") return;
     var el = document.getElementById("cpl-sl-tick");
     if (!el) return;
+    var card = el.closest ? el.closest(".cpl-sl") : null;
     if (slTurn.done) {
       el.textContent = CPL.slDone;
-      el.className = "cpl-sl-done";
+      if (card) card.classList.add("is-done");
     } else {
       el.textContent = slTickLabel(slTurn.left);
-      el.className = "cpl-sl-time";
+      if (card) card.classList.remove("is-done");
     }
   }
   function onSlTick() {
@@ -1411,14 +1412,12 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
   function slCard(meta) {
     var sp = speakerSide(meta);
     var li = otherOf(sp);
-    var tick = slTurn.done
-      ? '<p id="cpl-sl-tick" class="cpl-sl-done">' + esc(CPL.slDone) + "</p>"
-      : '<p id="cpl-sl-tick" class="cpl-sl-time">' + esc(slTickLabel(slTurn.running ? slTurn.left : 180)) + "</p>";
-    return '<div class="cpl-sl"><h2>' + esc(CPL.slTitle) + "</h2>" +
+    var tickText = slTurn.done ? CPL.slDone : slTickLabel(slTurn.running ? slTurn.left : 180);
+    return '<div class="cpl-sl' + (slTurn.done ? " is-done" : "") + '"><h2>' + esc(CPL.slTitle) + "</h2>" +
       "<p>" + esc(CPL.slBody) + "</p>" +
-      "<p><strong>" + esc(fill(CPL.slSpeaker, { name: nameOf(meta, sp) })) + "</strong></p>" +
-      "<p>" + esc(fill(CPL.slListener, { name: nameOf(meta, li) })) + "</p>" +
-      tick +
+      '<p class="cpl-sl-role"><strong>' + esc(fill(CPL.slSpeaker, { name: nameOf(meta, sp) })) + "</strong></p>" +
+      '<p class="cpl-sl-role">' + esc(fill(CPL.slListener, { name: nameOf(meta, li) })) + "</p>" +
+      '<p id="cpl-sl-tick" class="cpl-sl-tick">' + esc(tickText) + "</p>" +
       '<div class="stack">' +
       '<button type="button" class="btn block" data-action="cpl-sl-start">' + esc(CPL.slStart) + "</button>" +
       '<button type="button" class="btn secondary block" data-action="cpl-sl-switch">' + esc(CPL.slSwitch) + "</button>" +
@@ -1779,7 +1778,7 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
     saveCplMeta({ aName: "Lina", bName: "Omar", active: "a", screen: "session", openDay: "c4", safety: false, slSpeakerSide: "a" });
     state.view = "couples";
     var joint = viewCouples();
-    eq(joint.indexOf('class="cpl-sl"') !== -1, "joint card");
+    eq(joint.indexOf('class="cpl-sl"') !== -1 && joint.indexOf("cpl-sl-tick") !== -1, "joint card");
     eq(joint.indexOf(CPL.slTitle) !== -1 && joint.indexOf(CPL.slBody) !== -1, "joint copy");
     eq(joint.indexOf('data-action="cpl-sl-start"') !== -1, "sl start");
     eq(joint.indexOf('data-action="cpl-sl-switch"') !== -1, "sl switch");
