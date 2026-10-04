@@ -310,7 +310,7 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
   "summaryOnly": "Shared picture only. Private venting is not copied here.",
   "startWeek": "Start the 7-day couples plan",
   "planTitle": "Seven days",
-  "planIntro": "Days 1 to 3 are individual. The guide alternates who the session is for: partner A, then B, then A. From day 4 the sessions are joint, and both should be present. A later day stays locked until that calendar day.",
+  "planIntro": "Days 1 to 3 are individual. The guide alternates who the session is for: partner A, then B, then A. From day 4 the sessions are joint, and both should be present. Joint days include timed speaker–listener practice. A later day stays locked until that calendar day.",
   "planProgress": "{done} of {total} sessions done. Started {start}.",
   "dayLabel": "Day {n}",
   "openDay": "Open this session",
@@ -329,6 +329,16 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
   "complete": "Mark this session done",
   "done": "Done",
   "backPlan": "Back to the 7 days",
+  "slTitle": "Speaker–listener turn",
+  "slBody": "One person speaks for a timed turn. The other only listens, then paraphrases (“I heard you say…”) before any reply. There is no debate during the turn.",
+  "slSpeaker": "Speaking now: {name}",
+  "slListener": "Listening now: {name}",
+  "slStart": "Start a 3-minute turn",
+  "slSwitch": "Switch roles",
+  "slStop": "Stop the timer",
+  "slDone": "Time is up. Listener: one-sentence paraphrase, then switch.",
+  "slTick": "{m}:{s} left",
+  "reopenSum": "Back to the shared picture",
   "safetyTitle": "Safety comes before any couples plan",
   "safetyBody": "What was written describes violence, a threat, or fear of a partner. This guide will not run a normal couples plan from that. A conversation exercise is not the next step.",
   "safetyLeave": "Leave if you are not safe.",
@@ -490,6 +500,8 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
 
   var state = { view: "home", dayId: null, crisis: null, hold: false, guideText: "", guide: null, pad: "", pst: {}, check: null, result: null, formError: "", confirmClear: false, cplErr: "", cplReset: false };
   var breath = { running: false, timer: null, mode: "468", phaseIdx: 0, left: 4, cycle: 0, totalCycles: 5, dayId: null, finishedMsg: "" };
+  var slClock = null;
+  var slTurn = { running: false, left: 180, done: false };
 
   function breathModes() {
     return {
@@ -834,11 +846,15 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
   function render() {
     var breathingHere = state.view === "breathe" || (state.view === "day" && state.dayId === "t1");
     if (!breathingHere) stopBreath(false);
+    var slHere = jointSlOpen();
+    if (!slHere) stopSlTurn();
+    else clearSlClock();
     var app = document.getElementById("app");
     if (!app) return;
     app.innerHTML = shell(viewHTML());
     renderCrisis();
     if (breath.running) syncBreathDom();
+    if (slHere && slTurn.running) armSlClock();
   }
   function readRoute() {
     var h = (location.hash || "#home").replace("#", "");
@@ -910,6 +926,49 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
       }
       syncBreathDom();
     }, 1000);
+  }
+  function clearSlClock() {
+    if (slClock) clearInterval(slClock);
+    slClock = null;
+  }
+  function stopSlTurn() {
+    clearSlClock();
+    slTurn.running = false;
+    slTurn.done = false;
+    slTurn.left = 180;
+  }
+  function slTickLabel(seconds) {
+    var n = seconds < 0 ? 0 : seconds;
+    var m = Math.floor(n / 60);
+    var s = n % 60;
+    return fill(CPL.slTick, { m: String(m), s: (s < 10 ? "0" : "") + s });
+  }
+  function syncSlDom() {
+    if (typeof document === "undefined") return;
+    var el = document.getElementById("cpl-sl-tick");
+    if (!el) return;
+    if (slTurn.done) {
+      el.textContent = CPL.slDone;
+      el.className = "cpl-sl-done";
+    } else {
+      el.textContent = slTickLabel(slTurn.left);
+      el.className = "cpl-sl-time";
+    }
+  }
+  function onSlTick() {
+    slTurn.left -= 1;
+    if (slTurn.left <= 0) {
+      slTurn.left = 0;
+      slTurn.running = false;
+      slTurn.done = true;
+      clearSlClock();
+    }
+    syncSlDom();
+  }
+  function armSlClock() {
+    clearSlClock();
+    if (!slTurn.running) return;
+    slClock = setInterval(onSlTick, 1000);
   }
   function onGuideRun() {
     var text = state.guideText || "";
@@ -1307,7 +1366,9 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
       "<h2>" + esc(CPL.needH) + "</h2><p>" + esc(sum.needs) + "</p>" +
       "<h2>" + esc(CPL.appH) + "</h2><p>" + esc(sum.appreciate) + "</p>" +
       '<p class="muted">' + esc(CPL.summaryOnly) + "</p>" +
-      '<button type="button" class="btn block" data-action="cpl-start-plan">' + esc(CPL.startWeek) + "</button></section>";
+      '<div class="stack"><button type="button" class="btn block" data-action="cpl-start-plan">' + esc(CPL.startWeek) + "</button>" +
+      (loadCplPlan() ? '<button type="button" class="btn secondary block" data-action="cpl-back-plan">' + esc(CPL.backPlan) + "</button>" : "") +
+      "</div></section>";
   }
   function viewCplPlan(meta) {
     var plan = loadCplPlan();
@@ -1329,7 +1390,40 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
       "<p>" + esc(CPL.planIntro) + "</p>" +
       "<p>" + esc(fill(CPL.planProgress, { done: done, total: 7, start: plan.startDate })) + "</p>" +
       '<div class="progress" aria-hidden="true"><span style="width:' + pct + '%"></span></div>' +
+      '<button type="button" class="btn secondary block" data-action="cpl-reopen-sum">' + esc(CPL.reopenSum) + "</button>" +
       list + cplResetBlock() + "</section>";
+  }
+  function speakerSide(meta) {
+    if (meta.slSpeakerSide === "a" || meta.slSpeakerSide === "b") return meta.slSpeakerSide;
+    return meta.active === "b" ? "b" : "a";
+  }
+  function jointSessionOpen(meta) {
+    if (!meta || meta.safety || meta.screen !== "session") return false;
+    var plan = loadCplPlan();
+    var found = cplDayDef(meta.openDay);
+    if (!plan || !found || found.def.mode !== "joint") return false;
+    return found.index <= todayIndex(plan, jerusalemToday());
+  }
+  function jointSlOpen() {
+    if (state.crisis || state.hold || state.view !== "couples") return false;
+    return jointSessionOpen(loadCplMeta());
+  }
+  function slCard(meta) {
+    var sp = speakerSide(meta);
+    var li = otherOf(sp);
+    var tick = slTurn.done
+      ? '<p id="cpl-sl-tick" class="cpl-sl-done">' + esc(CPL.slDone) + "</p>"
+      : '<p id="cpl-sl-tick" class="cpl-sl-time">' + esc(slTickLabel(slTurn.running ? slTurn.left : 180)) + "</p>";
+    return '<div class="cpl-sl"><h2>' + esc(CPL.slTitle) + "</h2>" +
+      "<p>" + esc(CPL.slBody) + "</p>" +
+      "<p><strong>" + esc(fill(CPL.slSpeaker, { name: nameOf(meta, sp) })) + "</strong></p>" +
+      "<p>" + esc(fill(CPL.slListener, { name: nameOf(meta, li) })) + "</p>" +
+      tick +
+      '<div class="stack">' +
+      '<button type="button" class="btn block" data-action="cpl-sl-start">' + esc(CPL.slStart) + "</button>" +
+      '<button type="button" class="btn secondary block" data-action="cpl-sl-switch">' + esc(CPL.slSwitch) + "</button>" +
+      '<button type="button" class="btn secondary block" data-action="cpl-sl-stop">' + esc(CPL.slStop) + "</button>" +
+      "</div></div>";
   }
   function viewCplSession(meta) {
     var plan = loadCplPlan();
@@ -1366,12 +1460,15 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
       }
     }
     var both = "";
+    var slHTML = "";
     if (def.mode === "joint") {
       both = '<label class="check"><input type="checkbox" data-cpl="both" data-day="' + esc(def.id) + '"' + (day.bothHere ? " checked" : "") + ">" + esc(CPL.bothHere) + "</label>";
+      slHTML = slCard(meta);
     }
     return head + sumHTML +
       "<h2>" + esc(CPL.lessonH) + "</h2><p>" + esc(def.lesson) + "</p>" +
       "<h2>" + esc(CPL.exerciseH) + "</h2><p>" + esc(def.exercise) + "</p>" +
+      slHTML +
       both +
       '<label class="field">' + esc(def.mode === "joint" ? CPL.jointNote : CPL.noteLabel) +
       '<textarea id="cpl-note" data-cpl="note" data-day="' + esc(def.id) + '">' + esc(note) + "</textarea></label>" +
@@ -1535,8 +1632,10 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
       render(); return;
     }
     if (action === "cpl-open") {
+      stopSlTurn();
       meta.openDay = t.dataset.day;
       meta.screen = "session";
+      meta.slSpeakerSide = "";
       saveCplMeta(meta);
       render(); return;
     }
@@ -1544,6 +1643,30 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
       if (applyGuardToCurrent(meta) === "stop") return;
       meta.screen = "plan";
       saveCplMeta(meta);
+      render(); return;
+    }
+    if (action === "cpl-reopen-sum") {
+      if (!loadCplPlan()) return;
+      meta.screen = "summary";
+      saveCplMeta(meta);
+      render(); return;
+    }
+    if (action === "cpl-sl-start" || action === "cpl-sl-switch" || action === "cpl-sl-stop") {
+      if (!jointSessionOpen(meta)) return;
+      if (action === "cpl-sl-stop") { stopSlTurn(); render(); return; }
+      if (action === "cpl-sl-switch") {
+        var curSide = speakerSide(meta);
+        meta.slSpeakerSide = otherOf(curSide);
+        saveCplMeta(meta);
+        render(); return;
+      }
+      if (meta.slSpeakerSide !== "a" && meta.slSpeakerSide !== "b") {
+        meta.slSpeakerSide = meta.active === "b" ? "b" : "a";
+        saveCplMeta(meta);
+      }
+      slTurn.left = 180;
+      slTurn.done = false;
+      slTurn.running = true;
       render(); return;
     }
     if (action === "cpl-done") {
@@ -1618,6 +1741,79 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
     eq(html.indexOf(secretA) === -1, "ask view leak");
     eq(html.indexOf("only B topic") !== -1 || html.indexOf(CPL.questions[0]) !== -1, "ask shows B");
     eq(html.indexOf("Omar") !== -1, "who banner");
+    eq(CPL.slTitle === "Speaker–listener turn", "slTitle");
+    eq(CPL.slSpeaker === "Speaking now: {name}", "slSpeaker");
+    eq(CPL.slListener === "Listening now: {name}", "slListener");
+    eq(CPL.slStart === "Start a 3-minute turn", "slStart");
+    eq(CPL.slSwitch === "Switch roles", "slSwitch");
+    eq(CPL.slStop === "Stop the timer", "slStop");
+    eq(CPL.slDone === "Time is up. Listener: one-sentence paraphrase, then switch.", "slDone");
+    eq(CPL.slTick === "{m}:{s} left", "slTick");
+    eq(CPL.reopenSum === "Back to the shared picture", "reopenSum");
+    eq(CPL.slBody.indexOf("I heard you say") !== -1 && CPL.slBody.indexOf("no debate") !== -1, "slBody");
+    eq(CPL.planIntro.indexOf("timed speaker–listener practice") !== -1, "planIntro sl");
+    eq(CPL.disc.indexOf("not a licensed couples therapist") !== -1 && CPL.disc.indexOf("does not diagnose") !== -1, "disc");
+    eq(CPL.safetyCall.indexOf("100") !== -1 && CPL.safetyCall.indexOf("1201") !== -1, "safety phones");
+    stopSlTurn();
+    slTurn.running = true;
+    slTurn.left = 180;
+    armSlClock();
+    eq(slClock != null, "clock id");
+    clearSlClock();
+    eq(slClock === null, "clock cleared");
+    slTurn.running = true;
+    slTurn.left = 1;
+    slTurn.done = false;
+    onSlTick();
+    eq(slTurn.done === true && slTurn.running === false && slTurn.left === 0 && slClock === null, "time up");
+    stopSlTurn();
+    cplWipe();
+    var ago = new Date();
+    ago.setDate(ago.getDate() - 10);
+    var readyA = cplBlank(); readyA.done = true; saveCplSide("a", readyA);
+    var readyB = cplBlank(); readyB.done = true; saveCplSide("b", readyB);
+    var plan = makeCplPlan();
+    plan.startDate = jerusalemToday(ago);
+    saveJSON(K_CPL_PLAN, plan);
+    saveJSON(K_CPL_SUM, buildCoupleSummary(readyA, readyB, "Lina", "Omar"));
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "a", screen: "session", openDay: "c4", safety: false, slSpeakerSide: "a" });
+    state.view = "couples";
+    var joint = viewCouples();
+    eq(joint.indexOf('class="cpl-sl"') !== -1, "joint card");
+    eq(joint.indexOf(CPL.slTitle) !== -1 && joint.indexOf(CPL.slBody) !== -1, "joint copy");
+    eq(joint.indexOf('data-action="cpl-sl-start"') !== -1, "sl start");
+    eq(joint.indexOf('data-action="cpl-sl-switch"') !== -1, "sl switch");
+    eq(joint.indexOf('data-action="cpl-sl-stop"') !== -1, "sl stop");
+    eq(joint.indexOf(fill(CPL.slSpeaker, { name: "Lina" })) !== -1, "speaker a");
+    eq(joint.indexOf(fill(CPL.slListener, { name: "Omar" })) !== -1, "listener b");
+    eq(joint.indexOf(slTickLabel(180)) !== -1, "tick 3:00");
+    eq(joint.indexOf(CPL.safetyTitle) === -1, "joint is not safety");
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "a", screen: "session", openDay: "c4", safety: false, slSpeakerSide: "b" });
+    var switched = viewCouples();
+    eq(switched.indexOf(fill(CPL.slSpeaker, { name: "Omar" })) !== -1, "speaker b");
+    eq(switched.indexOf(fill(CPL.slListener, { name: "Lina" })) !== -1, "listener a");
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "a", screen: "session", openDay: "c1", safety: false });
+    var alone = viewCouples();
+    eq(alone.indexOf("cpl-sl") === -1 && alone.indexOf(CPL.slTitle) === -1, "no timer on individual");
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "a", screen: "plan", safety: false });
+    var planHtml = viewCouples();
+    eq(planHtml.indexOf('data-action="cpl-reopen-sum"') !== -1, "reopen action");
+    eq(planHtml.indexOf(CPL.reopenSum) !== -1, "reopen label");
+    eq(planHtml.indexOf("timed speaker–listener practice") !== -1, "plan mentions practice");
+    eq(planHtml.indexOf('data-action="cpl-sl-start"') === -1, "plan has no timer");
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "a", screen: "summary", safety: false });
+    var sumHtml = viewCouples();
+    eq(sumHtml.indexOf(CPL.startWeek) !== -1 && sumHtml.indexOf('data-action="cpl-back-plan"') !== -1, "summary back to plan");
+    eq(sumHtml.indexOf(CPL.backPlan) !== -1, "summary back label");
+    try { localStorage.removeItem(K_CPL_PLAN); } catch (ePlan) {}
+    var sumFresh = viewCouples();
+    eq(sumFresh.indexOf(CPL.startWeek) !== -1 && sumFresh.indexOf('data-action="cpl-back-plan"') === -1, "summary without plan");
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "a", screen: "safety", safety: true });
+    var safeHtml = viewCouples();
+    eq(safeHtml.indexOf("cpl-safety") !== -1 && safeHtml.indexOf(">100<") !== -1 && safeHtml.indexOf(">1201<") !== -1, "safety card");
+    eq(safeHtml.indexOf("cpl-sl") === -1, "no timer on safety");
+    cplWipe();
+    stopSlTurn();
     return errors;
   }
   function init() {
