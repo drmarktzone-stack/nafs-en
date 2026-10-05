@@ -788,6 +788,51 @@ textarea { min-height: 100px; resize: vertical; }
   color: var(--ink);
 }
 
+/* Catch your partner doing something nice */
+.cpl-nice {
+  background: var(--olive-soft);
+  border: 1px solid #d5e3d8;
+}
+.cpl-nice h2 { font-size: 1.15rem; }
+.cpl-nice-box { min-height: 4.5rem; }
+.cpl-nice-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 8px;
+}
+.cpl-nice-item {
+  list-style: none;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 10px 12px;
+  margin: 0 0 8px;
+}
+.cpl-nice-item p { margin-bottom: 6px; }
+.cpl-nice-item .check { margin-bottom: 0; }
+.cpl-nice-counts {
+  background: var(--olive-soft);
+  border: 1px solid #d5e3d8;
+  border-radius: 14px;
+  padding: 12px;
+  margin: 0 0 12px;
+}
+.cpl-nice-counts p { margin-bottom: 8px; }
+.cpl-nice-shared h2 { font-size: 1.15rem; }
+.cpl-nice-shared h3 { margin-top: 10px; }
+.cpl-nice-shared ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 8px;
+}
+.cpl-nice-shared li {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 8px 10px;
+  margin: 0 0 8px;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .orb { transition: none !important; }
   .tile, .btn, .progress > span { transition: none !important; }

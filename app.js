@@ -358,6 +358,24 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
   "problemLine": "{a} says the fight is mostly about: {at}. {b} says it is mostly about: {bt}. These are short clips, not the full private notes.",
   "needLine": "{a} seems to need: {an}. {b} seems to need: {bn}.",
   "appLine": "{a} appreciates: {aa}. {b} appreciates: {ba}.",
+  "niceTitle": "Nice things I noticed",
+  "niceKicker": "Private to {name}",
+  "niceLesson": "Small daily caring acts, and noticing them out loud, are a core behavioral couples technique. This is the “catch your partner doing something nice” practice from behavioral couples work (O'Farrell and Fals-Stewart). It is self-help, not a therapist and not a diagnosis.",
+  "nicePrompt": "Write one caring or kind thing you noticed your partner do today. A short line is enough. Up to three a day.",
+  "niceField": "One nice thing today",
+  "niceSave": "Save this note",
+  "niceNeed": "Write a short note first.",
+  "niceFull": "Three notes is enough for today. You can add another tomorrow.",
+  "niceShare": "Share this at the next joint session",
+  "niceShareHint": "Sharing stays off unless you tick it. An unticked note is never shown to your partner, never copied into the shared picture, and never read in a joint session.",
+  "niceDate": "Noted on {date}",
+  "niceNoneYet": "No notes yet. One small thing you noticed is enough.",
+  "niceOpen": "Nice things I noticed",
+  "niceCounts": "Caring notes this week — {a}: {an}. {b}: {bn}. Counts only. The words stay on each person’s own side.",
+  "niceJointTitle": "Nice things you chose to share",
+  "niceJointHow": "Each person reads one note aloud to the other. The listener only says thank you. No debate, and no “but”.",
+  "niceEmpty": "Nothing shared yet. Before next time, notice one caring thing the other person did. You can choose to share it when you are ready.",
+  "niceFrom": "{name} noticed",
   "hitSample": "he hits me when he is angry",
   "safeSample": "we argue about dishes and bills",
   "questions": [
@@ -498,7 +516,7 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
   function loadProgram() { return loadJSON(K_PROGRAM, null); }
   function saveProgram(p) { saveJSON(K_PROGRAM, p); }
 
-  var state = { view: "home", dayId: null, crisis: null, hold: false, guideText: "", guide: null, pad: "", pst: {}, check: null, result: null, formError: "", confirmClear: false, cplErr: "", cplReset: false };
+  var state = { view: "home", dayId: null, crisis: null, hold: false, guideText: "", guide: null, pad: "", pst: {}, check: null, result: null, formError: "", confirmClear: false, cplErr: "", cplReset: false, cplNiceDraft: "", cplNiceErr: "" };
   var breath = { running: false, timer: null, mode: "468", phaseIdx: 0, left: 4, cycle: 0, totalCycles: 5, dayId: null, finishedMsg: "" };
   var slClock = null;
   var slTurn = { running: false, left: 180, done: false };
@@ -844,6 +862,7 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
       '<button type="button" class="btn" id="crisis-dismiss">' + esc(backLabel) + "</button></div>";
   }
   function render() {
+    if (typeof document === "undefined") return;
     var breathingHere = state.view === "breathe" || (state.view === "day" && state.dayId === "t1");
     if (!breathingHere) stopBreath(false);
     var slHere = jointSlOpen();
@@ -1123,7 +1142,7 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
   }
 
   function cplBlank() {
-    return { answers: ["", "", "", "", "", "", "", ""], done: false, doneAt: null, qi: 0, notes: {} };
+    return { answers: ["", "", "", "", "", "", "", ""], done: false, doneAt: null, qi: 0, notes: {}, nice: [] };
   }
   function loadCplMeta() {
     var m = loadJSON(K_CPL_META, null) || {};
@@ -1139,11 +1158,101 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
     var key = which === "b" ? K_CPL_B : K_CPL_A;
     var rec = loadJSON(key, null);
     if (!rec || !rec.answers || rec.answers.length !== 8) rec = cplBlank();
-    if (!rec.notes || typeof rec.notes !== "object") rec.notes = {};
+    if (!rec.notes || typeof rec.notes !== "object" || Array.isArray(rec.notes)) rec.notes = {};
     if (typeof rec.qi !== "number") rec.qi = 0;
+    rec.nice = normalizeNice(rec.nice);
     return rec;
   }
   function saveCplSide(which, rec) { saveJSON(which === "b" ? K_CPL_B : K_CPL_A, rec); }
+  function normalizeNice(list) {
+    if (!Array.isArray(list)) return [];
+    var out = [];
+    for (var i = 0; i < list.length; i++) {
+      var n = list[i];
+      if (!n || typeof n !== "object") continue;
+      var text = String(n.text || "").replace(/\s+/g, " ").trim().slice(0, 200);
+      var date = String(n.date || "");
+      if (!text || !/^\d{4}-\d{2}-\d{2}$/.test(date)) continue;
+      out.push({ id: String(n.id || ("n" + i + text.length)), text: text, date: date, share: n.share === true });
+    }
+    return out;
+  }
+  function addDaysISO(iso, days) {
+    var p = String(iso || "").split("-").map(Number);
+    if (p.length < 3 || !p[0] || !p[1] || !p[2]) return String(iso || "");
+    var dt = new Date(Date.UTC(p[0], p[1] - 1, p[2] + days));
+    var m = String(dt.getUTCMonth() + 1);
+    var d = String(dt.getUTCDate());
+    if (m.length < 2) m = "0" + m;
+    if (d.length < 2) d = "0" + d;
+    return dt.getUTCFullYear() + "-" + m + "-" + d;
+  }
+  function niceCountBetween(which, start, end) {
+    var list = loadCplSide(which).nice;
+    var n = 0;
+    for (var i = 0; i < list.length; i++) {
+      if (list[i].date >= start && list[i].date <= end) n++;
+    }
+    return n;
+  }
+  function niceTodayCount(which, today) {
+    return niceCountBetween(which, today, today);
+  }
+  function niceShared(which) {
+    return loadCplSide(which).nice.filter(function (n) { return n.share === true; });
+  }
+  function niceRisk(text) {
+    if (isCrisisText(text)) return "crisis";
+    if (cplViolent(text)) return "violence";
+    return "";
+  }
+  function scrubNice(which) {
+    var rec = loadCplSide(which);
+    var hitV = false, hitC = false, kept = [];
+    for (var i = 0; i < rec.nice.length; i++) {
+      var risk = niceRisk(rec.nice[i].text);
+      if (risk === "crisis") hitC = true;
+      else if (risk === "violence") hitV = true;
+      else kept.push(rec.nice[i]);
+    }
+    if (hitV || hitC) { rec.nice = kept; saveCplSide(which, rec); }
+    return { hitV: hitV, hitC: hitC };
+  }
+  function absorbNiceRisk() {
+    var a = scrubNice("a"), b = scrubNice("b");
+    if (a.hitC || b.hitC) return "crisis";
+    if (a.hitV || b.hitV) return "violence";
+    return "";
+  }
+  function commitNiceNote(meta, text) {
+    if (state.hold || !meta || meta.safety) return "stop";
+    var side = meta.active === "b" ? "b" : "a";
+    var raw = String(text || "").replace(/\s+/g, " ").trim().slice(0, 200);
+    var risk = niceRisk(raw);
+    if (risk === "crisis") { state.cplNiceDraft = ""; triggerCrisis("text"); return "stop"; }
+    if (risk === "violence") { state.cplNiceDraft = ""; enterSafety(meta); return "stop"; }
+    if (raw.length < 2) return "short";
+    if (niceTodayCount(side, jerusalemToday()) >= 3) return "full";
+    var rec = loadCplSide(side);
+    rec.nice.push({
+      id: "n" + Date.now().toString(36) + Math.floor(Math.random() * 1296).toString(36),
+      text: raw,
+      date: jerusalemToday(),
+      share: false
+    });
+    saveCplSide(side, rec);
+    return "ok";
+  }
+  function setNiceShare(meta, id, share) {
+    if (state.hold || !meta || meta.safety) return;
+    var side = meta.active === "b" ? "b" : "a";
+    var rec = loadCplSide(side);
+    var found = false;
+    for (var i = 0; i < rec.nice.length; i++) {
+      if (rec.nice[i].id === id) { rec.nice[i].share = !!share; found = true; }
+    }
+    if (found) saveCplSide(side, rec);
+  }
   function loadCplPlan() { return loadJSON(K_CPL_PLAN, null); }
   function otherOf(w) { return w === "b" ? "a" : "b"; }
   function nameOf(meta, w) { return w === "b" ? (meta.bName || "") : (meta.aName || ""); }
@@ -1196,6 +1305,8 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
     });
     state.cplErr = "";
     state.cplReset = false;
+    state.cplNiceErr = "";
+    state.cplNiceDraft = "";
   }
   function scrubSide(which) {
     var rec = loadCplSide(which);
@@ -1211,16 +1322,26 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
       if (isCrisisText(n)) { rec.notes[k] = ""; hitC = true; }
       else if (cplViolent(n)) { rec.notes[k] = ""; hitV = true; }
     });
+    var keptNice = [];
+    for (i = 0; i < rec.nice.length; i++) {
+      var nv = rec.nice[i].text || "";
+      if (isCrisisText(nv)) hitC = true;
+      else if (cplViolent(nv)) hitV = true;
+      else keptNice.push(rec.nice[i]);
+    }
+    rec.nice = keptNice;
     saveCplSide(which, rec);
     return { hitV: hitV, hitC: hitC };
   }
-  function enterSafety(meta) {
+  function enterSafety(meta, skipRender) {
     meta.safety = true;
     meta.screen = "safety";
     saveCplMeta(meta);
     try { localStorage.removeItem(K_CPL_PLAN); localStorage.removeItem(K_CPL_SUM); } catch (e) {}
     state.cplErr = "";
-    render();
+    state.cplNiceErr = "";
+    state.cplNiceDraft = "";
+    if (!skipRender) render();
   }
   function screenFor(meta, who) {
     if (meta.safety) return "safety";
@@ -1236,6 +1357,63 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
     return '<div class="who" role="status"><b>' + esc(fill(CPL.answering, { name: name })) + "</b>" +
       '<p class="muted">' + esc(CPL.notYou) + "</p>" +
       '<button type="button" class="btn secondary" data-action="cpl-switch">' + esc(CPL.switchBtn) + "</button></div>";
+  }
+  function niceFeatureOn(meta) {
+    return !state.hold && !state.crisis && meta && !meta.safety;
+  }
+  function nicePrivateCard(meta) {
+    if (!niceFeatureOn(meta)) return "";
+    var side = meta.active === "b" ? "b" : "a";
+    var name = nameOf(meta, side) || CPL.noname;
+    var rec = loadCplSide(side);
+    var todayCount = niceTodayCount(side, jerusalemToday());
+    var list;
+    if (!rec.nice.length) list = '<p class="muted">' + esc(CPL.niceNoneYet) + "</p>";
+    else {
+      var rows = rec.nice.slice().reverse().map(function (n) {
+        return '<li class="cpl-nice-item"><p>' + esc(n.text) + '</p><p class="muted">' + esc(fill(CPL.niceDate, { date: n.date })) + "</p>" +
+          '<label class="check"><input type="checkbox" data-cpl="nice-share" data-id="' + esc(n.id) + '"' + (n.share === true ? " checked" : "") + ">" + esc(CPL.niceShare) + "</label></li>";
+      }).join("");
+      list = '<ul class="cpl-nice-list">' + rows + "</ul>";
+    }
+    var form = todayCount >= 3
+      ? '<p class="muted">' + esc(CPL.niceFull) + "</p>"
+      : '<label class="field">' + esc(CPL.niceField) +
+        '<textarea id="cpl-nice" class="cpl-nice-box" maxlength="200" data-cpl="nice-draft">' + esc(state.cplNiceDraft || "") + "</textarea></label>" +
+        (state.cplNiceErr ? '<p class="err">' + esc(state.cplNiceErr) + "</p>" : "") +
+        '<button type="button" class="btn block" data-action="cpl-nice-add">' + esc(CPL.niceSave) + "</button>";
+    return '<section class="card cpl-nice"><p class="kicker">' + esc(fill(CPL.niceKicker, { name: name })) + "</p><h2>" + esc(CPL.niceTitle) + "</h2>" +
+      "<p>" + esc(CPL.niceLesson) + "</p><p>" + esc(CPL.nicePrompt) + "</p>" + list +
+      '<p class="muted">' + esc(CPL.niceShareHint) + "</p>" + form + "</section>";
+  }
+  function niceJointCard(meta, bothHere) {
+    if (!niceFeatureOn(meta) || !bothHere) return "";
+    var groups = [["a", meta.aName], ["b", meta.bName]];
+    var chunks = "";
+    var any = false;
+    for (var g = 0; g < groups.length; g++) {
+      var notes = niceShared(groups[g][0]);
+      if (!notes.length) continue;
+      any = true;
+      var lis = notes.map(function (n) {
+        return "<li><p>" + esc(n.text) + '</p><p class="muted">' + esc(fill(CPL.niceDate, { date: n.date })) + "</p></li>";
+      }).join("");
+      chunks += "<h3>" + esc(fill(CPL.niceFrom, { name: groups[g][1] || CPL.noname })) + "</h3><ul>" + lis + "</ul>";
+    }
+    var body = any ? chunks : "<p>" + esc(CPL.niceEmpty) + "</p>";
+    return '<div class="banner cpl-nice-shared"><h2>' + esc(CPL.niceJointTitle) + "</h2><p>" + esc(CPL.niceJointHow) + "</p>" +
+      '<p class="muted">' + esc(CPL.niceLesson) + "</p>" + body + "</div>";
+  }
+  function niceCountsHTML(meta, plan) {
+    if (!niceFeatureOn(meta) || !plan || !plan.startDate) return "";
+    var end = addDaysISO(plan.startDate, 6);
+    var an = niceCountBetween("a", plan.startDate, end);
+    var bn = niceCountBetween("b", plan.startDate, end);
+    return '<div class="cpl-nice-counts"><p>' + esc(fill(CPL.niceCounts, { a: meta.aName, b: meta.bName, an: an, bn: bn })) + "</p>" +
+      '<button type="button" class="btn secondary block" data-action="cpl-open-nice">' + esc(CPL.niceOpen) + "</button></div>";
+  }
+  function niceOpenButton() {
+    return '<button type="button" class="btn secondary block" data-action="cpl-open-nice">' + esc(CPL.niceOpen) + "</button>";
   }
   function cplDayDef(id) {
     for (var i = 0; i < CPL.days.length; i++) if (CPL.days[i].id === id) return { def: CPL.days[i], index: i };
@@ -1294,6 +1472,13 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
       if (isCrisisText(note)) { triggerCrisis("text"); return "stop"; }
       if (cplViolent(note)) { enterSafety(meta); return "stop"; }
     }
+    var niceDraft = readCplBox("cpl-nice");
+    if (niceDraft != null) {
+      state.cplNiceDraft = String(niceDraft).slice(0, 200);
+      var niceHit = niceRisk(niceDraft);
+      if (niceHit === "crisis") { state.cplNiceDraft = ""; triggerCrisis("text"); return "stop"; }
+      if (niceHit === "violence") { state.cplNiceDraft = ""; enterSafety(meta); return "stop"; }
+    }
     return "ok";
   }
   function viewCplSetup(meta) {
@@ -1335,14 +1520,14 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
       (state.cplErr ? '<p class="err">' + esc(state.cplErr) + "</p>" : "") +
       '<div class="stack">' +
       (i > 0 ? '<button type="button" class="btn secondary block" data-action="cpl-prev">' + esc(CPL.back) + "</button>" : '<button type="button" class="btn secondary block" data-action="cpl-to-who">' + esc(CPL.backWho) + "</button>") +
-      '<button type="button" class="btn block" data-action="cpl-next">' + esc(i === 7 ? CPL.finishMine : CPL.next) + "</button></div></section>";
+      '<button type="button" class="btn block" data-action="cpl-next">' + esc(i === 7 ? CPL.finishMine : CPL.next) + "</button></div></section>" + nicePrivateCard(meta);
   }
   function viewCplWait(meta) {
     var other = otherOf(meta.active);
     return whoBanner(meta) + '<section class="card"><h1>' + esc(CPL.waitTitle) + "</h1>" +
       "<p>" + esc(fill(CPL.waitBody, { name: nameOf(meta, other) })) + "</p>" +
       '<button type="button" class="btn block" data-action="cpl-switch">' + esc(fill(CPL.theirTurn, { name: nameOf(meta, other) })) + "</button>" +
-      '<button type="button" class="btn secondary block" data-action="cpl-review">' + esc(CPL.reviewMine) + "</button></section>";
+      '<button type="button" class="btn secondary block" data-action="cpl-review">' + esc(CPL.reviewMine) + "</button></section>" + nicePrivateCard(meta);
   }
   function viewCplReview(meta) {
     var side = meta.active === "b" ? "b" : "a";
@@ -1352,7 +1537,7 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
     }).join("");
     return whoBanner(meta) + '<section class="card"><p class="kicker">' + esc(fill(CPL.privateTag, { name: nameOf(meta, side) })) + "</p>" +
       "<h1>" + esc(CPL.reviewTitle) + "</h1><p>" + esc(CPL.reviewNote) + "</p>" + rows +
-      '<button type="button" class="btn secondary block" data-action="cpl-to-who">' + esc(CPL.backWho) + "</button></section>";
+      '<button type="button" class="btn secondary block" data-action="cpl-to-who">' + esc(CPL.backWho) + "</button></section>" + nicePrivateCard(meta);
   }
   function viewCplSummary(meta) {
     var sum = loadJSON(K_CPL_SUM, null);
@@ -1369,6 +1554,7 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
       '<p class="muted">' + esc(CPL.summaryOnly) + "</p>" +
       '<div class="stack"><button type="button" class="btn block" data-action="cpl-start-plan">' + esc(CPL.startWeek) + "</button>" +
       (loadCplPlan() ? '<button type="button" class="btn secondary block" data-action="cpl-back-plan">' + esc(CPL.backPlan) + "</button>" : "") +
+      (niceFeatureOn(meta) ? niceOpenButton() : "") +
       "</div></section>";
   }
   function viewCplPlan(meta) {
@@ -1391,6 +1577,7 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
       "<p>" + esc(CPL.planIntro) + "</p>" +
       "<p>" + esc(fill(CPL.planProgress, { done: done, total: 7, start: plan.startDate })) + "</p>" +
       '<div class="progress" aria-hidden="true"><span style="width:' + pct + '%"></span></div>' +
+      niceCountsHTML(meta, plan) +
       '<button type="button" class="btn secondary block" data-action="cpl-reopen-sum">' + esc(CPL.reopenSum) + "</button>" +
       list + cplResetBlock() + "</section>";
   }
@@ -1438,12 +1625,14 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
       "<p><strong>" + esc(CPL.methodH) + "</strong> " + esc(def.method) + "</p>";
     if (idx > todayIx) {
       return head + "<p>" + esc(CPL.lockedBody) + "</p>" +
-        '<button type="button" class="btn secondary block" data-action="cpl-back-plan">' + esc(CPL.backPlan) + "</button></section>";
+        '<button type="button" class="btn secondary block" data-action="cpl-back-plan">' + esc(CPL.backPlan) + "</button></section>" +
+        (def.mode === "individual" ? nicePrivateCard(meta) : "");
     }
     if (def.mode === "individual" && meta.active !== def.who) {
       return head + "<p>" + esc(fill(CPL.wrongPartner, { name: nameOf(meta, def.who) })) + "</p>" +
         '<button type="button" class="btn block" data-action="cpl-switch">' + esc(CPL.switchBtn) + "</button>" +
-        '<button type="button" class="btn secondary block" data-action="cpl-back-plan">' + esc(CPL.backPlan) + "</button></section>";
+        '<button type="button" class="btn secondary block" data-action="cpl-back-plan">' + esc(CPL.backPlan) + "</button></section>" +
+        nicePrivateCard(meta);
     }
     var note = "";
     if (def.mode === "individual") note = (loadCplSide(def.who).notes || {})[def.id] || "";
@@ -1464,16 +1653,24 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
       both = '<label class="check"><input type="checkbox" data-cpl="both" data-day="' + esc(def.id) + '"' + (day.bothHere ? " checked" : "") + ">" + esc(CPL.bothHere) + "</label>";
       slHTML = slCard(meta);
     }
+    var niceHTML = def.mode === "joint" ? niceJointCard(meta, !!day.bothHere) : nicePrivateCard(meta);
     return head + sumHTML +
       "<h2>" + esc(CPL.lessonH) + "</h2><p>" + esc(def.lesson) + "</p>" +
       "<h2>" + esc(CPL.exerciseH) + "</h2><p>" + esc(def.exercise) + "</p>" +
       slHTML +
       both +
+      niceHTML +
       '<label class="field">' + esc(def.mode === "joint" ? CPL.jointNote : CPL.noteLabel) +
       '<textarea id="cpl-note" data-cpl="note" data-day="' + esc(def.id) + '">' + esc(note) + "</textarea></label>" +
       (state.cplErr ? '<p class="err">' + esc(state.cplErr) + "</p>" : "") +
       '<label class="check"><input type="checkbox" data-action="cpl-done" data-day="' + esc(def.id) + '"' + (day.completed ? " checked" : "") + ">" + esc(day.completed ? CPL.done : CPL.complete) + "</label>" +
       '<button type="button" class="btn secondary block" data-action="cpl-back-plan">' + esc(CPL.backPlan) + "</button></section>";
+  }
+  function viewCplNice(meta) {
+    var backAction = loadCplPlan() ? "cpl-back-plan" : "cpl-to-who";
+    var backLabel = loadCplPlan() ? CPL.backPlan : CPL.backWho;
+    return whoBanner(meta) + nicePrivateCard(meta) +
+      '<p><button type="button" class="btn secondary block" data-action="' + backAction + '">' + esc(backLabel) + "</button></p>";
   }
   function viewCplSafety(meta) {
     return '<section class="card cpl-safety"><h1>' + esc(CPL.safetyTitle) + "</h1>" +
@@ -1486,13 +1683,18 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
       cplResetBlock() + "</section>";
   }
   function viewCouples() {
+    if (state.hold) return holdHTML();
     var meta = loadCplMeta();
     if (meta.safety || meta.screen === "safety") return viewCplSafety(meta);
+    var risk = absorbNiceRisk();
+    if (risk === "crisis") { triggerCrisis("text"); return holdHTML(); }
+    if (risk === "violence") { enterSafety(meta, true); return viewCplSafety(meta); }
     if (!meta.aName || !meta.bName || meta.screen === "setup") return viewCplSetup(meta);
     if (meta.screen === "ask") return viewCplAsk(meta);
     if (meta.screen === "wait") return viewCplWait(meta);
     if (meta.screen === "review") return viewCplReview(meta);
     if (meta.screen === "summary") return viewCplSummary(meta);
+    if (meta.screen === "nice") return viewCplNice(meta);
     if (meta.screen === "session") return viewCplSession(meta);
     if (meta.screen === "plan") return viewCplPlan(meta);
     return viewCplWho(meta);
@@ -1546,16 +1748,32 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
       saveJSON(K_CPL_PLAN, plan);
       return;
     }
+    if (kind === "nice-draft") {
+      if (!niceFeatureOn(meta)) return;
+      var draft = String(el.value || "").slice(0, 200);
+      var draftRisk = niceRisk(draft);
+      if (draftRisk === "crisis") { state.cplNiceDraft = ""; el.value = ""; triggerCrisis("text"); return; }
+      if (draftRisk === "violence") { state.cplNiceDraft = ""; el.value = ""; enterSafety(meta); return; }
+      state.cplNiceDraft = draft;
+      return;
+    }
+    if (kind === "nice-share") {
+      if (!niceFeatureOn(meta)) return;
+      setNiceShare(meta, el.dataset.id, !!el.checked);
+      return;
+    }
     if (kind === "both") {
       var plan2 = loadCplPlan();
       if (!plan2) return;
       for (var j = 0; j < plan2.days.length; j++) if (plan2.days[j].id === el.dataset.day) plan2.days[j].bothHere = !!el.checked;
       saveJSON(K_CPL_PLAN, plan2);
+      render();
     }
   }
   function onCplAction(action, t) {
     var meta = loadCplMeta();
     state.cplErr = "";
+    if (action !== "cpl-nice-add") state.cplNiceErr = "";
     if (action === "cpl-reset-ask") { state.cplReset = true; render(); return; }
     if (action === "cpl-reset-no") { state.cplReset = false; render(); return; }
     if (action === "cpl-reset-yes") { cplWipe(); render(); return; }
@@ -1589,9 +1807,31 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
       if (applyGuardToCurrent(meta) === "stop") return;
       var who = action === "cpl-pick" ? t.dataset.who : otherOf(meta.active);
       if (who !== "a" && who !== "b") who = "a";
+      var stayNice = action === "cpl-switch" && meta.screen === "nice";
       meta.active = who;
-      meta.screen = screenFor(meta, who);
+      meta.screen = stayNice ? "nice" : screenFor(meta, who);
+      state.cplNiceDraft = "";
+      state.cplNiceErr = "";
       saveCplMeta(meta);
+      render(); return;
+    }
+    if (action === "cpl-open-nice") {
+      if (!niceFeatureOn(meta)) return;
+      if (applyGuardToCurrent(meta) === "stop") return;
+      meta.screen = "nice";
+      saveCplMeta(meta);
+      render(); return;
+    }
+    if (action === "cpl-nice-add") {
+      if (!niceFeatureOn(meta)) return;
+      var typedNice = readCplBox("cpl-nice");
+      if (typedNice == null) typedNice = state.cplNiceDraft || "";
+      var added = commitNiceNote(meta, typedNice);
+      if (added === "stop") return;
+      if (added === "short") { state.cplNiceErr = CPL.niceNeed; render(); return; }
+      if (added === "full") { state.cplNiceErr = CPL.niceFull; render(); return; }
+      state.cplNiceDraft = "";
+      state.cplNiceErr = "";
       render(); return;
     }
     if (action === "cpl-prev") {
@@ -1813,6 +2053,133 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
     eq(safeHtml.indexOf("cpl-sl") === -1, "no timer on safety");
     cplWipe();
     stopSlTurn();
+    state.hold = false;
+    state.crisis = null;
+    state.cplNiceDraft = "";
+    state.cplNiceErr = "";
+    var todayNice = jerusalemToday();
+    var unshared = "UNSHAREDSECRET-tea-morning";
+    var sharedNice = "SHAREDSECRET-walked-the-dog";
+    var otherNice = "BUNSHARED-quiet-hug";
+    var oldNice = "OLDSECRET-outside-week";
+    var recNiceA = cplBlank();
+    recNiceA.done = true;
+    recNiceA.nice = [
+      { id: "a1", text: unshared, date: todayNice, share: false },
+      { id: "a2", text: sharedNice, date: todayNice, share: true },
+      { id: "a3", text: oldNice, date: "2020-01-01", share: false }
+    ];
+    saveCplSide("a", recNiceA);
+    var recNiceB = cplBlank();
+    recNiceB.done = true;
+    recNiceB.nice = [{ id: "b1", text: otherNice, date: todayNice, share: false }];
+    saveCplSide("b", recNiceB);
+    saveJSON(K_CPL_SUM, buildCoupleSummary(recNiceA, recNiceB, "Lina", "Omar"));
+    var sumBlob = JSON.stringify(loadJSON(K_CPL_SUM, {}));
+    eq(sumBlob.indexOf(unshared) === -1 && sumBlob.indexOf(sharedNice) === -1 && sumBlob.indexOf(otherNice) === -1, "summary store hides notes");
+    var builtNice = buildCoupleSummary(loadCplSide("a"), loadCplSide("b"), "Lina", "Omar");
+    var builtBlob = JSON.stringify(builtNice);
+    eq(builtBlob.indexOf(unshared) === -1 && builtBlob.indexOf(sharedNice) === -1 && builtBlob.indexOf(otherNice) === -1 && builtBlob.indexOf(oldNice) === -1, "summary builder hides notes");
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "a", screen: "summary", safety: false });
+    var sumView = viewCouples();
+    eq(sumView.indexOf(unshared) === -1 && sumView.indexOf(sharedNice) === -1 && sumView.indexOf(otherNice) === -1 && sumView.indexOf(oldNice) === -1, "summary view hides notes");
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "a", screen: "nice", safety: false });
+    var ownNice = viewCouples();
+    eq(ownNice.indexOf(unshared) !== -1, "own unshared on my screen");
+    eq(ownNice.indexOf(sharedNice) !== -1, "own shared on my screen");
+    eq(ownNice.indexOf(otherNice) === -1, "other note hidden on my screen");
+    eq(ownNice.indexOf(CPL.niceLesson) !== -1 && ownNice.indexOf("core behavioral couples technique") !== -1, "nice lesson");
+    eq(ownNice.indexOf('data-id="a1" checked') === -1, "share off by default");
+    eq(ownNice.indexOf('data-id="a2" checked') !== -1, "share on when chosen");
+    eq(ownNice.indexOf(fill(CPL.niceDate, { date: todayNice })) !== -1, "date stamp");
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "b", screen: "nice", safety: false });
+    var otherScreen = viewCouples();
+    eq(otherScreen.indexOf(unshared) === -1, "unshared not on other private screen");
+    eq(otherScreen.indexOf(sharedNice) === -1, "shared not on other private screen");
+    eq(otherScreen.indexOf(oldNice) === -1, "old note not on other private screen");
+    eq(otherScreen.indexOf(otherNice) !== -1, "own note on own private screen");
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "b", screen: "ask", safety: false });
+    var otherAsk = viewCouples();
+    eq(otherAsk.indexOf(unshared) === -1 && otherAsk.indexOf(sharedNice) === -1, "ask hides the other partner");
+    eq(otherAsk.indexOf(otherNice) !== -1, "ask shows only my note");
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "b", screen: "review", safety: false });
+    var otherReview = viewCouples();
+    eq(otherReview.indexOf(unshared) === -1 && otherReview.indexOf(sharedNice) === -1, "review hides the other partner");
+    var planNice = makeCplPlan();
+    planNice.startDate = todayNice;
+    saveJSON(K_CPL_PLAN, planNice);
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "a", screen: "plan", safety: false });
+    var planNiceHtml = viewCouples();
+    eq(planNiceHtml.indexOf(unshared) === -1 && planNiceHtml.indexOf(sharedNice) === -1 && planNiceHtml.indexOf(otherNice) === -1 && planNiceHtml.indexOf(oldNice) === -1, "plan has no note text");
+    eq(planNiceHtml.indexOf(fill(CPL.niceCounts, { a: "Lina", b: "Omar", an: 2, bn: 1 })) !== -1, "plan counts this week");
+    eq(planNiceHtml.indexOf('data-action="cpl-open-nice"') !== -1, "plan opens the log");
+    var agoNice = new Date();
+    agoNice.setDate(agoNice.getDate() - 10);
+    planNice.startDate = jerusalemToday(agoNice);
+    for (var pi = 0; pi < planNice.days.length; pi++) if (planNice.days[pi].id === "c4") planNice.days[pi].bothHere = false;
+    saveJSON(K_CPL_PLAN, planNice);
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "a", screen: "session", openDay: "c4", safety: false });
+    var jointHidden = viewCouples();
+    eq(jointHidden.indexOf("cpl-nice-shared") === -1, "no shared card before both here");
+    eq(jointHidden.indexOf(sharedNice) === -1 && jointHidden.indexOf(unshared) === -1 && jointHidden.indexOf(otherNice) === -1, "joint hides notes before the tick");
+    eq(jointHidden.indexOf(CPL.niceJointHow) === -1, "no read-aloud line before the tick");
+    for (pi = 0; pi < planNice.days.length; pi++) if (planNice.days[pi].id === "c4") planNice.days[pi].bothHere = true;
+    saveJSON(K_CPL_PLAN, planNice);
+    var jointShown = viewCouples();
+    eq(jointShown.indexOf("cpl-nice-shared") !== -1, "shared card after both here");
+    eq(jointShown.indexOf(sharedNice) !== -1, "shared note in joint session");
+    eq(jointShown.indexOf(unshared) === -1 && jointShown.indexOf(otherNice) === -1 && jointShown.indexOf(oldNice) === -1, "unshared stays out of joint");
+    eq(jointShown.indexOf(CPL.niceJointHow) !== -1 && jointShown.indexOf("thank you") !== -1, "joint instruction");
+    recNiceA.nice = [];
+    recNiceB.nice = [];
+    saveCplSide("a", recNiceA);
+    saveCplSide("b", recNiceB);
+    var jointEmpty = viewCouples();
+    eq(jointEmpty.indexOf(CPL.niceEmpty) !== -1, "gentle empty line");
+    eq(jointEmpty.indexOf(sharedNice) === -1 && jointEmpty.indexOf(unshared) === -1, "empty joint has no old notes");
+    state.hold = true;
+    recNiceA.nice = [{ id: "a1", text: unshared, date: todayNice, share: false }];
+    recNiceB.nice = [{ id: "b1", text: sharedNice, date: todayNice, share: true }];
+    saveCplSide("a", recNiceA);
+    saveCplSide("b", recNiceB);
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "a", screen: "nice", safety: false });
+    var heldNice = viewCouples();
+    eq(heldNice.indexOf(unshared) === -1 && heldNice.indexOf(sharedNice) === -1, "hold hides note text");
+    eq(heldNice.indexOf(CPL.niceTitle) === -1 && heldNice.indexOf("cpl-nice") === -1, "hold hides the feature");
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "a", screen: "session", openDay: "c4", safety: false });
+    var heldJoint = viewCouples();
+    eq(heldJoint.indexOf(sharedNice) === -1 && heldJoint.indexOf("cpl-nice-shared") === -1, "hold hides joint notes");
+    state.hold = false;
+    cplWipe();
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "a", screen: "nice", safety: false });
+    eq(commitNiceNote(loadCplMeta(), "brought me water") === "ok", "save nice 1");
+    eq(commitNiceNote(loadCplMeta(), "sent a kind text") === "ok", "save nice 2");
+    eq(commitNiceNote(loadCplMeta(), "started the dishes") === "ok", "save nice 3");
+    eq(commitNiceNote(loadCplMeta(), "a fourth kind thing") === "full", "cap at 3");
+    var storedNice = loadJSON(K_CPL_A, {});
+    eq(K_CPL_A === C.prefix + "_cpl_a", "nice uses key prefix");
+    eq(storedNice.nice && storedNice.nice.length === 3, "three notes stored on A");
+    eq(storedNice.nice[0].share === false && storedNice.nice[0].date === todayNice, "stored private and dated");
+    eq(JSON.stringify(loadJSON(K_CPL_B, {})).indexOf("brought me water") === -1, "B store has no A note");
+    var violentResult = commitNiceNote(loadCplMeta(), CPL.hitSample);
+    eq(violentResult === "stop", "violence path stops");
+    eq(loadCplMeta().safety === true, "violence sets safety");
+    eq(loadCplSide("a").nice.length === 3, "violent note not stored");
+    var violentView = viewCouples();
+    eq(violentView.indexOf("cpl-safety") !== -1 && violentView.indexOf(">100<") !== -1 && violentView.indexOf(">1201<") !== -1, "note keyword shows safety card");
+    eq(violentView.indexOf(CPL.hitSample) === -1 && violentView.indexOf(CPL.niceTitle) === -1, "violent note is not a normal note");
+    cplWipe();
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "a", screen: "plan", safety: false });
+    var seeded = cplBlank();
+    seeded.nice = [{ id: "bad", text: CPL.hitSample, date: todayNice, share: true }];
+    saveCplSide("a", seeded);
+    var seededView = viewCouples();
+    eq(seededView.indexOf("cpl-safety") !== -1 && seededView.indexOf(CPL.hitSample) === -1, "stored keyword opens safety");
+    eq(loadCplSide("a").nice.length === 0, "stored keyword note removed");
+    cplWipe();
+    stopSlTurn();
+    state.hold = false;
+    state.crisis = null;
     return errors;
   }
   function init() {
