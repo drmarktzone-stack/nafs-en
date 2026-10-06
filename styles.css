@@ -833,6 +833,62 @@ textarea { min-height: 100px; resize: vertical; }
   margin: 0 0 8px;
 }
 
+/* Private soft start-up request (XYZ / I-statement) */
+.cpl-soft {
+  background: var(--sand);
+  border: 1px solid #ead9c0;
+}
+.cpl-soft h2 { font-size: 1.15rem; }
+textarea.cpl-soft-box { min-height: 4.5rem; }
+.cpl-soft-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 8px;
+}
+.cpl-soft-item {
+  list-style: none;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 10px 12px;
+  margin: 0 0 8px;
+}
+.cpl-soft-item p { margin-bottom: 6px; overflow-wrap: anywhere; }
+.cpl-soft-item .check { margin-bottom: 0; }
+.cpl-soft-preview {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 12px;
+  margin: 0 0 12px;
+  overflow-wrap: anywhere;
+}
+.cpl-soft-hint {
+  background: var(--warn-bg);
+  color: var(--warn-ink);
+  border: 1px solid #ecd9a8;
+  border-radius: 12px;
+  padding: 8px 10px;
+  margin: 0 0 8px;
+  font-size: 0.95rem;
+}
+.cpl-soft-shared h2 { font-size: 1.15rem; }
+.cpl-soft-shared h3 { margin-top: 10px; }
+.cpl-soft-shared ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 8px;
+}
+.cpl-soft-shared li {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 8px 10px;
+  margin: 0 0 8px;
+  overflow-wrap: anywhere;
+}
+.cpl-soft-shared li p { margin-bottom: 0; }
+
 @media (prefers-reduced-motion: reduce) {
   .orb { transition: none !important; }
   .tile, .btn, .progress > span { transition: none !important; }

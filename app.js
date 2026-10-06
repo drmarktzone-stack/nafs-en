@@ -376,6 +376,38 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
   "niceJointHow": "Each person reads one note aloud to the other. The listener only says thank you. No debate, and no “but”.",
   "niceEmpty": "Nothing shared yet. Before next time, notice one caring thing the other person did. You can choose to share it when you are ready.",
   "niceFrom": "{name} noticed",
+  "softTitle": "Soft start-up request",
+  "softKicker": "Private to {name}",
+  "softLesson": "A soft start helps because it names one real moment, one feeling, and one thing that would help, which is easier to hear than a complaint about the whole person. This is self-help practice, not a licensed therapist and not a diagnosis.",
+  "softPrompt": "Fill three short lines on your side only. What happened is one concrete situation. How you felt is a feeling, not a verdict. The request is one specific thing you would like.",
+  "softWhat": "What happened, one concrete situation",
+  "softFeelPick": "How I felt",
+  "softFeelPickBlank": "Choose a feeling, or type one below",
+  "softFeelType": "Or type a feeling",
+  "softAsk": "One specific thing I would like",
+  "softAskHint": "What you would like, not a complaint about what you do not want.",
+  "softPreviewLabel": "How it would sound",
+  "softSentence": "When {what}, I felt {feel}, and what would help me is {ask}.",
+  "softBlankWhat": "one concrete situation",
+  "softBlankFeel": "a feeling",
+  "softBlankAsk": "one specific thing I would like",
+  "softSave": "Save this draft",
+  "softNeed": "Fill the situation, the feeling, and the request. A short line each is enough.",
+  "softFull": "Three drafts is enough. Bring one of these when you are ready, or leave them here.",
+  "softShare": "Bring this to the next joint session",
+  "softShareHint": "Bringing stays off unless you tick it. An unticked draft is never shown to your partner, never copied into the shared picture, and never read in a joint session.",
+  "softDate": "Saved on {date}",
+  "softNoneYet": "No drafts yet. One specific moment is enough.",
+  "softOpen": "Soft start-up request",
+  "softBlameTip": "Try one specific moment instead of a label. “Always”, “never”, and “you are so…” make the other person defend. Name what happened this time.",
+  "softNegTip": "Say what you would like them to do, instead of asking them to stop. A specific, doable request is easier to hear.",
+  "softJointTitle": "Soft start-ups you chose to bring",
+  "softJointHow": "The speaker reads it. The listener paraphrases it back before replying. Use the speaker–listener timer for the turn.",
+  "softEmpty": "No request was brought this time. Each person can write one on their own side and tick it when they want it read aloud.",
+  "softFrom": "{name} would like to say",
+  "softMax": 3,
+  "softFeelings": ["hurt", "sad", "worried", "lonely", "frustrated", "left out", "unseen", "tense", "disappointed"],
+  "softInsults": ["idiot", "stupid", "jerk", "lazy", "selfish", "pathetic", "useless", "worthless", "loser", "moron"],
   "hitSample": "he hits me when he is angry",
   "safeSample": "we argue about dishes and bills",
   "questions": [
@@ -516,7 +548,7 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
   function loadProgram() { return loadJSON(K_PROGRAM, null); }
   function saveProgram(p) { saveJSON(K_PROGRAM, p); }
 
-  var state = { view: "home", dayId: null, crisis: null, hold: false, guideText: "", guide: null, pad: "", pst: {}, check: null, result: null, formError: "", confirmClear: false, cplErr: "", cplReset: false, cplNiceDraft: "", cplNiceErr: "" };
+  var state = { view: "home", dayId: null, crisis: null, hold: false, guideText: "", guide: null, pad: "", pst: {}, check: null, result: null, formError: "", confirmClear: false, cplErr: "", cplReset: false, cplNiceDraft: "", cplNiceErr: "", cplSoftDraft: { what: "", feel: "", feelPick: "", ask: "" }, cplSoftErr: "" };
   var breath = { running: false, timer: null, mode: "468", phaseIdx: 0, left: 4, cycle: 0, totalCycles: 5, dayId: null, finishedMsg: "" };
   var slClock = null;
   var slTurn = { running: false, left: 180, done: false };
@@ -1142,7 +1174,7 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
   }
 
   function cplBlank() {
-    return { answers: ["", "", "", "", "", "", "", ""], done: false, doneAt: null, qi: 0, notes: {}, nice: [] };
+    return { answers: ["", "", "", "", "", "", "", ""], done: false, doneAt: null, qi: 0, notes: {}, nice: [], soft: [] };
   }
   function loadCplMeta() {
     var m = loadJSON(K_CPL_META, null) || {};
@@ -1161,6 +1193,7 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
     if (!rec.notes || typeof rec.notes !== "object" || Array.isArray(rec.notes)) rec.notes = {};
     if (typeof rec.qi !== "number") rec.qi = 0;
     rec.nice = normalizeNice(rec.nice);
+    rec.soft = normalizeSoft(rec.soft);
     return rec;
   }
   function saveCplSide(which, rec) { saveJSON(which === "b" ? K_CPL_B : K_CPL_A, rec); }
@@ -1253,6 +1286,209 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
     }
     if (found) saveCplSide(side, rec);
   }
+  function blankSoftDraft() {
+    return { what: "", feel: "", feelPick: "", ask: "" };
+  }
+  function clearSoftDraft() {
+    state.cplSoftDraft = blankSoftDraft();
+    state.cplSoftErr = "";
+  }
+  function softClean(s, max) {
+    return String(s || "").replace(/\s+/g, " ").trim().slice(0, max || 180);
+  }
+  function softStripEnd(s) {
+    return String(s || "").replace(/[\s.?!]+$/g, "").trim();
+  }
+  function softPickOk(v) {
+    var t = String(v || "");
+    for (var i = 0; i < CPL.softFeelings.length; i++) if (CPL.softFeelings[i] === t) return true;
+    return false;
+  }
+  function softResolvedFeel(d) {
+    var draft = d || {};
+    var typed = softClean(draft.feel, 40);
+    if (typed) return typed;
+    var pick = softClean(draft.feelPick, 40);
+    return softPickOk(pick) ? pick : "";
+  }
+  function softSentence(what, feel, ask) {
+    return fill(CPL.softSentence, {
+      what: softStripEnd(what) || CPL.softBlankWhat,
+      feel: softStripEnd(feel) || CPL.softBlankFeel,
+      ask: softStripEnd(ask) || CPL.softBlankAsk
+    });
+  }
+  function softPreviewText(d) {
+    var draft = d || {};
+    return softSentence(softClean(draft.what, 180), softResolvedFeel(draft), softClean(draft.ask, 180));
+  }
+  function softSentenceFromSaved(n) {
+    return softSentence(n.what, n.feel, n.ask);
+  }
+  function softHasWord(text, word) {
+    return hasTerm(norm(text), norm(word));
+  }
+  function softSoLabel(t) {
+    var phrases = ["you are so", "youre so"];
+    for (var p = 0; p < phrases.length; p++) {
+      var phrase = phrases[p];
+      var from = 0;
+      while (from < t.length) {
+        var i = t.indexOf(phrase, from);
+        if (i < 0) break;
+        var afterAt = i + phrase.length;
+        var after = afterAt >= t.length ? " " : t.charAt(afterAt);
+        if (!/[a-z0-9]/.test(after)) return true;
+        from = i + 1;
+      }
+    }
+    return false;
+  }
+  function softBlame(text) {
+    var t = norm(text);
+    if (!t) return false;
+    if (softHasWord(t, "always") || softHasWord(t, "never")) return true;
+    if (softSoLabel(t)) return true;
+    var insults = CPL.softInsults || [];
+    for (var i = 0; i < insults.length; i++) if (softHasWord(t, insults[i])) return true;
+    return false;
+  }
+  function softNegative(text) {
+    var t = norm(text);
+    if (!t) return false;
+    if (softHasWord(t, "stop") || softHasWord(t, "dont")) return true;
+    if (t.indexOf("do not") !== -1) return true;
+    return false;
+  }
+  function softHintFlags(draft) {
+    var d = draft || {};
+    var feel = softResolvedFeel(d);
+    var blob = String(d.what || "") + " " + feel + " " + String(d.ask || "");
+    return { blame: softBlame(blob), negative: softNegative(d.ask) };
+  }
+  function normalizeSoft(list) {
+    if (!Array.isArray(list)) return [];
+    var out = [];
+    var max = CPL.softMax || 3;
+    for (var i = 0; i < list.length; i++) {
+      var n = list[i];
+      if (!n || typeof n !== "object") continue;
+      var what = softClean(n.what, 180);
+      var feel = softClean(n.feel, 40);
+      var ask = softClean(n.ask, 180);
+      var date = String(n.date || "");
+      if (!what || !feel || !ask || !/^\d{4}-\d{2}-\d{2}$/.test(date)) continue;
+      out.push({ id: String(n.id || ("s" + i + what.length)), what: what, feel: feel, ask: ask, date: date, share: n.share === true });
+      if (out.length >= max) break;
+    }
+    return out;
+  }
+  function softBits(draft) {
+    var d = draft || {};
+    return [d.what, d.feel, d.feelPick, d.ask, softResolvedFeel(d), softPreviewText(d)];
+  }
+  function softRisk(draft) {
+    var bits = softBits(draft);
+    var hitC = false, hitV = false;
+    for (var i = 0; i < bits.length; i++) {
+      var bit = bits[i];
+      if (!bit) continue;
+      if (isCrisisText(bit)) hitC = true;
+      else if (cplViolent(bit)) hitV = true;
+    }
+    if (hitC) return "crisis";
+    if (hitV) return "violence";
+    return "";
+  }
+  function scrubSoft(which) {
+    var rec = loadCplSide(which);
+    var hitV = false, hitC = false, kept = [];
+    for (var i = 0; i < rec.soft.length; i++) {
+      var risk = softRisk(rec.soft[i]);
+      if (risk === "crisis") hitC = true;
+      else if (risk === "violence") hitV = true;
+      else kept.push(rec.soft[i]);
+    }
+    if (hitV || hitC) { rec.soft = kept; saveCplSide(which, rec); }
+    return { hitV: hitV, hitC: hitC };
+  }
+  function absorbSoftRisk() {
+    var a = scrubSoft("a"), b = scrubSoft("b");
+    if (a.hitC || b.hitC) return "crisis";
+    if (a.hitV || b.hitV) return "violence";
+    return "";
+  }
+  function readSoftFields() {
+    var what = readCplBox("cpl-soft-what");
+    var feel = readCplBox("cpl-soft-feel");
+    var feelPick = readCplBox("cpl-soft-feel-pick");
+    var ask = readCplBox("cpl-soft-ask");
+    var d = state.cplSoftDraft || blankSoftDraft();
+    return {
+      what: what != null ? what : d.what,
+      feel: feel != null ? feel : d.feel,
+      feelPick: feelPick != null ? feelPick : d.feelPick,
+      ask: ask != null ? ask : d.ask
+    };
+  }
+  function commitSoftDraft(meta, fields) {
+    if (state.hold || !meta || meta.safety) return "stop";
+    var raw = fields || readSoftFields();
+    var draft = {
+      what: softClean(raw.what, 180),
+      feel: softClean(raw.feel, 40),
+      feelPick: softClean(raw.feelPick, 40),
+      ask: softClean(raw.ask, 180)
+    };
+    state.cplSoftDraft = draft;
+    var risk = softRisk(draft);
+    if (risk === "crisis") { clearSoftDraft(); triggerCrisis("text"); return "stop"; }
+    if (risk === "violence") { clearSoftDraft(); enterSafety(meta); return "stop"; }
+    var feel = softResolvedFeel(draft);
+    if (draft.what.length < 2 || feel.length < 2 || draft.ask.length < 2) return "short";
+    var side = meta.active === "b" ? "b" : "a";
+    var rec = loadCplSide(side);
+    if (rec.soft.length >= (CPL.softMax || 3)) return "full";
+    rec.soft.push({
+      id: "s" + Date.now().toString(36) + Math.floor(Math.random() * 1296).toString(36),
+      what: draft.what,
+      feel: feel,
+      ask: draft.ask,
+      date: jerusalemToday(),
+      share: false
+    });
+    saveCplSide(side, rec);
+    clearSoftDraft();
+    return "ok";
+  }
+  function setSoftShare(meta, id, share) {
+    if (state.hold || !meta || meta.safety) return;
+    var side = meta.active === "b" ? "b" : "a";
+    var rec = loadCplSide(side);
+    var found = false;
+    for (var i = 0; i < rec.soft.length; i++) {
+      if (rec.soft[i].id === id) { rec.soft[i].share = !!share; found = true; }
+    }
+    if (found) saveCplSide(side, rec);
+  }
+  function syncSoftDraftDom() {
+    if (typeof document === "undefined") return;
+    var prev = document.getElementById("cpl-soft-preview");
+    if (prev) prev.textContent = softPreviewText(state.cplSoftDraft);
+    var flags = softHintFlags(state.cplSoftDraft);
+    var blame = document.getElementById("cpl-soft-hint-blame");
+    var neg = document.getElementById("cpl-soft-hint-neg");
+    if (blame) {
+      blame.textContent = flags.blame ? CPL.softBlameTip : "";
+      if (flags.blame) blame.removeAttribute("hidden");
+      else blame.setAttribute("hidden", "");
+    }
+    if (neg) {
+      neg.textContent = flags.negative ? CPL.softNegTip : "";
+      if (flags.negative) neg.removeAttribute("hidden");
+      else neg.setAttribute("hidden", "");
+    }
+  }
   function loadCplPlan() { return loadJSON(K_CPL_PLAN, null); }
   function otherOf(w) { return w === "b" ? "a" : "b"; }
   function nameOf(meta, w) { return w === "b" ? (meta.bName || "") : (meta.aName || ""); }
@@ -1307,6 +1543,7 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
     state.cplReset = false;
     state.cplNiceErr = "";
     state.cplNiceDraft = "";
+    clearSoftDraft();
   }
   function scrubSide(which) {
     var rec = loadCplSide(which);
@@ -1330,6 +1567,14 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
       else keptNice.push(rec.nice[i]);
     }
     rec.nice = keptNice;
+    var keptSoft = [];
+    for (i = 0; i < rec.soft.length; i++) {
+      var sv = softRisk(rec.soft[i]);
+      if (sv === "crisis") hitC = true;
+      else if (sv === "violence") hitV = true;
+      else keptSoft.push(rec.soft[i]);
+    }
+    rec.soft = keptSoft;
     saveCplSide(which, rec);
     return { hitV: hitV, hitC: hitC };
   }
@@ -1341,6 +1586,7 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
     state.cplErr = "";
     state.cplNiceErr = "";
     state.cplNiceDraft = "";
+    clearSoftDraft();
     if (!skipRender) render();
   }
   function screenFor(meta, who) {
@@ -1415,6 +1661,83 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
   function niceOpenButton() {
     return '<button type="button" class="btn secondary block" data-action="cpl-open-nice">' + esc(CPL.niceOpen) + "</button>";
   }
+  function softFeatureOn(meta) {
+    return !state.hold && !state.crisis && meta && !meta.safety;
+  }
+  function softOpenButton() {
+    return '<button type="button" class="btn secondary block" data-action="cpl-open-soft">' + esc(CPL.softOpen) + "</button>";
+  }
+  function softHintHTML(flags) {
+    var blame = flags && flags.blame
+      ? '<p class="cpl-soft-hint" id="cpl-soft-hint-blame">' + esc(CPL.softBlameTip) + "</p>"
+      : '<p class="cpl-soft-hint" id="cpl-soft-hint-blame" hidden></p>';
+    var neg = flags && flags.negative
+      ? '<p class="cpl-soft-hint" id="cpl-soft-hint-neg">' + esc(CPL.softNegTip) + "</p>"
+      : '<p class="cpl-soft-hint" id="cpl-soft-hint-neg" hidden></p>';
+    return blame + neg;
+  }
+  function softPrivateCard(meta) {
+    if (!softFeatureOn(meta)) return "";
+    var side = meta.active === "b" ? "b" : "a";
+    var name = nameOf(meta, side) || CPL.noname;
+    var rec = loadCplSide(side);
+    var draft = state.cplSoftDraft || blankSoftDraft();
+    var flags = softHintFlags(draft);
+    var list;
+    if (!rec.soft.length) list = '<p class="muted">' + esc(CPL.softNoneYet) + "</p>";
+    else {
+      var rows = rec.soft.slice().reverse().map(function (n) {
+        return '<li class="cpl-soft-item"><p>' + esc(softSentenceFromSaved(n)) + '</p><p class="muted">' + esc(fill(CPL.softDate, { date: n.date })) + "</p>" +
+          '<label class="check"><input type="checkbox" data-cpl="soft-share" data-id="' + esc(n.id) + '"' + (n.share === true ? " checked" : "") + ">" + esc(CPL.softShare) + "</label></li>";
+      }).join("");
+      list = '<ul class="cpl-soft-list">' + rows + "</ul>";
+    }
+    var feelOpts = '<option value="">' + esc(CPL.softFeelPickBlank) + "</option>" +
+      CPL.softFeelings.map(function (f) {
+        var label = f.charAt(0).toUpperCase() + f.slice(1);
+        return '<option value="' + esc(f) + '"' + (draft.feelPick === f ? " selected" : "") + ">" + esc(label) + "</option>";
+      }).join("");
+    var form = rec.soft.length >= (CPL.softMax || 3)
+      ? '<p class="muted">' + esc(CPL.softFull) + "</p>"
+      : '<label class="field">' + esc(CPL.softWhat) +
+        '<textarea id="cpl-soft-what" class="cpl-soft-box" maxlength="180" data-cpl="soft-what">' + esc(draft.what || "") + "</textarea></label>" +
+        '<label class="field">' + esc(CPL.softFeelPick) +
+        '<select id="cpl-soft-feel-pick" data-cpl="soft-feel-pick">' + feelOpts + "</select></label>" +
+        '<label class="field">' + esc(CPL.softFeelType) +
+        '<input type="text" id="cpl-soft-feel" maxlength="40" autocomplete="off" data-cpl="soft-feel" value="' + esc(draft.feel || "") + '"></label>' +
+        '<label class="field">' + esc(CPL.softAsk) +
+        '<textarea id="cpl-soft-ask" class="cpl-soft-box" maxlength="180" data-cpl="soft-ask">' + esc(draft.ask || "") + "</textarea></label>" +
+        '<p class="muted">' + esc(CPL.softAskHint) + "</p>" +
+        softHintHTML(flags) +
+        '<p class="kicker">' + esc(CPL.softPreviewLabel) + "</p>" +
+        '<p class="cpl-soft-preview" id="cpl-soft-preview" aria-live="polite">' + esc(softPreviewText(draft)) + "</p>" +
+        (state.cplSoftErr ? '<p class="err">' + esc(state.cplSoftErr) + "</p>" : "") +
+        '<button type="button" class="btn block" data-action="cpl-soft-add">' + esc(CPL.softSave) + "</button>";
+    return '<section class="card cpl-soft"><p class="kicker">' + esc(fill(CPL.softKicker, { name: name })) + "</p><h2>" + esc(CPL.softTitle) + "</h2>" +
+      "<p>" + esc(CPL.softLesson) + "</p><p>" + esc(CPL.softPrompt) + "</p>" + list +
+      '<p class="muted">' + esc(CPL.softShareHint) + "</p>" + form + "</section>";
+  }
+  function softShared(which) {
+    return loadCplSide(which).soft.filter(function (n) { return n.share === true; });
+  }
+  function softJointCard(meta, bothHere) {
+    if (!softFeatureOn(meta) || !bothHere) return "";
+    var groups = [["a", meta.aName], ["b", meta.bName]];
+    var chunks = "";
+    var any = false;
+    for (var g = 0; g < groups.length; g++) {
+      var notes = softShared(groups[g][0]);
+      if (!notes.length) continue;
+      any = true;
+      var lis = notes.map(function (n) {
+        return "<li><p>" + esc(softSentenceFromSaved(n)) + "</p></li>";
+      }).join("");
+      chunks += "<h3>" + esc(fill(CPL.softFrom, { name: groups[g][1] || CPL.noname })) + "</h3><ul>" + lis + "</ul>";
+    }
+    var body = any ? chunks : "<p>" + esc(CPL.softEmpty) + "</p>";
+    return '<div class="banner cpl-soft-shared"><h2>' + esc(CPL.softJointTitle) + "</h2><p>" + esc(CPL.softJointHow) + "</p>" +
+      '<p class="muted">' + esc(CPL.softLesson) + "</p>" + body + "</div>";
+  }
   function cplDayDef(id) {
     for (var i = 0; i < CPL.days.length; i++) if (CPL.days[i].id === id) return { def: CPL.days[i], index: i };
     return null;
@@ -1479,6 +1802,22 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
       if (niceHit === "crisis") { state.cplNiceDraft = ""; triggerCrisis("text"); return "stop"; }
       if (niceHit === "violence") { state.cplNiceDraft = ""; enterSafety(meta); return "stop"; }
     }
+    var softBox = readCplBox("cpl-soft-what");
+    var softFeelBox = readCplBox("cpl-soft-feel");
+    var softPickBox = readCplBox("cpl-soft-feel-pick");
+    var softAskBox = readCplBox("cpl-soft-ask");
+    if (softBox != null || softFeelBox != null || softPickBox != null || softAskBox != null) {
+      var prevSoft = state.cplSoftDraft || blankSoftDraft();
+      state.cplSoftDraft = {
+        what: softClean(softBox != null ? softBox : prevSoft.what, 180),
+        feel: softClean(softFeelBox != null ? softFeelBox : prevSoft.feel, 40),
+        feelPick: softClean(softPickBox != null ? softPickBox : prevSoft.feelPick, 40),
+        ask: softClean(softAskBox != null ? softAskBox : prevSoft.ask, 180)
+      };
+      var softHit = softRisk(state.cplSoftDraft);
+      if (softHit === "crisis") { clearSoftDraft(); triggerCrisis("text"); return "stop"; }
+      if (softHit === "violence") { clearSoftDraft(); enterSafety(meta); return "stop"; }
+    }
     return "ok";
   }
   function viewCplSetup(meta) {
@@ -1520,14 +1859,14 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
       (state.cplErr ? '<p class="err">' + esc(state.cplErr) + "</p>" : "") +
       '<div class="stack">' +
       (i > 0 ? '<button type="button" class="btn secondary block" data-action="cpl-prev">' + esc(CPL.back) + "</button>" : '<button type="button" class="btn secondary block" data-action="cpl-to-who">' + esc(CPL.backWho) + "</button>") +
-      '<button type="button" class="btn block" data-action="cpl-next">' + esc(i === 7 ? CPL.finishMine : CPL.next) + "</button></div></section>" + nicePrivateCard(meta);
+      '<button type="button" class="btn block" data-action="cpl-next">' + esc(i === 7 ? CPL.finishMine : CPL.next) + "</button></div></section>" + nicePrivateCard(meta) + softPrivateCard(meta);
   }
   function viewCplWait(meta) {
     var other = otherOf(meta.active);
     return whoBanner(meta) + '<section class="card"><h1>' + esc(CPL.waitTitle) + "</h1>" +
       "<p>" + esc(fill(CPL.waitBody, { name: nameOf(meta, other) })) + "</p>" +
       '<button type="button" class="btn block" data-action="cpl-switch">' + esc(fill(CPL.theirTurn, { name: nameOf(meta, other) })) + "</button>" +
-      '<button type="button" class="btn secondary block" data-action="cpl-review">' + esc(CPL.reviewMine) + "</button></section>" + nicePrivateCard(meta);
+      '<button type="button" class="btn secondary block" data-action="cpl-review">' + esc(CPL.reviewMine) + "</button></section>" + nicePrivateCard(meta) + softPrivateCard(meta);
   }
   function viewCplReview(meta) {
     var side = meta.active === "b" ? "b" : "a";
@@ -1537,7 +1876,7 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
     }).join("");
     return whoBanner(meta) + '<section class="card"><p class="kicker">' + esc(fill(CPL.privateTag, { name: nameOf(meta, side) })) + "</p>" +
       "<h1>" + esc(CPL.reviewTitle) + "</h1><p>" + esc(CPL.reviewNote) + "</p>" + rows +
-      '<button type="button" class="btn secondary block" data-action="cpl-to-who">' + esc(CPL.backWho) + "</button></section>" + nicePrivateCard(meta);
+      '<button type="button" class="btn secondary block" data-action="cpl-to-who">' + esc(CPL.backWho) + "</button></section>" + nicePrivateCard(meta) + softPrivateCard(meta);
   }
   function viewCplSummary(meta) {
     var sum = loadJSON(K_CPL_SUM, null);
@@ -1555,6 +1894,7 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
       '<div class="stack"><button type="button" class="btn block" data-action="cpl-start-plan">' + esc(CPL.startWeek) + "</button>" +
       (loadCplPlan() ? '<button type="button" class="btn secondary block" data-action="cpl-back-plan">' + esc(CPL.backPlan) + "</button>" : "") +
       (niceFeatureOn(meta) ? niceOpenButton() : "") +
+      (softFeatureOn(meta) ? softOpenButton() : "") +
       "</div></section>";
   }
   function viewCplPlan(meta) {
@@ -1578,6 +1918,7 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
       "<p>" + esc(fill(CPL.planProgress, { done: done, total: 7, start: plan.startDate })) + "</p>" +
       '<div class="progress" aria-hidden="true"><span style="width:' + pct + '%"></span></div>' +
       niceCountsHTML(meta, plan) +
+      (softFeatureOn(meta) ? softOpenButton() : "") +
       '<button type="button" class="btn secondary block" data-action="cpl-reopen-sum">' + esc(CPL.reopenSum) + "</button>" +
       list + cplResetBlock() + "</section>";
   }
@@ -1626,13 +1967,13 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
     if (idx > todayIx) {
       return head + "<p>" + esc(CPL.lockedBody) + "</p>" +
         '<button type="button" class="btn secondary block" data-action="cpl-back-plan">' + esc(CPL.backPlan) + "</button></section>" +
-        (def.mode === "individual" ? nicePrivateCard(meta) : "");
+        (def.mode === "individual" ? nicePrivateCard(meta) + softPrivateCard(meta) : "");
     }
     if (def.mode === "individual" && meta.active !== def.who) {
       return head + "<p>" + esc(fill(CPL.wrongPartner, { name: nameOf(meta, def.who) })) + "</p>" +
         '<button type="button" class="btn block" data-action="cpl-switch">' + esc(CPL.switchBtn) + "</button>" +
         '<button type="button" class="btn secondary block" data-action="cpl-back-plan">' + esc(CPL.backPlan) + "</button></section>" +
-        nicePrivateCard(meta);
+        nicePrivateCard(meta) + softPrivateCard(meta);
     }
     var note = "";
     if (def.mode === "individual") note = (loadCplSide(def.who).notes || {})[def.id] || "";
@@ -1654,11 +1995,13 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
       slHTML = slCard(meta);
     }
     var niceHTML = def.mode === "joint" ? niceJointCard(meta, !!day.bothHere) : nicePrivateCard(meta);
+    var softHTML = def.mode === "joint" ? softJointCard(meta, !!day.bothHere) : softPrivateCard(meta);
     return head + sumHTML +
       "<h2>" + esc(CPL.lessonH) + "</h2><p>" + esc(def.lesson) + "</p>" +
       "<h2>" + esc(CPL.exerciseH) + "</h2><p>" + esc(def.exercise) + "</p>" +
       slHTML +
       both +
+      softHTML +
       niceHTML +
       '<label class="field">' + esc(def.mode === "joint" ? CPL.jointNote : CPL.noteLabel) +
       '<textarea id="cpl-note" data-cpl="note" data-day="' + esc(def.id) + '">' + esc(note) + "</textarea></label>" +
@@ -1670,6 +2013,13 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
     var backAction = loadCplPlan() ? "cpl-back-plan" : "cpl-to-who";
     var backLabel = loadCplPlan() ? CPL.backPlan : CPL.backWho;
     return whoBanner(meta) + nicePrivateCard(meta) +
+      (softFeatureOn(meta) ? softOpenButton() : "") +
+      '<p><button type="button" class="btn secondary block" data-action="' + backAction + '">' + esc(backLabel) + "</button></p>";
+  }
+  function viewCplSoft(meta) {
+    var backAction = loadCplPlan() ? "cpl-back-plan" : "cpl-to-who";
+    var backLabel = loadCplPlan() ? CPL.backPlan : CPL.backWho;
+    return whoBanner(meta) + softPrivateCard(meta) +
       '<p><button type="button" class="btn secondary block" data-action="' + backAction + '">' + esc(backLabel) + "</button></p>";
   }
   function viewCplSafety(meta) {
@@ -1686,7 +2036,9 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
     if (state.hold) return holdHTML();
     var meta = loadCplMeta();
     if (meta.safety || meta.screen === "safety") return viewCplSafety(meta);
-    var risk = absorbNiceRisk();
+    var niceRiskNow = absorbNiceRisk();
+    var softRiskNow = absorbSoftRisk();
+    var risk = (niceRiskNow === "crisis" || softRiskNow === "crisis") ? "crisis" : ((niceRiskNow === "violence" || softRiskNow === "violence") ? "violence" : "");
     if (risk === "crisis") { triggerCrisis("text"); return holdHTML(); }
     if (risk === "violence") { enterSafety(meta, true); return viewCplSafety(meta); }
     if (!meta.aName || !meta.bName || meta.screen === "setup") return viewCplSetup(meta);
@@ -1695,6 +2047,7 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
     if (meta.screen === "review") return viewCplReview(meta);
     if (meta.screen === "summary") return viewCplSummary(meta);
     if (meta.screen === "nice") return viewCplNice(meta);
+    if (meta.screen === "soft") return viewCplSoft(meta);
     if (meta.screen === "session") return viewCplSession(meta);
     if (meta.screen === "plan") return viewCplPlan(meta);
     return viewCplWho(meta);
@@ -1762,6 +2115,23 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
       setNiceShare(meta, el.dataset.id, !!el.checked);
       return;
     }
+    if (kind === "soft-what" || kind === "soft-feel" || kind === "soft-ask" || kind === "soft-feel-pick") {
+      if (!softFeatureOn(meta)) return;
+      var softKey = kind === "soft-what" ? "what" : kind === "soft-feel" ? "feel" : kind === "soft-ask" ? "ask" : "feelPick";
+      var softMax = softKey === "feel" || softKey === "feelPick" ? 40 : 180;
+      if (!state.cplSoftDraft) state.cplSoftDraft = blankSoftDraft();
+      state.cplSoftDraft[softKey] = softClean(el.value, softMax);
+      var typedRisk = softRisk(state.cplSoftDraft);
+      if (typedRisk === "crisis") { clearSoftDraft(); el.value = ""; triggerCrisis("text"); return; }
+      if (typedRisk === "violence") { clearSoftDraft(); el.value = ""; enterSafety(meta); return; }
+      syncSoftDraftDom();
+      return;
+    }
+    if (kind === "soft-share") {
+      if (!softFeatureOn(meta)) return;
+      setSoftShare(meta, el.dataset.id, !!el.checked);
+      return;
+    }
     if (kind === "both") {
       var plan2 = loadCplPlan();
       if (!plan2) return;
@@ -1774,6 +2144,7 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
     var meta = loadCplMeta();
     state.cplErr = "";
     if (action !== "cpl-nice-add") state.cplNiceErr = "";
+    if (action !== "cpl-soft-add") state.cplSoftErr = "";
     if (action === "cpl-reset-ask") { state.cplReset = true; render(); return; }
     if (action === "cpl-reset-no") { state.cplReset = false; render(); return; }
     if (action === "cpl-reset-yes") { cplWipe(); render(); return; }
@@ -1808,10 +2179,12 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
       var who = action === "cpl-pick" ? t.dataset.who : otherOf(meta.active);
       if (who !== "a" && who !== "b") who = "a";
       var stayNice = action === "cpl-switch" && meta.screen === "nice";
+      var staySoft = action === "cpl-switch" && meta.screen === "soft";
       meta.active = who;
-      meta.screen = stayNice ? "nice" : screenFor(meta, who);
+      meta.screen = stayNice ? "nice" : staySoft ? "soft" : screenFor(meta, who);
       state.cplNiceDraft = "";
       state.cplNiceErr = "";
+      clearSoftDraft();
       saveCplMeta(meta);
       render(); return;
     }
@@ -1832,6 +2205,22 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
       if (added === "full") { state.cplNiceErr = CPL.niceFull; render(); return; }
       state.cplNiceDraft = "";
       state.cplNiceErr = "";
+      render(); return;
+    }
+    if (action === "cpl-open-soft") {
+      if (!softFeatureOn(meta)) return;
+      if (applyGuardToCurrent(meta) === "stop") return;
+      meta.screen = "soft";
+      saveCplMeta(meta);
+      render(); return;
+    }
+    if (action === "cpl-soft-add") {
+      if (!softFeatureOn(meta)) return;
+      var addedSoft = commitSoftDraft(meta);
+      if (addedSoft === "stop") return;
+      if (addedSoft === "short") { state.cplSoftErr = CPL.softNeed; render(); return; }
+      if (addedSoft === "full") { state.cplSoftErr = CPL.softFull; render(); return; }
+      state.cplSoftErr = "";
       render(); return;
     }
     if (action === "cpl-prev") {
@@ -2180,6 +2569,188 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
     stopSlTurn();
     state.hold = false;
     state.crisis = null;
+    clearSoftDraft();
+    eq(softBlame("you always leave") === true, "always hint");
+    eq(softBlame("you never listen") === true, "never hint");
+    eq(softBlame("You are so selfish") === true, "you are so hint");
+    eq(softBlame("You're so quiet") === true, "you're so hint");
+    eq(softBlame("that was an idiot move") === true, "insult hint");
+    eq(softBlame("you are solving it together") === false, "you are solving is not a label");
+    eq(softBlame("the dishes sat overnight") === false, "specific situation no blame hint");
+    eq(softBlame("nevertheless we can talk") === false, "nevertheless is not never");
+    eq(softNegative("stop leaving the dishes") === true, "stop hint");
+    eq(softNegative("Don't interrupt me") === true, "dont hint");
+    eq(softNegative("do not walk away") === true, "do not hint");
+    eq(softNegative("text me if you will be late") === false, "positive request no hint");
+    eq(CPL.softLesson.indexOf("%") === -1 && CPL.softLesson.toLowerCase().indexOf("et al") === -1, "lesson has no stats or citation");
+    eq(CPL.softLesson.indexOf("licensed therapist") !== -1 && CPL.softLesson.indexOf("not a diagnosis") !== -1, "lesson stays self-help");
+    eq(CPL.softMax === 3, "a few drafts means three");
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "a", screen: "soft", safety: false });
+    state.view = "couples";
+    state.cplSoftDraft = { what: "you always leave the cup on the table", feel: "", feelPick: "hurt", ask: "don't leave it there" };
+    var hinted = viewCouples();
+    eq(hinted.indexOf(CPL.softBlameTip) !== -1, "blame hint shown");
+    eq(hinted.indexOf(CPL.softNegTip) !== -1, "negative hint shown");
+    eq(hinted.indexOf('data-action="cpl-soft-add"') !== -1, "hint does not remove save");
+    eq(hinted.indexOf("When you always leave the cup on the table, I felt hurt, and what would help me is don't leave it there.") !== -1, "preview keeps the words");
+    eq(hinted.indexOf(CPL.softLesson) !== -1, "lesson on the builder");
+    eq(commitSoftDraft(loadCplMeta(), { what: "you always leave the cup on the table", feel: "", feelPick: "hurt", ask: "don't leave it there" }) === "ok", "hints do not block save");
+    var hintedStored = loadCplSide("a").soft;
+    eq(hintedStored.length === 1 && hintedStored[0].share === false, "hinted draft saved and private");
+    clearSoftDraft();
+    state.cplSoftDraft = { what: "the dishes were still in the sink this morning", feel: "left out", feelPick: "hurt", ask: "rinse them before you sleep" };
+    var cleanSoft = viewCouples();
+    eq(cleanSoft.indexOf(CPL.softBlameTip) === -1 && cleanSoft.indexOf(CPL.softNegTip) === -1, "clean draft has no hint");
+    eq(cleanSoft.indexOf("When the dishes were still in the sink this morning, I felt left out, and what would help me is rinse them before you sleep.") !== -1, "typed feeling wins");
+    eq(softResolvedFeel({ feel: "left out", feelPick: "hurt" }) === "left out", "typed feeling overrides the list");
+    eq(softResolvedFeel({ feel: "", feelPick: "worried" }) === "worried", "empty box uses the list");
+    eq(softResolvedFeel({ feel: "", feelPick: "not-a-feeling" }) === "", "unknown feeling is ignored");
+    eq(commitSoftDraft(loadCplMeta(), { what: "you came home late on Tuesday", feel: "", feelPick: "worried", ask: "text me if you will be late" }) === "ok", "picked feeling saves");
+    eq(loadCplSide("a").soft[1].feel === "worried", "stored picked feeling");
+    eq(commitSoftDraft(loadCplMeta(), { what: "the sink was full this morning", feel: "tired", feelPick: "", ask: "wash your cup before work" }) === "ok", "third draft saves");
+    eq(commitSoftDraft(loadCplMeta(), { what: "another evening", feel: "sad", feelPick: "", ask: "sit with me for ten minutes" }) === "full", "cap at three drafts");
+    var capped = viewCouples();
+    eq(capped.indexOf(CPL.softFull) !== -1, "cap message");
+    eq(capped.indexOf('data-action="cpl-soft-add"') === -1, "no save past the cap");
+    cplWipe();
+    clearSoftDraft();
+    state.hold = false;
+    state.crisis = null;
+    var todaySoft = jerusalemToday();
+    var unsharedSoft = "UNSHAREDSOFT-sink-on-tuesday";
+    var sharedSoft = "SHAREDSOFT-text-if-late";
+    var otherSoft = "BPRIVATE-morning-coffee";
+    var otherMarked = "BMARKED-one-calm-question";
+    var recSoftA = cplBlank();
+    recSoftA.done = true;
+    recSoftA.answers[0] = "money and the chores";
+    recSoftA.soft = [
+      { id: "s1", what: unsharedSoft, feel: "hurt", ask: "a calm goodnight", date: todaySoft, share: false },
+      { id: "s2", what: "last Thursday night", feel: "left out", ask: sharedSoft, date: todaySoft, share: true }
+    ];
+    var recSoftB = cplBlank();
+    recSoftB.done = true;
+    recSoftB.answers[0] = "feeling left out";
+    recSoftB.soft = [
+      { id: "sb1", what: otherSoft, feel: "lonely", ask: "a short check-in", date: todaySoft, share: false },
+      { id: "sb2", what: "Sunday evening", feel: "worried", ask: otherMarked, date: todaySoft, share: true }
+    ];
+    saveCplSide("a", recSoftA);
+    saveCplSide("b", recSoftB);
+    var softSum = buildCoupleSummary(loadCplSide("a"), loadCplSide("b"), "Lina", "Omar");
+    var softSumBlob = JSON.stringify(softSum);
+    eq(softSumBlob.indexOf(unsharedSoft) === -1 && softSumBlob.indexOf(sharedSoft) === -1 && softSumBlob.indexOf(otherSoft) === -1 && softSumBlob.indexOf(otherMarked) === -1, "summary builder hides drafts");
+    saveJSON(K_CPL_SUM, softSum);
+    eq(JSON.stringify(loadJSON(K_CPL_SUM, {})).indexOf(unsharedSoft) === -1 && JSON.stringify(loadJSON(K_CPL_SUM, {})).indexOf(sharedSoft) === -1, "summary store hides drafts");
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "a", screen: "summary", safety: false });
+    var softSumView = viewCouples();
+    eq(softSumView.indexOf(unsharedSoft) === -1 && softSumView.indexOf(sharedSoft) === -1 && softSumView.indexOf(otherSoft) === -1 && softSumView.indexOf(otherMarked) === -1, "summary view hides drafts");
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "a", screen: "soft", safety: false });
+    var ownSoft = viewCouples();
+    eq(ownSoft.indexOf(unsharedSoft) !== -1, "own unshared draft on my screen");
+    eq(ownSoft.indexOf(sharedSoft) !== -1, "own marked draft on my screen");
+    eq(ownSoft.indexOf(otherSoft) === -1 && ownSoft.indexOf(otherMarked) === -1, "other drafts hidden on my screen");
+    eq(ownSoft.indexOf('data-id="s1" checked') === -1, "bring stays off by default");
+    eq(ownSoft.indexOf('data-id="s2" checked') !== -1, "bring on when chosen");
+    eq(ownSoft.indexOf(fill(CPL.softKicker, { name: "Lina" })) !== -1, "private kicker");
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "b", screen: "soft", safety: false });
+    var otherSoftScreen = viewCouples();
+    eq(otherSoftScreen.indexOf(unsharedSoft) === -1, "unshared draft not on the other partner");
+    eq(otherSoftScreen.indexOf(sharedSoft) === -1, "marked draft not on the other private screen");
+    eq(otherSoftScreen.indexOf(otherSoft) !== -1 && otherSoftScreen.indexOf(otherMarked) !== -1, "their own drafts stay on their screen");
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "b", screen: "ask", safety: false });
+    var otherSoftAsk = viewCouples();
+    eq(otherSoftAsk.indexOf(unsharedSoft) === -1 && otherSoftAsk.indexOf(sharedSoft) === -1, "ask hides the other partner drafts");
+    eq(otherSoftAsk.indexOf(otherSoft) !== -1, "ask shows only my draft");
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "b", screen: "review", safety: false });
+    var otherSoftReview = viewCouples();
+    eq(otherSoftReview.indexOf(unsharedSoft) === -1 && otherSoftReview.indexOf(sharedSoft) === -1 && otherSoftReview.indexOf(otherMarked) !== -1, "review keeps the split");
+    var planSoft = makeCplPlan();
+    planSoft.startDate = todaySoft;
+    saveJSON(K_CPL_PLAN, planSoft);
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "a", screen: "plan", safety: false });
+    var planSoftHtml = viewCouples();
+    eq(planSoftHtml.indexOf(unsharedSoft) === -1 && planSoftHtml.indexOf(sharedSoft) === -1 && planSoftHtml.indexOf(otherSoft) === -1 && planSoftHtml.indexOf(otherMarked) === -1, "plan has no draft text");
+    eq(planSoftHtml.indexOf('data-action="cpl-open-soft"') !== -1, "plan opens the builder");
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "a", screen: "session", openDay: "c1", safety: false });
+    var myDay = viewCouples();
+    eq(myDay.indexOf("cpl-soft") !== -1 && myDay.indexOf(unsharedSoft) !== -1, "builder on my individual day");
+    eq(myDay.indexOf(otherSoft) === -1 && myDay.indexOf(otherMarked) === -1, "their drafts stay off my day");
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "b", screen: "session", openDay: "c1", safety: false });
+    var theirDay = viewCouples();
+    eq(theirDay.indexOf(unsharedSoft) === -1 && theirDay.indexOf(sharedSoft) === -1, "other person does not see my drafts on my day");
+    eq(theirDay.indexOf(otherSoft) !== -1, "other person sees their own draft");
+    var agoSoft = new Date();
+    agoSoft.setDate(agoSoft.getDate() - 10);
+    planSoft.startDate = jerusalemToday(agoSoft);
+    for (var spi = 0; spi < planSoft.days.length; spi++) if (planSoft.days[spi].id === "c4") planSoft.days[spi].bothHere = false;
+    saveJSON(K_CPL_PLAN, planSoft);
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "a", screen: "session", openDay: "c4", safety: false });
+    var jointSoftHidden = viewCouples();
+    eq(jointSoftHidden.indexOf("cpl-soft-shared") === -1, "no joint drafts before both here");
+    eq(jointSoftHidden.indexOf(CPL.softJointHow) === -1, "no read-aloud line before both here");
+    eq(jointSoftHidden.indexOf(sharedSoft) === -1 && jointSoftHidden.indexOf(unsharedSoft) === -1 && jointSoftHidden.indexOf(otherSoft) === -1 && jointSoftHidden.indexOf(otherMarked) === -1, "joint hides every draft before the tick");
+    for (spi = 0; spi < planSoft.days.length; spi++) if (planSoft.days[spi].id === "c4") planSoft.days[spi].bothHere = true;
+    saveJSON(K_CPL_PLAN, planSoft);
+    var jointSoftShown = viewCouples();
+    eq(jointSoftShown.indexOf("cpl-soft-shared") !== -1, "marked drafts after both here");
+    eq(jointSoftShown.indexOf(sharedSoft) !== -1 && jointSoftShown.indexOf(otherMarked) !== -1, "both marked drafts in the joint session");
+    eq(jointSoftShown.indexOf(unsharedSoft) === -1 && jointSoftShown.indexOf(otherSoft) === -1, "unshared drafts stay out of the joint session");
+    eq(jointSoftShown.indexOf(CPL.softJointHow) !== -1 && jointSoftShown.indexOf("paraphrases it back before replying") !== -1, "speaker reads and listener paraphrases");
+    eq(jointSoftShown.indexOf("cpl-sl") !== -1, "timer still on the joint day");
+    recSoftA.soft = [];
+    recSoftB.soft = [];
+    saveCplSide("a", recSoftA);
+    saveCplSide("b", recSoftB);
+    var jointSoftEmpty = viewCouples();
+    eq(jointSoftEmpty.indexOf(CPL.softEmpty) !== -1, "gentle empty request line");
+    eq(jointSoftEmpty.indexOf(sharedSoft) === -1 && jointSoftEmpty.indexOf(unsharedSoft) === -1, "empty joint has no old drafts");
+    state.cplSoftDraft = { what: "UNSAVEDSOFT-leak-check", feel: "hurt", feelPick: "", ask: "a kind text tonight" };
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "a", screen: "soft", safety: false });
+    onCplAction("cpl-switch", { dataset: {} });
+    eq(!state.cplSoftDraft.what && !state.cplSoftDraft.ask, "switch clears the unsent draft");
+    eq(viewCouples().indexOf("UNSAVEDSOFT-leak-check") === -1, "unsent draft is not on the other side");
+    state.hold = true;
+    recSoftA.soft = [{ id: "s1", what: unsharedSoft, feel: "hurt", ask: sharedSoft, date: todaySoft, share: true }];
+    saveCplSide("a", recSoftA);
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "a", screen: "soft", safety: false });
+    var heldSoft = viewCouples();
+    eq(heldSoft.indexOf(unsharedSoft) === -1 && heldSoft.indexOf(sharedSoft) === -1, "hold hides draft text");
+    eq(heldSoft.indexOf(CPL.softTitle) === -1 && heldSoft.indexOf("cpl-soft") === -1, "hold hides the builder");
+    state.hold = false;
+    cplWipe();
+    clearSoftDraft();
+    state.crisis = null;
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "a", screen: "soft", safety: false });
+    eq(commitSoftDraft(loadCplMeta(), { what: CPL.hitSample, feel: "hurt", ask: "a calm goodnight" }) === "stop", "violence in the situation stops");
+    eq(loadCplMeta().safety === true, "situation keyword sets safety");
+    eq(loadCplSide("a").soft.length === 0, "violent situation not stored");
+    var violentSoft = viewCouples();
+    eq(violentSoft.indexOf("cpl-safety") !== -1 && violentSoft.indexOf(">100<") !== -1 && violentSoft.indexOf(">1201<") !== -1, "situation keyword shows the safety card");
+    eq(violentSoft.indexOf(CPL.hitSample) === -1 && violentSoft.indexOf("cpl-soft") === -1 && violentSoft.indexOf(CPL.softTitle) === -1, "builder hidden on the safety card");
+    cplWipe();
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "a", screen: "soft", safety: false });
+    eq(commitSoftDraft(loadCplMeta(), { what: "the dishes sat overnight", feel: CPL.hitSample, ask: "a calm goodnight" }) === "stop", "violence in the feeling stops");
+    eq(loadCplSide("a").soft.length === 0, "violent feeling not stored");
+    eq(viewCouples().indexOf(">100<") !== -1 && viewCouples().indexOf(">1201<") !== -1, "feeling keyword shows the safety card");
+    cplWipe();
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "a", screen: "soft", safety: false });
+    eq(commitSoftDraft(loadCplMeta(), { what: "the dishes sat overnight", feel: "hurt", ask: CPL.hitSample }) === "stop", "violence in the request stops");
+    eq(loadCplSide("a").soft.length === 0 && loadCplMeta().safety === true, "violent request not stored");
+    cplWipe();
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "a", screen: "plan", safety: false });
+    var seededSoft = cplBlank();
+    seededSoft.soft = [{ id: "bad", what: "the dishes sat overnight", feel: "hurt", ask: CPL.hitSample, date: todaySoft, share: true }];
+    saveCplSide("a", seededSoft);
+    var seededSoftView = viewCouples();
+    eq(seededSoftView.indexOf("cpl-safety") !== -1 && seededSoftView.indexOf(CPL.hitSample) === -1 && seededSoftView.indexOf("cpl-soft") === -1, "stored keyword opens safety");
+    eq(loadCplSide("a").soft.length === 0, "stored keyword draft removed");
+    eq(JSON.stringify(loadJSON(K_CPL_B, {})).indexOf(CPL.hitSample) === -1, "other save has no violent draft");
+    cplWipe();
+    stopSlTurn();
+    state.hold = false;
+    state.crisis = null;
+    clearSoftDraft();
     return errors;
   }
   function init() {
