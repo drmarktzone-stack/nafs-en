@@ -310,7 +310,7 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
   "summaryOnly": "Shared picture only. Private venting is not copied here.",
   "startWeek": "Start the 7-day couples plan",
   "planTitle": "Seven days",
-  "planIntro": "Days 1 to 3 are individual. The guide alternates who the session is for: partner A, then B, then A. From day 4 the sessions are joint, and both should be present. Joint days include timed speaker–listener practice. A later day stays locked until that calendar day.",
+  "planIntro": "Days 1 to 3 are individual. The guide alternates who the session is for: partner A, then B, then A. From day 4 the sessions are joint, and both should be present. Joint days include timed speaker–listener practice. Before a joint day, each person writes a private time-out and repair plan on their own side. A later day stays locked until that calendar day.",
   "planProgress": "{done} of {total} sessions done. Started {start}.",
   "dayLabel": "Day {n}",
   "openDay": "Open this session",
@@ -408,6 +408,77 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
   "softMax": 3,
   "softFeelings": ["hurt", "sad", "worried", "lonely", "frustrated", "left out", "unseen", "tense", "disappointed"],
   "softInsults": ["idiot", "stupid", "jerk", "lazy", "selfish", "pathetic", "useless", "worthless", "loser", "moron"],
+  "toTitle": "Time-out and repair plan",
+  "toKicker": "Private to {name}",
+  "toLesson": "When a talk heats up, the body can flood: the heart speeds up, thoughts narrow, and the voice gets sharp or goes quiet. A break of at least 20 minutes helps the body calm down. In behavioral couples work, a time-out for anger is a pause with a promised return. It is not walking out, the silent treatment, or a punishment. This is self-help practice, not a licensed therapist and not a diagnosis.",
+  "toPrompt": "Fill this while you are calm, on your side only. Your warning signs and your calming list stay private.",
+  "toBody": "Early sign in my body",
+  "toBodyHint": "For example: a tight chest, a hot face, or a fast heart.",
+  "toThoughts": "Early sign in my thoughts",
+  "toThoughtsHint": "For example: “I have to win this,” or your mind goes blank.",
+  "toVoice": "Early sign in my voice",
+  "toVoiceHint": "For example: louder, sharper, or you go quiet.",
+  "toPhrase": "A neutral pause phrase",
+  "toPhraseHint": "A short line you could both accept, such as “I need a pause.”",
+  "toActs": "Calming activities, pick 2 to 4",
+  "toActsHint": "Breathing, a walk, music, or a shower can help the body settle. Rehearsing the argument, or going over it in your head, keeps the heat up. Leave that for after you are calm.",
+  "toActList": [
+    { "id": "breath", "label": "Slow breathing" },
+    { "id": "walk", "label": "A short walk" },
+    { "id": "music", "label": "Music" },
+    { "id": "shower", "label": "A shower, or washing my face" }
+  ],
+  "toOwn": "My own calming activity",
+  "toOwn2": "Another calming activity, if I want one",
+  "toRuminateTip": "A pause works better when the body settles. Rehearsing the argument, or planning your next line, keeps you flooded. Pick something that calms you instead.",
+  "toRuminate": ["rehearse", "rehearsing", "ruminate", "rumination", "replay the argument", "replay the fight", "go over the argument", "go over the fight", "go over what they said", "plan what i will say", "plan what ill say", "plan my comeback", "plan my reply", "plan my next line", "stew on it", "argue in my head"],
+  "toBack": "I will come back after the pause and continue the talk",
+  "toBackHint": "A time-out is a pause with a promised return. It is not walking out, the silent treatment, or a punishment.",
+  "toShare": "Share my pause phrase and my promise to come back at the joint session",
+  "toShareHint": "Sharing stays off unless you tick it. Your warning signs and calming list are never shown. If you tick this, only the pause phrase and the promise to return can appear when you are both in a joint session.",
+  "toAfraidQ": "Are you afraid of your partner, or has there been a threat or physical violence?",
+  "toAfraidHint": "If the answer is yes, stop. A time-out is not a solution for violence, and joint sessions are not suitable then. Help numbers will be shown.",
+  "toAfraidNo": "No. I am not afraid, and there has not been a threat or violence.",
+  "toAfraidYes": "Yes. I am afraid, or there has been a threat or violence.",
+  "toSave": "Save my time-out plan",
+  "toNeed": "Add a short line for body, thoughts, and voice, a pause phrase, 2 to 4 calming activities, and the promise to come back.",
+  "toNeedAfraid": "Answer the safety question before saving. If you are afraid, or there has been violence, do not use a time-out.",
+  "toSaved": "Saved",
+  "toNotYet": "Not yet",
+  "toStatus": "Time-out plans. {a}: {as}. {b}: {bs}. Status only. The words stay on each person’s own side.",
+  "toYours": "Your plan: {status}",
+  "toOpen": "My time-out and repair plan",
+  "toNoneYet": "No plan saved yet. One quiet moment is enough to write it.",
+  "toDate": "Saved on {date}",
+  "toCount": "{n} of 2 to 4 activities",
+  "toNotForViolence": "A time-out is not a solution for violence. Joint sessions are not suitable when there is fear, a threat, or physical harm.",
+  "toIndivNote": "Write this on your own side before a joint session, while you are still calm. A break of at least 20 minutes helps the body settle. The pause only works if you come back.",
+  "toRepairs": [
+    { "id": "own-part", "text": "I can own one part of how that went." },
+    { "id": "restart", "text": "Can we start again, more softly?" },
+    { "id": "listen", "text": "I am back. I want to listen first." }
+  ],
+  "pauseTitle": "Pause",
+  "pauseBody": "If the talk is heating up, pause. A break of at least 20 minutes helps the body calm down. This is a pause with a promised return, not walking out, the silent treatment, or a punishment.",
+  "pauseStart": "Start a 20-minute cool-down",
+  "pauseExtend": "Extend to 30 minutes",
+  "pauseTick": "{m}:{s} left",
+  "pauseListKicker": "Your calming list only",
+  "pauseListNote": "Private to {name}. Your partner’s list is not on this screen. If this is not you, switch before you read it.",
+  "pauseNoList": "You have not saved a calming list yet. Slow breathing, a short walk, music, or a shower can help. Do not spend the pause rehearsing the argument.",
+  "pauseDone": "The cool-down is over. Come back, pick one repair line, then continue with the speaker–listener timer.",
+  "pauseRepairH": "One repair line",
+  "pauseRepairBody": "Pick a line, or write your own. A repair can be owning one part, or asking to start again softly.",
+  "pauseRepairOwn": "Or write your own repair line",
+  "pauseRepairGo": "Say this, then open the speaker–listener timer",
+  "pauseRepairNeed": "Pick a repair line, or write a short one.",
+  "pauseSaid": "Say this repair, then start the turn: {line}",
+  "pauseJointTitle": "Pause phrases you chose to share",
+  "pauseJointHow": "Either person can say their phrase to start a pause. The promise is to come back. Warning signs and calming lists stay private.",
+  "pauseFrom": "{name}’s pause phrase",
+  "pauseBackYes": "{name} promised to come back after a pause.",
+  "pauseEmpty": "No pause phrase was shared. Each person can write one on their own side and tick it when they want it said aloud.",
+  "pauseAway": "The cool-down keeps going if you leave this page. Open the joint session to see your own calming list.",
   "hitSample": "he hits me when he is angry",
   "safeSample": "we argue about dishes and bills",
   "questions": [
@@ -548,10 +619,12 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
   function loadProgram() { return loadJSON(K_PROGRAM, null); }
   function saveProgram(p) { saveJSON(K_PROGRAM, p); }
 
-  var state = { view: "home", dayId: null, crisis: null, hold: false, guideText: "", guide: null, pad: "", pst: {}, check: null, result: null, formError: "", confirmClear: false, cplErr: "", cplReset: false, cplNiceDraft: "", cplNiceErr: "", cplSoftDraft: { what: "", feel: "", feelPick: "", ask: "" }, cplSoftErr: "" };
+  var state = { view: "home", dayId: null, crisis: null, hold: false, guideText: "", guide: null, pad: "", pst: {}, check: null, result: null, formError: "", confirmClear: false, cplErr: "", cplReset: false, cplNiceDraft: "", cplNiceErr: "", cplSoftDraft: { what: "", feel: "", feelPick: "", ask: "" }, cplSoftErr: "", cplToDraft: null, cplToDraftOwner: "", cplToErr: "", cplPauseErr: "", pauseRepairPick: "", pauseRepairOwn: "", pauseRepairLine: "" };
   var breath = { running: false, timer: null, mode: "468", phaseIdx: 0, left: 4, cycle: 0, totalCycles: 5, dayId: null, finishedMsg: "" };
   var slClock = null;
   var slTurn = { running: false, left: 180, done: false };
+  var pauseClock = null;
+  var pauseCool = { running: false, left: 1200, span: 1200, done: false, endsAt: 0 };
 
   function breathModes() {
     return {
@@ -897,15 +970,22 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
     if (typeof document === "undefined") return;
     var breathingHere = state.view === "breathe" || (state.view === "day" && state.dayId === "t1");
     if (!breathingHere) stopBreath(false);
+    syncPauseLeft();
     var slHere = jointSlOpen();
-    if (!slHere) stopSlTurn();
-    else clearSlClock();
+    if (!slHere) {
+      stopSlTurn();
+      clearPauseClock();
+    } else {
+      clearSlClock();
+      clearPauseClock();
+    }
     var app = document.getElementById("app");
     if (!app) return;
     app.innerHTML = shell(viewHTML());
     renderCrisis();
     if (breath.running) syncBreathDom();
-    if (slHere && slTurn.running) armSlClock();
+    if (slHere && pauseCool.running) armPauseClock();
+    else if (slHere && slTurn.running) armSlClock();
   }
   function readRoute() {
     var h = (location.hash || "#home").replace("#", "");
@@ -1021,6 +1101,92 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
     clearSlClock();
     if (!slTurn.running) return;
     slClock = setInterval(onSlTick, 1000);
+  }
+  function clearPauseClock() {
+    if (pauseClock) clearInterval(pauseClock);
+    pauseClock = null;
+  }
+  function stopPause() {
+    clearPauseClock();
+    pauseCool.running = false;
+    pauseCool.done = false;
+    pauseCool.left = 1200;
+    pauseCool.span = 1200;
+    pauseCool.endsAt = 0;
+  }
+  function syncPauseLeft() {
+    if (!pauseCool.running || !pauseCool.endsAt) return;
+    var left = Math.ceil((pauseCool.endsAt - Date.now()) / 1000);
+    if (left < 0) left = 0;
+    pauseCool.left = left;
+    if (left <= 0) {
+      pauseCool.left = 0;
+      pauseCool.running = false;
+      pauseCool.done = true;
+      pauseCool.endsAt = 0;
+      clearPauseClock();
+    }
+  }
+  function pauseTickLabel(seconds) {
+    var n = seconds < 0 ? 0 : seconds;
+    var m = Math.floor(n / 60);
+    var s = n % 60;
+    return fill(CPL.pauseTick, { m: String(m), s: (s < 10 ? "0" : "") + s });
+  }
+  function syncPauseDom() {
+    if (typeof document === "undefined") return;
+    var el = document.getElementById("cpl-pause-tick");
+    if (!el || pauseCool.done) return;
+    el.textContent = pauseTickLabel(pauseCool.left);
+  }
+  function onPauseTick() {
+    if (pauseCool.endsAt) {
+      syncPauseLeft();
+      if (!pauseCool.running) {
+        if (pauseCool.done && typeof document !== "undefined") render();
+        return;
+      }
+      syncPauseDom();
+      return;
+    }
+    pauseCool.left -= 1;
+    if (pauseCool.left <= 0) {
+      pauseCool.left = 0;
+      pauseCool.running = false;
+      pauseCool.done = true;
+      clearPauseClock();
+      if (typeof document !== "undefined") render();
+      return;
+    }
+    syncPauseDom();
+  }
+  function armPauseClock() {
+    clearPauseClock();
+    if (!pauseCool.running) return;
+    pauseClock = setInterval(onPauseTick, 1000);
+  }
+  function startPause() {
+    stopSlTurn();
+    clearPauseClock();
+    pauseCool.left = 1200;
+    pauseCool.span = 1200;
+    pauseCool.endsAt = Date.now() + 1200 * 1000;
+    pauseCool.done = false;
+    pauseCool.running = true;
+    state.pauseRepairPick = "";
+    state.pauseRepairOwn = "";
+    state.pauseRepairLine = "";
+    state.cplPauseErr = "";
+  }
+  function extendPause() {
+    if (!pauseCool.running || pauseCool.span >= 1800) return false;
+    pauseCool.span = 1800;
+    pauseCool.left += 600;
+    if (pauseCool.endsAt) pauseCool.endsAt = Date.now() + pauseCool.left * 1000;
+    return true;
+  }
+  function pauseBlocking() {
+    return !!(pauseCool.running || pauseCool.done);
   }
   function onGuideRun() {
     var text = state.guideText || "";
@@ -1194,6 +1360,7 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
     if (typeof rec.qi !== "number") rec.qi = 0;
     rec.nice = normalizeNice(rec.nice);
     rec.soft = normalizeSoft(rec.soft);
+    rec.timeout = normalizeTimeout(rec.timeout);
     return rec;
   }
   function saveCplSide(which, rec) { saveJSON(which === "b" ? K_CPL_B : K_CPL_A, rec); }
@@ -1543,7 +1710,14 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
     state.cplReset = false;
     state.cplNiceErr = "";
     state.cplNiceDraft = "";
+    state.cplToErr = "";
+    state.cplPauseErr = "";
+    state.pauseRepairPick = "";
+    state.pauseRepairOwn = "";
+    state.pauseRepairLine = "";
     clearSoftDraft();
+    clearTimeoutDraft();
+    stopPause();
   }
   function scrubSide(which) {
     var rec = loadCplSide(which);
@@ -1575,6 +1749,11 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
       else keptSoft.push(rec.soft[i]);
     }
     rec.soft = keptSoft;
+    if (rec.timeout) {
+      var tr = timeoutRisk(rec.timeout);
+      if (tr === "crisis") { rec.timeout = null; hitC = true; }
+      else if (tr === "violence") { rec.timeout = null; hitV = true; }
+    }
     saveCplSide(which, rec);
     return { hitV: hitV, hitC: hitC };
   }
@@ -1586,7 +1765,14 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
     state.cplErr = "";
     state.cplNiceErr = "";
     state.cplNiceDraft = "";
+    state.cplToErr = "";
+    state.cplPauseErr = "";
+    state.pauseRepairPick = "";
+    state.pauseRepairOwn = "";
+    state.pauseRepairLine = "";
     clearSoftDraft();
+    clearTimeoutDraft();
+    stopPause();
     if (!skipRender) render();
   }
   function screenFor(meta, who) {
@@ -1738,6 +1924,384 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
     return '<div class="banner cpl-soft-shared"><h2>' + esc(CPL.softJointTitle) + "</h2><p>" + esc(CPL.softJointHow) + "</p>" +
       '<p class="muted">' + esc(CPL.softLesson) + "</p>" + body + "</div>";
   }
+  function blankTimeout() {
+    return { body: "", thoughts: "", voice: "", phrase: "", acts: [], own: "", own2: "", back: false, share: false, afraid: "" };
+  }
+  function clearTimeoutDraft() {
+    state.cplToDraft = null;
+    state.cplToDraftOwner = "";
+    state.cplToErr = "";
+  }
+  function toClean(s, max) {
+    return String(s || "").replace(/\s+/g, " ").trim().slice(0, max || 180);
+  }
+  function toActOk(id) {
+    var list = CPL.toActList || [];
+    for (var i = 0; i < list.length; i++) if (list[i].id === id) return true;
+    return false;
+  }
+  function copyTimeout(src) {
+    var acts = [];
+    var rawActs = src && Array.isArray(src.acts) ? src.acts : [];
+    var i;
+    for (i = 0; i < rawActs.length; i++) if (toActOk(rawActs[i]) && acts.indexOf(rawActs[i]) === -1) acts.push(rawActs[i]);
+    var afraid = src && src.afraid === "yes" ? "yes" : (src && src.afraid === "no" ? "no" : "");
+    return {
+      body: toClean(src && src.body, 180),
+      thoughts: toClean(src && src.thoughts, 180),
+      voice: toClean(src && src.voice, 180),
+      phrase: toClean(src && src.phrase, 80),
+      acts: acts,
+      own: toClean(src && src.own, 80),
+      own2: toClean(src && src.own2, 80),
+      back: !!(src && src.back),
+      share: !!(src && src.share),
+      afraid: afraid
+    };
+  }
+  function timeoutActivityCount(d) {
+    var n = d && d.acts ? d.acts.length : 0;
+    if (d && d.own) n++;
+    if (d && d.own2) n++;
+    return n;
+  }
+  function timeoutComplete(d) {
+    if (!d || d.afraid !== "no" || !d.back) return false;
+    if (toClean(d.body, 180).length < 2 || toClean(d.thoughts, 180).length < 2) return false;
+    if (toClean(d.voice, 180).length < 2 || toClean(d.phrase, 80).length < 2) return false;
+    var n = timeoutActivityCount(d);
+    return n >= 2 && n <= 4;
+  }
+  function normalizeTimeout(raw) {
+    if (!raw || typeof raw !== "object" || Array.isArray(raw)) return null;
+    var d = copyTimeout(raw);
+    var any = d.body || d.thoughts || d.voice || d.phrase || d.own || d.own2 || d.acts.length || d.afraid || d.back || d.share;
+    if (!any) return null;
+    d.saved = raw.saved === true && timeoutComplete(d);
+    d.date = /^\d{4}-\d{2}-\d{2}$/.test(String(raw.date || "")) ? String(raw.date) : "";
+    return d;
+  }
+  function timeoutRisk(d) {
+    if (!d) return "";
+    if (d.afraid === "yes") return "violence";
+    var bits = [d.body, d.thoughts, d.voice, d.phrase, d.own, d.own2];
+    var hitC = false, hitV = false, i;
+    for (i = 0; i < bits.length; i++) {
+      if (!bits[i]) continue;
+      if (isCrisisText(bits[i])) hitC = true;
+      else if (cplViolent(bits[i])) hitV = true;
+    }
+    if (hitC) return "crisis";
+    if (hitV) return "violence";
+    return "";
+  }
+  function timeoutRuminate(d) {
+    var blob = norm(toClean(d && d.own, 80) + " " + toClean(d && d.own2, 80));
+    if (!blob) return false;
+    var list = CPL.toRuminate || [];
+    for (var i = 0; i < list.length; i++) {
+      var term = norm(list[i]);
+      if (term && hasTerm(blob, term)) return true;
+    }
+    return false;
+  }
+  function timeoutSide(meta) {
+    return meta && meta.active === "b" ? "b" : "a";
+  }
+  function clearStoredTimeout(meta) {
+    if (!meta) return;
+    var rec = loadCplSide(timeoutSide(meta));
+    if (!rec.timeout) return;
+    rec.timeout = null;
+    saveCplSide(timeoutSide(meta), rec);
+  }
+  function scrubTimeout(which) {
+    var rec = loadCplSide(which);
+    if (!rec.timeout) return { hitV: false, hitC: false };
+    var risk = timeoutRisk(rec.timeout);
+    if (risk === "crisis" || risk === "violence") {
+      rec.timeout = null;
+      saveCplSide(which, rec);
+      return { hitV: risk === "violence", hitC: risk === "crisis" };
+    }
+    return { hitV: false, hitC: false };
+  }
+  function absorbTimeoutRisk() {
+    var a = scrubTimeout("a"), b = scrubTimeout("b");
+    if (a.hitC || b.hitC) return "crisis";
+    if (a.hitV || b.hitV) return "violence";
+    return "";
+  }
+  function timeoutFeatureOn(meta) {
+    return !state.hold && !state.crisis && meta && !meta.safety;
+  }
+  function ensureTimeoutDraft(meta) {
+    var side = timeoutSide(meta);
+    if (state.cplToDraft && state.cplToDraftOwner === side) return state.cplToDraft;
+    var saved = loadCplSide(side).timeout;
+    state.cplToDraft = saved ? copyTimeout(saved) : blankTimeout();
+    state.cplToDraftOwner = side;
+    return state.cplToDraft;
+  }
+  function readTimeoutFields() {
+    var d = state.cplToDraft || blankTimeout();
+    function box(id, fallback, max) {
+      var v = readCplBox(id);
+      return toClean(v != null ? v : fallback, max);
+    }
+    var acts = (d.acts || []).slice();
+    var afraid = d.afraid || "";
+    var back = !!d.back;
+    var share = !!d.share;
+    if (typeof document !== "undefined") {
+      var boxes = document.querySelectorAll("[data-cpl='to-act']");
+      if (boxes && boxes.length) {
+        acts = [];
+        for (var i = 0; i < boxes.length; i++) if (boxes[i].checked && toActOk(boxes[i].value)) acts.push(boxes[i].value);
+      }
+      var yes = document.getElementById("cpl-to-afraid-yes");
+      var no = document.getElementById("cpl-to-afraid-no");
+      if (yes && yes.checked) afraid = "yes";
+      else if (no && no.checked) afraid = "no";
+      var backEl = document.getElementById("cpl-to-back");
+      var shareEl = document.getElementById("cpl-to-share");
+      if (backEl) back = !!backEl.checked;
+      if (shareEl) share = !!shareEl.checked;
+    }
+    return {
+      body: box("cpl-to-body", d.body, 180),
+      thoughts: box("cpl-to-thoughts", d.thoughts, 180),
+      voice: box("cpl-to-voice", d.voice, 180),
+      phrase: box("cpl-to-phrase", d.phrase, 80),
+      acts: acts,
+      own: box("cpl-to-own", d.own, 80),
+      own2: box("cpl-to-own2", d.own2, 80),
+      back: back,
+      share: share,
+      afraid: afraid
+    };
+  }
+  function commitTimeout(meta, fields) {
+    if (state.hold || !meta || meta.safety) return "stop";
+    var d = copyTimeout(fields || readTimeoutFields());
+    state.cplToDraft = d;
+    state.cplToDraftOwner = timeoutSide(meta);
+    var risk = timeoutRisk(d);
+    if (risk === "crisis") { clearTimeoutDraft(); triggerCrisis("text"); return "stop"; }
+    if (risk === "violence") {
+      if (d.afraid === "yes") clearStoredTimeout(meta);
+      clearTimeoutDraft();
+      enterSafety(meta);
+      return "stop";
+    }
+    if (d.afraid !== "no") return "afraid";
+    if (!timeoutComplete(d)) return "short";
+    var side = timeoutSide(meta);
+    var rec = loadCplSide(side);
+    rec.timeout = {
+      body: d.body,
+      thoughts: d.thoughts,
+      voice: d.voice,
+      phrase: d.phrase,
+      acts: d.acts.slice(),
+      own: d.own,
+      own2: d.own2,
+      back: true,
+      share: !!d.share,
+      afraid: "no",
+      saved: true,
+      date: jerusalemToday()
+    };
+    saveCplSide(side, rec);
+    return "ok";
+  }
+  function syncTimeoutDom() {
+    if (typeof document === "undefined") return;
+    var d = state.cplToDraft || blankTimeout();
+    var count = document.getElementById("cpl-to-count");
+    if (count) count.textContent = fill(CPL.toCount, { n: timeoutActivityCount(d) });
+    var hint = document.getElementById("cpl-to-ruminate");
+    if (hint) {
+      var on = timeoutRuminate(d);
+      hint.textContent = on ? CPL.toRuminateTip : "";
+      if (on) hint.removeAttribute("hidden");
+      else hint.setAttribute("hidden", "");
+    }
+  }
+  function toOpenButton() {
+    return '<button type="button" class="btn secondary block" data-action="cpl-open-timeout">' + esc(CPL.toOpen) + "</button>";
+  }
+  function toStatusHTML(meta) {
+    if (!timeoutFeatureOn(meta)) return "";
+    var ta = loadCplSide("a").timeout;
+    var tb = loadCplSide("b").timeout;
+    var as = ta && ta.saved ? CPL.toSaved : CPL.toNotYet;
+    var bs = tb && tb.saved ? CPL.toSaved : CPL.toNotYet;
+    return '<div class="cpl-to-status"><p>' + esc(fill(CPL.toStatus, { a: meta.aName, b: meta.bName, as: as, bs: bs })) + "</p>" +
+      toOpenButton() + "</div>";
+  }
+  function toPromptCard(meta) {
+    if (!timeoutFeatureOn(meta)) return "";
+    var side = timeoutSide(meta);
+    var name = nameOf(meta, side) || CPL.noname;
+    var saved = !!(loadCplSide(side).timeout && loadCplSide(side).timeout.saved);
+    return '<section class="card cpl-to"><p class="kicker">' + esc(fill(CPL.toKicker, { name: name })) + "</p><h2>" + esc(CPL.toTitle) + "</h2>" +
+      "<p>" + esc(CPL.toIndivNote) + "</p>" +
+      "<p>" + esc(fill(CPL.toYours, { status: saved ? CPL.toSaved : CPL.toNotYet })) + "</p>" +
+      toOpenButton() + "</section>";
+  }
+  function viewCplTimeout(meta) {
+    if (!timeoutFeatureOn(meta)) return "";
+    var side = timeoutSide(meta);
+    var name = nameOf(meta, side) || CPL.noname;
+    var draft = ensureTimeoutDraft(meta);
+    var stored = loadCplSide(side).timeout;
+    var savedLine = stored && stored.saved && stored.date
+      ? '<p class="muted">' + esc(fill(CPL.toDate, { date: stored.date })) + "</p>"
+      : '<p class="muted">' + esc(CPL.toNoneYet) + "</p>";
+    var acts = (CPL.toActList || []).map(function (item) {
+      var on = draft.acts.indexOf(item.id) !== -1;
+      return '<label class="check"><input type="checkbox" data-cpl="to-act" value="' + esc(item.id) + '"' + (on ? " checked" : "") + ">" + esc(item.label) + "</label>";
+    }).join("");
+    var rum = timeoutRuminate(draft);
+    var rumHTML = '<p class="cpl-to-hint" id="cpl-to-ruminate"' + (rum ? "" : " hidden") + ">" + (rum ? esc(CPL.toRuminateTip) : "") + "</p>";
+    var backAction = loadCplPlan() ? "cpl-back-plan" : "cpl-to-who";
+    var backLabel = loadCplPlan() ? CPL.backPlan : CPL.backWho;
+    return whoBanner(meta) + '<section class="card cpl-to"><p class="kicker">' + esc(fill(CPL.toKicker, { name: name })) + "</p><h2>" + esc(CPL.toTitle) + "</h2>" +
+      "<p>" + esc(CPL.toLesson) + "</p><p>" + esc(CPL.toPrompt) + "</p>" + savedLine +
+      '<label class="field">' + esc(CPL.toBody) +
+      '<textarea id="cpl-to-body" class="cpl-to-box" maxlength="180" data-cpl="to-body">' + esc(draft.body || "") + "</textarea></label>" +
+      '<p class="muted">' + esc(CPL.toBodyHint) + "</p>" +
+      '<label class="field">' + esc(CPL.toThoughts) +
+      '<textarea id="cpl-to-thoughts" class="cpl-to-box" maxlength="180" data-cpl="to-thoughts">' + esc(draft.thoughts || "") + "</textarea></label>" +
+      '<p class="muted">' + esc(CPL.toThoughtsHint) + "</p>" +
+      '<label class="field">' + esc(CPL.toVoice) +
+      '<textarea id="cpl-to-voice" class="cpl-to-box" maxlength="180" data-cpl="to-voice">' + esc(draft.voice || "") + "</textarea></label>" +
+      '<p class="muted">' + esc(CPL.toVoiceHint) + "</p>" +
+      '<label class="field">' + esc(CPL.toPhrase) +
+      '<input type="text" id="cpl-to-phrase" maxlength="80" autocomplete="off" data-cpl="to-phrase" value="' + esc(draft.phrase || "") + '"></label>' +
+      '<p class="muted">' + esc(CPL.toPhraseHint) + "</p>" +
+      "<h3>" + esc(CPL.toActs) + "</h3><p>" + esc(CPL.toActsHint) + "</p>" + acts +
+      '<label class="field">' + esc(CPL.toOwn) +
+      '<input type="text" id="cpl-to-own" maxlength="80" autocomplete="off" data-cpl="to-own" value="' + esc(draft.own || "") + '"></label>' +
+      '<label class="field">' + esc(CPL.toOwn2) +
+      '<input type="text" id="cpl-to-own2" maxlength="80" autocomplete="off" data-cpl="to-own2" value="' + esc(draft.own2 || "") + '"></label>' +
+      rumHTML +
+      '<p id="cpl-to-count" class="muted">' + esc(fill(CPL.toCount, { n: timeoutActivityCount(draft) })) + "</p>" +
+      '<label class="check"><input type="checkbox" id="cpl-to-back" data-cpl="to-back"' + (draft.back ? " checked" : "") + ">" + esc(CPL.toBack) + "</label>" +
+      '<p class="muted">' + esc(CPL.toBackHint) + "</p>" +
+      '<label class="check"><input type="checkbox" id="cpl-to-share" data-cpl="to-share"' + (draft.share ? " checked" : "") + ">" + esc(CPL.toShare) + "</label>" +
+      '<p class="muted">' + esc(CPL.toShareHint) + "</p>" +
+      "<p><strong>" + esc(CPL.toAfraidQ) + "</strong></p>" +
+      '<p class="muted">' + esc(CPL.toAfraidHint) + "</p>" +
+      '<label class="check"><input type="radio" name="cpl-to-afraid" id="cpl-to-afraid-no" value="no" data-cpl="to-afraid"' + (draft.afraid === "no" ? " checked" : "") + ">" + esc(CPL.toAfraidNo) + "</label>" +
+      '<label class="check"><input type="radio" name="cpl-to-afraid" id="cpl-to-afraid-yes" value="yes" data-cpl="to-afraid"' + (draft.afraid === "yes" ? " checked" : "") + ">" + esc(CPL.toAfraidYes) + "</label>" +
+      (state.cplToErr ? '<p class="err">' + esc(state.cplToErr) + "</p>" : "") +
+      '<button type="button" class="btn block" data-action="cpl-to-save">' + esc(CPL.toSave) + "</button></section>" +
+      '<p><button type="button" class="btn secondary block" data-action="' + backAction + '">' + esc(backLabel) + "</button></p>";
+  }
+  function actLabel(id) {
+    var list = CPL.toActList || [];
+    for (var i = 0; i < list.length; i++) if (list[i].id === id) return list[i].label;
+    return "";
+  }
+  function myCalmingLines(plan) {
+    if (!plan || !plan.saved) return [];
+    var lines = [];
+    var acts = plan.acts || [];
+    for (var i = 0; i < acts.length; i++) {
+      var label = actLabel(acts[i]);
+      if (label) lines.push(label);
+    }
+    if (plan.own) lines.push(plan.own);
+    if (plan.own2) lines.push(plan.own2);
+    return lines;
+  }
+  function calmingListHTML(meta) {
+    var plan = loadCplSide(timeoutSide(meta)).timeout;
+    var name = nameOf(meta, timeoutSide(meta)) || CPL.noname;
+    var note = '<p class="muted">' + esc(fill(CPL.pauseListNote, { name: name })) + "</p>";
+    var kicker = '<p class="kicker">' + esc(CPL.pauseListKicker) + "</p>";
+    if (!plan || !plan.saved) return kicker + note + "<p>" + esc(CPL.pauseNoList) + "</p>";
+    var items = myCalmingLines(plan).map(function (line) { return "<li>" + esc(line) + "</li>"; }).join("");
+    return kicker + note + '<ul class="cpl-pause-list">' + items + "</ul>";
+  }
+  function repairFormHTML() {
+    var pick = state.pauseRepairPick || "";
+    var own = state.pauseRepairOwn || "";
+    var radios = (CPL.toRepairs || []).map(function (r) {
+      return '<label class="check"><input type="radio" name="cpl-pause-repair" data-cpl="pause-repair" value="' + esc(r.id) + '"' + (pick === r.id ? " checked" : "") + ">" + esc(r.text) + "</label>";
+    }).join("");
+    return "<h3>" + esc(CPL.pauseRepairH) + "</h3><p>" + esc(CPL.pauseRepairBody) + "</p>" + radios +
+      '<label class="field">' + esc(CPL.pauseRepairOwn) +
+      '<textarea id="cpl-pause-repair" class="cpl-to-box" maxlength="160" data-cpl="pause-repair-own">' + esc(own) + "</textarea></label>" +
+      (state.cplPauseErr ? '<p class="err">' + esc(state.cplPauseErr) + "</p>" : "") +
+      '<button type="button" class="btn block" data-action="cpl-pause-repair">' + esc(CPL.pauseRepairGo) + "</button>";
+  }
+  function pauseAwayHTML() {
+    if (!pauseCool.running && !pauseCool.done) return "";
+    syncPauseLeft();
+    var label = pauseCool.done ? CPL.pauseDone : pauseTickLabel(pauseCool.left);
+    return '<div class="cpl-pause"><p><strong>' + esc(CPL.pauseTitle) + "</strong> " + esc(label) + "</p>" +
+      '<p class="muted">' + esc(CPL.pauseAway) + "</p></div>";
+  }
+  function pauseCard(meta) {
+    if (!timeoutFeatureOn(meta) || !jointSessionOpen(meta)) return "";
+    syncPauseLeft();
+    var back = '<button type="button" class="btn secondary block" data-action="cpl-back-plan">' + esc(CPL.backPlan) + "</button>";
+    if (pauseCool.running) {
+      var extend = pauseCool.span >= 1800 ? "" : '<button type="button" class="btn secondary block" data-action="cpl-pause-extend">' + esc(CPL.pauseExtend) + "</button>";
+      return '<div class="cpl-pause"><h2>' + esc(CPL.pauseTitle) + "</h2><p>" + esc(CPL.pauseBody) + "</p>" +
+        '<p id="cpl-pause-tick" class="cpl-pause-tick" role="timer" aria-live="polite">' + esc(pauseTickLabel(pauseCool.left)) + "</p>" +
+        calmingListHTML(meta) +
+        '<p class="muted">' + esc(CPL.pauseAway) + "</p>" +
+        '<div class="stack">' + extend + back + "</div></div>";
+    }
+    if (pauseCool.done) {
+      return '<div class="cpl-pause is-done"><h2>' + esc(CPL.pauseTitle) + "</h2>" +
+        '<p id="cpl-pause-tick" class="cpl-pause-tick">' + esc(CPL.pauseDone) + "</p>" +
+        calmingListHTML(meta) + repairFormHTML() + back + "</div>";
+    }
+    return '<div class="cpl-pause"><h2>' + esc(CPL.pauseTitle) + "</h2><p>" + esc(CPL.pauseBody) + "</p>" +
+      '<button type="button" class="btn block" data-action="cpl-pause-start">' + esc(CPL.pauseStart) + "</button></div>";
+  }
+  function toJointShared(meta, bothHere) {
+    if (!timeoutFeatureOn(meta) || !bothHere) return "";
+    var groups = [["a", meta.aName], ["b", meta.bName]];
+    var chunks = "";
+    var any = false;
+    for (var g = 0; g < groups.length; g++) {
+      var plan = loadCplSide(groups[g][0]).timeout;
+      if (!plan || !plan.saved || plan.share !== true) continue;
+      any = true;
+      var bits = "";
+      if (plan.phrase) bits += "<p>" + esc(plan.phrase) + "</p>";
+      if (plan.back) bits += "<p>" + esc(fill(CPL.pauseBackYes, { name: groups[g][1] || CPL.noname })) + "</p>";
+      chunks += "<h3>" + esc(fill(CPL.pauseFrom, { name: groups[g][1] || CPL.noname })) + "</h3>" + bits;
+    }
+    var inner = any ? chunks : "<p>" + esc(CPL.pauseEmpty) + "</p>";
+    return '<div class="banner cpl-pause-shared"><h2>' + esc(CPL.pauseJointTitle) + "</h2><p>" + esc(CPL.pauseJointHow) + "</p>" + inner + "</div>";
+  }
+  function readRepairChoice() {
+    var pick = state.pauseRepairPick || "";
+    var own = toClean(state.pauseRepairOwn || "", 160);
+    if (typeof document !== "undefined") {
+      var ownEl = document.getElementById("cpl-pause-repair");
+      if (ownEl) own = toClean(ownEl.value, 160);
+      var radios = document.querySelectorAll("[data-cpl='pause-repair']");
+      if (radios && radios.length) {
+        pick = "";
+        for (var i = 0; i < radios.length; i++) if (radios[i].checked) pick = radios[i].value;
+      }
+    }
+    return { pick: pick, own: own };
+  }
+  function repairLineFrom(choice) {
+    if (choice.own && choice.own.length >= 2) return choice.own;
+    var list = CPL.toRepairs || [];
+    for (var i = 0; i < list.length; i++) if (list[i].id === choice.pick) return list[i].text;
+    return "";
+  }
   function cplDayDef(id) {
     for (var i = 0; i < CPL.days.length; i++) if (CPL.days[i].id === id) return { def: CPL.days[i], index: i };
     return null;
@@ -1818,6 +2382,30 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
       if (softHit === "crisis") { clearSoftDraft(); triggerCrisis("text"); return "stop"; }
       if (softHit === "violence") { clearSoftDraft(); enterSafety(meta); return "stop"; }
     }
+    var toBody = readCplBox("cpl-to-body");
+    var toThoughts = readCplBox("cpl-to-thoughts");
+    var toVoice = readCplBox("cpl-to-voice");
+    var toPhrase = readCplBox("cpl-to-phrase");
+    var toOwn = readCplBox("cpl-to-own");
+    var toOwn2 = readCplBox("cpl-to-own2");
+    if (toBody != null || toThoughts != null || toVoice != null || toPhrase != null || toOwn != null || toOwn2 != null) {
+      state.cplToDraft = readTimeoutFields();
+      state.cplToDraftOwner = timeoutSide(meta);
+      var toHit = timeoutRisk(state.cplToDraft);
+      if (toHit === "crisis") { clearTimeoutDraft(); triggerCrisis("text"); return "stop"; }
+      if (toHit === "violence") {
+        if (state.cplToDraft.afraid === "yes") clearStoredTimeout(meta);
+        clearTimeoutDraft();
+        enterSafety(meta);
+        return "stop";
+      }
+    }
+    var repairOwn = readCplBox("cpl-pause-repair");
+    if (repairOwn != null) {
+      state.pauseRepairOwn = toClean(repairOwn, 160);
+      if (isCrisisText(state.pauseRepairOwn)) { state.pauseRepairOwn = ""; triggerCrisis("text"); return "stop"; }
+      if (cplViolent(state.pauseRepairOwn)) { state.pauseRepairOwn = ""; enterSafety(meta); return "stop"; }
+    }
     return "ok";
   }
   function viewCplSetup(meta) {
@@ -1859,14 +2447,14 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
       (state.cplErr ? '<p class="err">' + esc(state.cplErr) + "</p>" : "") +
       '<div class="stack">' +
       (i > 0 ? '<button type="button" class="btn secondary block" data-action="cpl-prev">' + esc(CPL.back) + "</button>" : '<button type="button" class="btn secondary block" data-action="cpl-to-who">' + esc(CPL.backWho) + "</button>") +
-      '<button type="button" class="btn block" data-action="cpl-next">' + esc(i === 7 ? CPL.finishMine : CPL.next) + "</button></div></section>" + nicePrivateCard(meta) + softPrivateCard(meta);
+      '<button type="button" class="btn block" data-action="cpl-next">' + esc(i === 7 ? CPL.finishMine : CPL.next) + "</button></div></section>" + nicePrivateCard(meta) + softPrivateCard(meta) + (timeoutFeatureOn(meta) ? toOpenButton() : "");
   }
   function viewCplWait(meta) {
     var other = otherOf(meta.active);
     return whoBanner(meta) + '<section class="card"><h1>' + esc(CPL.waitTitle) + "</h1>" +
       "<p>" + esc(fill(CPL.waitBody, { name: nameOf(meta, other) })) + "</p>" +
       '<button type="button" class="btn block" data-action="cpl-switch">' + esc(fill(CPL.theirTurn, { name: nameOf(meta, other) })) + "</button>" +
-      '<button type="button" class="btn secondary block" data-action="cpl-review">' + esc(CPL.reviewMine) + "</button></section>" + nicePrivateCard(meta) + softPrivateCard(meta);
+      '<button type="button" class="btn secondary block" data-action="cpl-review">' + esc(CPL.reviewMine) + "</button></section>" + nicePrivateCard(meta) + softPrivateCard(meta) + (timeoutFeatureOn(meta) ? toOpenButton() : "");
   }
   function viewCplReview(meta) {
     var side = meta.active === "b" ? "b" : "a";
@@ -1876,7 +2464,7 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
     }).join("");
     return whoBanner(meta) + '<section class="card"><p class="kicker">' + esc(fill(CPL.privateTag, { name: nameOf(meta, side) })) + "</p>" +
       "<h1>" + esc(CPL.reviewTitle) + "</h1><p>" + esc(CPL.reviewNote) + "</p>" + rows +
-      '<button type="button" class="btn secondary block" data-action="cpl-to-who">' + esc(CPL.backWho) + "</button></section>" + nicePrivateCard(meta) + softPrivateCard(meta);
+      '<button type="button" class="btn secondary block" data-action="cpl-to-who">' + esc(CPL.backWho) + "</button></section>" + nicePrivateCard(meta) + softPrivateCard(meta) + (timeoutFeatureOn(meta) ? toOpenButton() : "");
   }
   function viewCplSummary(meta) {
     var sum = loadJSON(K_CPL_SUM, null);
@@ -1895,6 +2483,7 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
       (loadCplPlan() ? '<button type="button" class="btn secondary block" data-action="cpl-back-plan">' + esc(CPL.backPlan) + "</button>" : "") +
       (niceFeatureOn(meta) ? niceOpenButton() : "") +
       (softFeatureOn(meta) ? softOpenButton() : "") +
+      (timeoutFeatureOn(meta) ? toOpenButton() : "") +
       "</div></section>";
   }
   function viewCplPlan(meta) {
@@ -1917,6 +2506,8 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
       "<p>" + esc(CPL.planIntro) + "</p>" +
       "<p>" + esc(fill(CPL.planProgress, { done: done, total: 7, start: plan.startDate })) + "</p>" +
       '<div class="progress" aria-hidden="true"><span style="width:' + pct + '%"></span></div>' +
+      pauseAwayHTML() +
+      toStatusHTML(meta) +
       niceCountsHTML(meta, plan) +
       (softFeatureOn(meta) ? softOpenButton() : "") +
       '<button type="button" class="btn secondary block" data-action="cpl-reopen-sum">' + esc(CPL.reopenSum) + "</button>" +
@@ -1967,13 +2558,16 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
     if (idx > todayIx) {
       return head + "<p>" + esc(CPL.lockedBody) + "</p>" +
         '<button type="button" class="btn secondary block" data-action="cpl-back-plan">' + esc(CPL.backPlan) + "</button></section>" +
-        (def.mode === "individual" ? nicePrivateCard(meta) + softPrivateCard(meta) : "");
+        (def.mode === "individual" ? toPromptCard(meta) + nicePrivateCard(meta) + softPrivateCard(meta) : (timeoutFeatureOn(meta) ? toOpenButton() : ""));
     }
     if (def.mode === "individual" && meta.active !== def.who) {
       return head + "<p>" + esc(fill(CPL.wrongPartner, { name: nameOf(meta, def.who) })) + "</p>" +
         '<button type="button" class="btn block" data-action="cpl-switch">' + esc(CPL.switchBtn) + "</button>" +
         '<button type="button" class="btn secondary block" data-action="cpl-back-plan">' + esc(CPL.backPlan) + "</button></section>" +
-        nicePrivateCard(meta) + softPrivateCard(meta);
+        toPromptCard(meta) + nicePrivateCard(meta) + softPrivateCard(meta);
+    }
+    if (def.mode === "joint" && pauseBlocking()) {
+      return whoBanner(meta) + pauseCard(meta);
     }
     var note = "";
     if (def.mode === "individual") note = (loadCplSide(def.who).notes || {})[def.id] || "";
@@ -1990,17 +2584,26 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
     }
     var both = "";
     var slHTML = "";
+    var pauseHTML = "";
+    var toHTML = "";
     if (def.mode === "joint") {
       both = '<label class="check"><input type="checkbox" data-cpl="both" data-day="' + esc(def.id) + '"' + (day.bothHere ? " checked" : "") + ">" + esc(CPL.bothHere) + "</label>";
-      slHTML = slCard(meta);
+      pauseHTML = pauseCard(meta);
+      var said = state.pauseRepairLine ? '<p class="okbox">' + esc(fill(CPL.pauseSaid, { line: state.pauseRepairLine })) + "</p>" : "";
+      slHTML = said + slCard(meta);
+      toHTML = toJointShared(meta, !!day.bothHere);
+    } else {
+      toHTML = toPromptCard(meta);
     }
     var niceHTML = def.mode === "joint" ? niceJointCard(meta, !!day.bothHere) : nicePrivateCard(meta);
     var softHTML = def.mode === "joint" ? softJointCard(meta, !!day.bothHere) : softPrivateCard(meta);
     return head + sumHTML +
       "<h2>" + esc(CPL.lessonH) + "</h2><p>" + esc(def.lesson) + "</p>" +
       "<h2>" + esc(CPL.exerciseH) + "</h2><p>" + esc(def.exercise) + "</p>" +
+      pauseHTML +
       slHTML +
       both +
+      toHTML +
       softHTML +
       niceHTML +
       '<label class="field">' + esc(def.mode === "joint" ? CPL.jointNote : CPL.noteLabel) +
@@ -2026,6 +2629,7 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
     return '<section class="card cpl-safety"><h1>' + esc(CPL.safetyTitle) + "</h1>" +
       "<p>" + esc(CPL.safetyBody) + "</p>" +
       "<p><strong>" + esc(CPL.safetyLeave) + "</strong></p>" +
+      "<p><strong>" + esc(CPL.toNotForViolence) + "</strong></p>" +
       '<a class="call" href="tel:100"><span>' + esc(CPL.policeLabel) + "</span><b>100</b></a>" +
       '<a class="call" href="tel:1201"><span>' + esc(CPL.eranShort) + "</span><b>1201</b></a>" +
       "<p>" + esc(CPL.safetyCall) + "</p>" +
@@ -2038,7 +2642,8 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
     if (meta.safety || meta.screen === "safety") return viewCplSafety(meta);
     var niceRiskNow = absorbNiceRisk();
     var softRiskNow = absorbSoftRisk();
-    var risk = (niceRiskNow === "crisis" || softRiskNow === "crisis") ? "crisis" : ((niceRiskNow === "violence" || softRiskNow === "violence") ? "violence" : "");
+    var toRiskNow = absorbTimeoutRisk();
+    var risk = (niceRiskNow === "crisis" || softRiskNow === "crisis" || toRiskNow === "crisis") ? "crisis" : ((niceRiskNow === "violence" || softRiskNow === "violence" || toRiskNow === "violence") ? "violence" : "");
     if (risk === "crisis") { triggerCrisis("text"); return holdHTML(); }
     if (risk === "violence") { enterSafety(meta, true); return viewCplSafety(meta); }
     if (!meta.aName || !meta.bName || meta.screen === "setup") return viewCplSetup(meta);
@@ -2048,6 +2653,7 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
     if (meta.screen === "summary") return viewCplSummary(meta);
     if (meta.screen === "nice") return viewCplNice(meta);
     if (meta.screen === "soft") return viewCplSoft(meta);
+    if (meta.screen === "timeout") return viewCplTimeout(meta);
     if (meta.screen === "session") return viewCplSession(meta);
     if (meta.screen === "plan") return viewCplPlan(meta);
     return viewCplWho(meta);
@@ -2132,6 +2738,89 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
       setSoftShare(meta, el.dataset.id, !!el.checked);
       return;
     }
+    if (kind === "to-body" || kind === "to-thoughts" || kind === "to-voice" || kind === "to-phrase" || kind === "to-own" || kind === "to-own2") {
+      if (!timeoutFeatureOn(meta)) return;
+      var toKey = kind.slice(3);
+      var toMax = (toKey === "phrase" || toKey === "own" || toKey === "own2") ? 80 : 180;
+      var sideNow = timeoutSide(meta);
+      if (!state.cplToDraft || state.cplToDraftOwner !== sideNow) {
+        state.cplToDraft = blankTimeout();
+        state.cplToDraftOwner = sideNow;
+      }
+      state.cplToDraft[toKey] = toClean(el.value, toMax);
+      var toTyped = timeoutRisk(state.cplToDraft);
+      if (toTyped === "crisis") { el.value = ""; clearTimeoutDraft(); triggerCrisis("text"); return; }
+      if (toTyped === "violence") { el.value = ""; clearTimeoutDraft(); enterSafety(meta); return; }
+      syncTimeoutDom();
+      return;
+    }
+    if (kind === "to-act") {
+      if (!timeoutFeatureOn(meta)) return;
+      var actSide = timeoutSide(meta);
+      if (!state.cplToDraft || state.cplToDraftOwner !== actSide) {
+        state.cplToDraft = blankTimeout();
+        state.cplToDraftOwner = actSide;
+      }
+      var actId = String(el.value || "");
+      var nextActs = [];
+      var prevActs = state.cplToDraft.acts || [];
+      for (var ai = 0; ai < prevActs.length; ai++) if (prevActs[ai] !== actId) nextActs.push(prevActs[ai]);
+      if (el.checked && toActOk(actId)) nextActs.push(actId);
+      state.cplToDraft.acts = nextActs;
+      syncTimeoutDom();
+      return;
+    }
+    if (kind === "to-back") {
+      if (!timeoutFeatureOn(meta)) return;
+      if (!state.cplToDraft || state.cplToDraftOwner !== timeoutSide(meta)) {
+        state.cplToDraft = blankTimeout();
+        state.cplToDraftOwner = timeoutSide(meta);
+      }
+      state.cplToDraft.back = !!el.checked;
+      return;
+    }
+    if (kind === "to-share") {
+      if (!timeoutFeatureOn(meta)) return;
+      var shareSide = timeoutSide(meta);
+      if (!state.cplToDraft || state.cplToDraftOwner !== shareSide) {
+        state.cplToDraft = blankTimeout();
+        state.cplToDraftOwner = shareSide;
+      }
+      state.cplToDraft.share = !!el.checked;
+      var shareRec = loadCplSide(shareSide);
+      if (shareRec.timeout && shareRec.timeout.saved) {
+        shareRec.timeout.share = !!el.checked;
+        saveCplSide(shareSide, shareRec);
+      }
+      return;
+    }
+    if (kind === "to-afraid") {
+      if (!timeoutFeatureOn(meta)) return;
+      if (el.value === "yes") {
+        clearStoredTimeout(meta);
+        clearTimeoutDraft();
+        enterSafety(meta);
+        return;
+      }
+      if (!state.cplToDraft || state.cplToDraftOwner !== timeoutSide(meta)) {
+        state.cplToDraft = blankTimeout();
+        state.cplToDraftOwner = timeoutSide(meta);
+      }
+      state.cplToDraft.afraid = "no";
+      return;
+    }
+    if (kind === "pause-repair") {
+      if (!timeoutFeatureOn(meta)) return;
+      state.pauseRepairPick = String(el.value || "");
+      return;
+    }
+    if (kind === "pause-repair-own") {
+      if (!timeoutFeatureOn(meta)) return;
+      state.pauseRepairOwn = toClean(el.value, 160);
+      if (isCrisisText(state.pauseRepairOwn)) { el.value = ""; state.pauseRepairOwn = ""; triggerCrisis("text"); return; }
+      if (cplViolent(state.pauseRepairOwn)) { el.value = ""; state.pauseRepairOwn = ""; enterSafety(meta); return; }
+      return;
+    }
     if (kind === "both") {
       var plan2 = loadCplPlan();
       if (!plan2) return;
@@ -2145,6 +2834,8 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
     state.cplErr = "";
     if (action !== "cpl-nice-add") state.cplNiceErr = "";
     if (action !== "cpl-soft-add") state.cplSoftErr = "";
+    if (action !== "cpl-to-save") state.cplToErr = "";
+    if (action !== "cpl-pause-repair") state.cplPauseErr = "";
     if (action === "cpl-reset-ask") { state.cplReset = true; render(); return; }
     if (action === "cpl-reset-no") { state.cplReset = false; render(); return; }
     if (action === "cpl-reset-yes") { cplWipe(); render(); return; }
@@ -2180,11 +2871,17 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
       if (who !== "a" && who !== "b") who = "a";
       var stayNice = action === "cpl-switch" && meta.screen === "nice";
       var staySoft = action === "cpl-switch" && meta.screen === "soft";
+      var stayTo = action === "cpl-switch" && meta.screen === "timeout";
       meta.active = who;
-      meta.screen = stayNice ? "nice" : staySoft ? "soft" : screenFor(meta, who);
+      meta.screen = stayNice ? "nice" : staySoft ? "soft" : stayTo ? "timeout" : screenFor(meta, who);
       state.cplNiceDraft = "";
       state.cplNiceErr = "";
       clearSoftDraft();
+      clearTimeoutDraft();
+      state.pauseRepairPick = "";
+      state.pauseRepairOwn = "";
+      state.pauseRepairLine = "";
+      state.cplPauseErr = "";
       saveCplMeta(meta);
       render(); return;
     }
@@ -2221,6 +2918,47 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
       if (addedSoft === "short") { state.cplSoftErr = CPL.softNeed; render(); return; }
       if (addedSoft === "full") { state.cplSoftErr = CPL.softFull; render(); return; }
       state.cplSoftErr = "";
+      render(); return;
+    }
+    if (action === "cpl-open-timeout") {
+      if (!timeoutFeatureOn(meta)) return;
+      if (applyGuardToCurrent(meta) === "stop") return;
+      meta.screen = "timeout";
+      saveCplMeta(meta);
+      render(); return;
+    }
+    if (action === "cpl-to-save") {
+      if (!timeoutFeatureOn(meta)) return;
+      var addedTo = commitTimeout(meta);
+      if (addedTo === "stop") return;
+      if (addedTo === "afraid") { state.cplToErr = CPL.toNeedAfraid; render(); return; }
+      if (addedTo === "short") { state.cplToErr = CPL.toNeed; render(); return; }
+      state.cplToErr = "";
+      render(); return;
+    }
+    if (action === "cpl-pause-start") {
+      if (!jointSessionOpen(meta) || !timeoutFeatureOn(meta)) return;
+      startPause();
+      render(); return;
+    }
+    if (action === "cpl-pause-extend") {
+      if (!jointSessionOpen(meta) || !extendPause()) return;
+      render(); return;
+    }
+    if (action === "cpl-pause-repair") {
+      if (!jointSessionOpen(meta) || !pauseCool.done || !timeoutFeatureOn(meta)) return;
+      var choice = readRepairChoice();
+      state.pauseRepairPick = choice.pick;
+      state.pauseRepairOwn = choice.own;
+      if (choice.own && isCrisisText(choice.own)) { state.pauseRepairOwn = ""; triggerCrisis("text"); return; }
+      if (choice.own && cplViolent(choice.own)) { state.pauseRepairOwn = ""; enterSafety(meta); return; }
+      var repairLine = repairLineFrom(choice);
+      if (!repairLine || repairLine.length < 2) { state.cplPauseErr = CPL.pauseRepairNeed; render(); return; }
+      state.pauseRepairLine = repairLine;
+      state.pauseRepairPick = "";
+      state.pauseRepairOwn = "";
+      state.cplPauseErr = "";
+      stopPause();
       render(); return;
     }
     if (action === "cpl-prev") {
@@ -2261,6 +2999,11 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
     }
     if (action === "cpl-open") {
       stopSlTurn();
+      var samePause = meta.openDay === t.dataset.day && (pauseCool.running || pauseCool.done);
+      if (!samePause) {
+        stopPause();
+        state.pauseRepairLine = "";
+      }
       meta.openDay = t.dataset.day;
       meta.screen = "session";
       meta.slSpeakerSide = "";
@@ -2280,7 +3023,7 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
       render(); return;
     }
     if (action === "cpl-sl-start" || action === "cpl-sl-switch" || action === "cpl-sl-stop") {
-      if (!jointSessionOpen(meta)) return;
+      if (!jointSessionOpen(meta) || pauseBlocking()) return;
       if (action === "cpl-sl-stop") { stopSlTurn(); render(); return; }
       if (action === "cpl-sl-switch") {
         var curSide = speakerSide(meta);
@@ -2748,9 +3491,201 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
     eq(JSON.stringify(loadJSON(K_CPL_B, {})).indexOf(CPL.hitSample) === -1, "other save has no violent draft");
     cplWipe();
     stopSlTurn();
+    stopPause();
     state.hold = false;
     state.crisis = null;
     clearSoftDraft();
+    clearTimeoutDraft();
+    state.view = "couples";
+    state.pauseRepairPick = "";
+    state.pauseRepairOwn = "";
+    state.pauseRepairLine = "";
+    state.cplPauseErr = "";
+    eq(CPL.toLesson.indexOf("at least 20 minutes") !== -1, "twenty minute lesson");
+    eq(CPL.toLesson.indexOf("not a licensed therapist") !== -1 && CPL.toLesson.indexOf("not a diagnosis") !== -1, "timeout lesson stays self-help");
+    eq(CPL.toLesson.indexOf("%") === -1 && CPL.toLesson.toLowerCase().indexOf("et al") === -1, "timeout lesson has no stats");
+    eq(CPL.toBackHint.indexOf("walking out") !== -1 && CPL.toBackHint.indexOf("silent treatment") !== -1 && CPL.toBackHint.indexOf("punishment") !== -1, "pause is a return, not a punishment");
+    eq(CPL.toNotForViolence.indexOf("not a solution for violence") !== -1 && CPL.toNotForViolence.indexOf("Joint sessions are not suitable") !== -1, "timeout is not for violence");
+    eq(CPL.planIntro.indexOf("time-out and repair plan") !== -1 && CPL.planIntro.indexOf("timed speaker–listener practice") !== -1, "plan intro keeps both");
+    eq(timeoutRuminate({ own: "rehearse the argument", own2: "" }) === true, "rehearse is discouraged");
+    eq(timeoutRuminate({ own: "slow breathing", own2: "a short walk" }) === false, "calm activities are allowed");
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "a", screen: "timeout", safety: false });
+    eq(commitTimeout(loadCplMeta(), { body: "tight", thoughts: "win", voice: "loud", phrase: "pause please", acts: ["breath"], own: "", own2: "", back: true, share: false, afraid: "no" }) === "short", "one activity is too few");
+    eq(commitTimeout(loadCplMeta(), { body: "tight", thoughts: "win", voice: "loud", phrase: "pause please", acts: ["breath", "walk", "music", "shower"], own: "stretch", own2: "", back: true, share: false, afraid: "no" }) === "short", "five activities is too many");
+    eq(commitTimeout(loadCplMeta(), { body: "tight", thoughts: "win", voice: "loud", phrase: "pause please", acts: ["breath", "walk"], own: "", own2: "", back: false, share: false, afraid: "no" }) === "short", "return promise is required");
+    eq(commitTimeout(loadCplMeta(), { body: "tight", thoughts: "win", voice: "loud", phrase: "pause please", acts: ["breath", "walk"], own: "", own2: "", back: true, share: false, afraid: "" }) === "afraid", "safety question is required");
+    var bodyA = "BODYA-hot-face-only";
+    var thoughtA = "THOUGHTA-must-win-only";
+    var voiceA = "VOICEA-gets-sharp-only";
+    var phraseA = "PHRASEA-need-a-pause";
+    var ownA = "OWNA-hum-a-song";
+    var bodyB = "BODYB-cold-hands-only";
+    var thoughtB = "THOUGHTB-go-quiet-only";
+    var voiceB = "VOICEB-goes-small-only";
+    var phraseB = "PHRASEB-private-pause";
+    var ownB = "OWNB-stretch-quietly";
+    eq(commitTimeout(loadCplMeta(), { body: bodyA, thoughts: thoughtA, voice: voiceA, phrase: phraseA, acts: ["breath", "walk"], own: ownA, own2: "", back: true, share: true, afraid: "no" }) === "ok", "A plan saves");
+    var storedA = loadCplSide("a").timeout;
+    eq(!!(storedA && storedA.saved && storedA.share === true && storedA.phrase === phraseA && storedA.afraid === "no"), "A plan stored on A");
+    eq(JSON.stringify(loadJSON(K_CPL_B, {})).indexOf(bodyA) === -1 && JSON.stringify(loadJSON(K_CPL_B, {})).indexOf(phraseA) === -1, "B store has no A plan");
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "b", screen: "timeout", safety: false });
+    clearTimeoutDraft();
+    eq(commitTimeout(loadCplMeta(), { body: bodyB, thoughts: thoughtB, voice: voiceB, phrase: phraseB, acts: ["music"], own: ownB, own2: "", back: true, share: false, afraid: "no" }) === "ok", "B plan saves");
+    eq(JSON.stringify(loadJSON(K_CPL_A, {})).indexOf(bodyB) === -1 && JSON.stringify(loadJSON(K_CPL_A, {})).indexOf(ownB) === -1, "A store has no B plan");
+    clearTimeoutDraft();
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "a", screen: "timeout", safety: false });
+    var ownPlan = viewCouples();
+    eq(ownPlan.indexOf(bodyA) !== -1 && ownPlan.indexOf(phraseA) !== -1 && ownPlan.indexOf(ownA) !== -1, "own plan on my screen");
+    eq(ownPlan.indexOf(bodyB) === -1 && ownPlan.indexOf(phraseB) === -1 && ownPlan.indexOf(ownB) === -1, "other plan hidden on my screen");
+    eq(ownPlan.indexOf('id="cpl-to-share" data-cpl="to-share" checked') !== -1, "share tick kept");
+    eq(ownPlan.indexOf('id="cpl-to-afraid-no" value="no" data-cpl="to-afraid" checked') !== -1, "safety no is kept");
+    eq(ownPlan.indexOf(CPL.toLesson) !== -1 && ownPlan.indexOf("at least 20 minutes") !== -1, "lesson on the plan");
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "b", screen: "timeout", safety: false });
+    clearTimeoutDraft();
+    var otherPlan = viewCouples();
+    eq(otherPlan.indexOf(bodyB) !== -1 && otherPlan.indexOf(phraseB) !== -1, "their plan on their screen");
+    eq(otherPlan.indexOf(bodyA) === -1 && otherPlan.indexOf(thoughtA) === -1 && otherPlan.indexOf(voiceA) === -1 && otherPlan.indexOf(phraseA) === -1 && otherPlan.indexOf(ownA) === -1, "shared phrase stays off the other private screen");
+    state.cplToDraft = { body: "BODYLEAK-unsent", thoughts: "leak thought", voice: "leak voice", phrase: "leak phrase", acts: ["breath", "walk"], own: "", own2: "", back: true, share: false, afraid: "no" };
+    state.cplToDraftOwner = "a";
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "a", screen: "timeout", safety: false });
+    onCplAction("cpl-switch", { dataset: {} });
+    var switchedPlan = viewCouples();
+    eq(switchedPlan.indexOf("BODYLEAK-unsent") === -1 && switchedPlan.indexOf("leak phrase") === -1, "switch clears the unsent plan");
+    eq(loadCplMeta().active === "b" && switchedPlan.indexOf(bodyB) !== -1, "switch shows the other partner's own plan");
+    eq(switchedPlan.indexOf(bodyA) === -1 && switchedPlan.indexOf(phraseA) === -1, "switch does not reveal the first plan");
+    var agoTo = new Date();
+    agoTo.setDate(agoTo.getDate() - 10);
+    var planTo = makeCplPlan();
+    planTo.startDate = jerusalemToday(agoTo);
+    saveJSON(K_CPL_PLAN, planTo);
+    saveJSON(K_CPL_SUM, buildCoupleSummary(loadCplSide("a"), loadCplSide("b"), "Lina", "Omar"));
+    var sumToBlob = JSON.stringify(loadJSON(K_CPL_SUM, {}));
+    eq(sumToBlob.indexOf(bodyA) === -1 && sumToBlob.indexOf(phraseA) === -1 && sumToBlob.indexOf(ownA) === -1 && sumToBlob.indexOf(bodyB) === -1 && sumToBlob.indexOf(phraseB) === -1, "summary store hides the time-out plan");
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "a", screen: "summary", safety: false });
+    var sumToView = viewCouples();
+    eq(sumToView.indexOf(bodyA) === -1 && sumToView.indexOf(phraseA) === -1 && sumToView.indexOf(ownB) === -1, "summary view hides the time-out plan");
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "a", screen: "plan", safety: false });
+    var planToHtml = viewCouples();
+    eq(planToHtml.indexOf(fill(CPL.toStatus, { a: "Lina", b: "Omar", as: CPL.toSaved, bs: CPL.toSaved })) !== -1, "plan shows both statuses");
+    eq(planToHtml.indexOf('data-action="cpl-open-timeout"') !== -1, "plan opens the time-out plan");
+    eq(planToHtml.indexOf(bodyA) === -1 && planToHtml.indexOf(thoughtA) === -1 && planToHtml.indexOf(voiceA) === -1 && planToHtml.indexOf(phraseA) === -1 && planToHtml.indexOf(ownA) === -1 && planToHtml.indexOf(bodyB) === -1 && planToHtml.indexOf(phraseB) === -1 && planToHtml.indexOf(ownB) === -1, "plan status has no plan text");
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "a", screen: "session", openDay: "c1", safety: false });
+    var dayTo = viewCouples();
+    eq(dayTo.indexOf(CPL.toIndivNote) !== -1 && dayTo.indexOf("Your plan: Saved") !== -1, "individual day invites the plan");
+    eq(dayTo.indexOf(bodyA) === -1 && dayTo.indexOf(phraseA) === -1 && dayTo.indexOf(bodyB) === -1 && dayTo.indexOf(ownB) === -1, "individual day does not print the plan");
+    eq(dayTo.indexOf("cpl-sl") === -1, "no speaker timer on the individual day");
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "b", screen: "session", openDay: "c1", safety: false });
+    var dayToB = viewCouples();
+    eq(dayToB.indexOf(bodyA) === -1 && dayToB.indexOf(phraseA) === -1 && dayToB.indexOf(ownA) === -1, "other person does not see my plan on my day");
+    for (var tpi = 0; tpi < planTo.days.length; tpi++) if (planTo.days[tpi].id === "c4") planTo.days[tpi].bothHere = false;
+    saveJSON(K_CPL_PLAN, planTo);
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "a", screen: "session", openDay: "c4", safety: false, slSpeakerSide: "a" });
+    stopPause();
+    var jointToHidden = viewCouples();
+    eq(jointToHidden.indexOf('data-action="cpl-pause-start"') !== -1, "pause button on the joint day");
+    eq(jointToHidden.indexOf("cpl-sl") !== -1 && jointToHidden.indexOf('data-action="cpl-sl-start"') !== -1, "speaker timer still on the joint day");
+    eq(jointToHidden.indexOf("cpl-pause-shared") === -1, "shared phrases wait until both are here");
+    eq(jointToHidden.indexOf(phraseA) === -1 && jointToHidden.indexOf(phraseB) === -1 && jointToHidden.indexOf(bodyA) === -1 && jointToHidden.indexOf(ownA) === -1 && jointToHidden.indexOf(ownB) === -1, "joint hides plans before both are here");
+    for (tpi = 0; tpi < planTo.days.length; tpi++) if (planTo.days[tpi].id === "c4") planTo.days[tpi].bothHere = true;
+    saveJSON(K_CPL_PLAN, planTo);
+    var jointToShown = viewCouples();
+    eq(jointToShown.indexOf("cpl-pause-shared") !== -1, "shared pause phrases after both are here");
+    eq(jointToShown.indexOf(phraseA) !== -1, "opt-in phrase is shown");
+    eq(jointToShown.indexOf(fill(CPL.pauseBackYes, { name: "Lina" })) !== -1, "opt-in return promise is shown");
+    eq(jointToShown.indexOf(phraseB) === -1, "unticked phrase stays hidden");
+    eq(jointToShown.indexOf(bodyA) === -1 && jointToShown.indexOf(thoughtA) === -1 && jointToShown.indexOf(voiceA) === -1 && jointToShown.indexOf(ownA) === -1, "warning signs and calming list stay private");
+    eq(jointToShown.indexOf(bodyB) === -1 && jointToShown.indexOf(ownB) === -1, "the other plan stays private");
+    eq(jointToShown.indexOf("cpl-sl") !== -1, "timer remains beside the pause button");
+    pauseCool.running = true;
+    pauseCool.left = 1200;
+    pauseCool.span = 1200;
+    pauseCool.done = false;
+    var coolingA = viewCouples();
+    eq(coolingA.indexOf(pauseTickLabel(1200)) !== -1, "cool-down starts at 20:00");
+    eq(coolingA.indexOf('data-action="cpl-pause-extend"') !== -1, "can extend to 30");
+    eq(coolingA.indexOf('data-action="cpl-pause-start"') === -1, "start hides while cooling");
+    eq(coolingA.indexOf("cpl-sl") === -1 && coolingA.indexOf(CPL.slTitle) === -1, "speaker timer waits during the pause");
+    eq(coolingA.indexOf(ownA) !== -1 && coolingA.indexOf("Slow breathing") !== -1, "my calming list shows");
+    eq(coolingA.indexOf(ownB) === -1 && coolingA.indexOf(bodyA) === -1 && coolingA.indexOf(thoughtA) === -1 && coolingA.indexOf(voiceA) === -1 && coolingA.indexOf(phraseB) === -1 && coolingA.indexOf(bodyB) === -1, "pause shows only my calming list");
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "b", screen: "session", openDay: "c4", safety: false });
+    var coolingB = viewCouples();
+    eq(coolingB.indexOf(ownB) !== -1 && coolingB.indexOf(ownA) === -1 && coolingB.indexOf(bodyA) === -1 && coolingB.indexOf(phraseA) === -1 && coolingB.indexOf(bodyB) === -1, "switch during pause shows only the current list");
+    eq(extendPause() === true && pauseCool.span === 1800 && pauseCool.left === 1800, "extend adds ten minutes");
+    eq(extendPause() === false, "extend stops at 30");
+    var cooling30 = viewCouples();
+    eq(cooling30.indexOf(pauseTickLabel(1800)) !== -1, "cool-down shows 30:00");
+    eq(cooling30.indexOf('data-action="cpl-pause-extend"') === -1, "extend button hides at 30");
+    pauseCool.left = 1;
+    pauseCool.running = true;
+    pauseCool.done = false;
+    onPauseTick();
+    eq(pauseCool.done === true && pauseCool.running === false && pauseCool.left === 0 && pauseClock === null, "cool-down reaches the repair step");
+    var repairView = viewCouples();
+    eq(repairView.indexOf(CPL.pauseRepairGo) !== -1 && repairView.indexOf("Can we start again, more softly?") !== -1 && repairView.indexOf("I can own one part of how that went.") !== -1, "repair lines at the end");
+    eq(repairView.indexOf("cpl-sl") === -1, "timer waits for the repair line");
+    eq(repairView.indexOf(ownB) !== -1 && repairView.indexOf(ownA) === -1 && repairView.indexOf(bodyB) === -1, "repair screen keeps the calming list private");
+    state.pauseRepairPick = "restart";
+    state.pauseRepairOwn = "";
+    onCplAction("cpl-pause-repair", { dataset: {} });
+    eq(state.pauseRepairLine === "Can we start again, more softly?", "chosen repair line");
+    eq(pauseCool.running === false && pauseCool.done === false, "pause closes after the repair");
+    var afterRepair = viewCouples();
+    eq(afterRepair.indexOf("cpl-sl") !== -1 && afterRepair.indexOf('data-action="cpl-sl-start"') !== -1, "speaker timer continues");
+    eq(afterRepair.indexOf("Can we start again, more softly?") !== -1, "repair line stays up to say aloud");
+    eq(afterRepair.indexOf(bodyA) === -1 && afterRepair.indexOf(bodyB) === -1 && afterRepair.indexOf(ownA) === -1, "repair return does not reveal private signs");
+    stopPause();
+    pauseCool.running = true;
+    armPauseClock();
+    eq(pauseClock != null, "pause clock id");
+    clearPauseClock();
+    eq(pauseClock === null, "pause clock cleared");
+    stopPause();
+    state.hold = true;
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "a", screen: "timeout", safety: false });
+    var heldTo = viewCouples();
+    eq(heldTo.indexOf(bodyA) === -1 && heldTo.indexOf(phraseA) === -1 && heldTo.indexOf(CPL.toTitle) === -1 && heldTo.indexOf("cpl-to") === -1, "hold hides the time-out plan");
+    state.hold = false;
+    state.crisis = null;
+    cplWipe();
+    clearTimeoutDraft();
+    stopPause();
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "a", screen: "timeout", safety: false });
+    eq(commitTimeout(loadCplMeta(), { body: "tight chest", thoughts: "I have to win", voice: "I get loud", phrase: "I need a pause", acts: ["breath", "walk"], own: "", own2: "", back: true, share: false, afraid: "no" }) === "ok", "benign plan before a yes");
+    eq(commitTimeout(loadCplMeta(), { body: "still safe words", thoughts: "I have to win", voice: "I get loud", phrase: "I need a pause", acts: ["breath", "walk"], own: "", own2: "", back: true, share: true, afraid: "yes" }) === "stop", "yes on the safety question stops");
+    eq(loadCplMeta().safety === true, "yes sets the safety screen");
+    eq(!loadCplSide("a").timeout, "a yes does not keep a time-out plan");
+    var afraidView = viewCouples();
+    eq(afraidView.indexOf("cpl-safety") !== -1 && afraidView.indexOf(">100<") !== -1 && afraidView.indexOf(">1201<") !== -1, "yes shows the safety card");
+    eq(afraidView.indexOf(CPL.toNotForViolence) !== -1, "yes says time-out is not for violence");
+    eq(afraidView.indexOf("still safe words") === -1 && afraidView.indexOf("tight chest") === -1 && afraidView.indexOf("cpl-pause") === -1, "safety card is not a time-out");
+    cplWipe();
+    state.crisis = null;
+    state.hold = false;
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "a", screen: "timeout", safety: false });
+    eq(commitTimeout(loadCplMeta(), { body: CPL.hitSample, thoughts: "I have to win", voice: "I get loud", phrase: "I need a pause", acts: ["breath", "walk"], own: "", own2: "", back: true, share: true, afraid: "no" }) === "stop", "keyword in the body stops");
+    eq(loadCplMeta().safety === true && !loadCplSide("a").timeout, "violent body is not stored");
+    var hitTo = viewCouples();
+    eq(hitTo.indexOf(">100<") !== -1 && hitTo.indexOf(">1201<") !== -1 && hitTo.indexOf(CPL.toNotForViolence) !== -1, "keyword shows the safety card");
+    eq(hitTo.indexOf(CPL.hitSample) === -1 && hitTo.indexOf(CPL.toTitle) === -1, "violent plan is not shown as a plan");
+    cplWipe();
+    state.crisis = null;
+    state.hold = false;
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "a", screen: "plan", safety: false });
+    var seededTo = cplBlank();
+    seededTo.done = true;
+    seededTo.timeout = { body: "tight chest", thoughts: CPL.hitSample, voice: "I get loud", phrase: phraseA, acts: ["breath", "walk"], own: ownA, own2: "", back: true, share: true, afraid: "no", saved: true, date: jerusalemToday() };
+    saveCplSide("a", seededTo);
+    var seededToView = viewCouples();
+    eq(seededToView.indexOf("cpl-safety") !== -1 && seededToView.indexOf(CPL.hitSample) === -1 && seededToView.indexOf(phraseA) === -1 && seededToView.indexOf(ownA) === -1, "stored keyword opens safety and hides the plan");
+    eq(!loadCplSide("a").timeout, "stored keyword plan removed");
+    cplWipe();
+    stopPause();
+    stopSlTurn();
+    state.hold = false;
+    state.crisis = null;
+    clearSoftDraft();
+    clearTimeoutDraft();
+    state.pauseRepairLine = "";
     return errors;
   }
   function init() {
