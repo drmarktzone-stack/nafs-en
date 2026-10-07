@@ -2872,8 +2872,9 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
       var stayNice = action === "cpl-switch" && meta.screen === "nice";
       var staySoft = action === "cpl-switch" && meta.screen === "soft";
       var stayTo = action === "cpl-switch" && meta.screen === "timeout";
+      var staySession = action === "cpl-switch" && meta.screen === "session";
       meta.active = who;
-      meta.screen = stayNice ? "nice" : staySoft ? "soft" : stayTo ? "timeout" : screenFor(meta, who);
+      meta.screen = stayNice ? "nice" : staySoft ? "soft" : stayTo ? "timeout" : staySession ? "session" : screenFor(meta, who);
       state.cplNiceDraft = "";
       state.cplNiceErr = "";
       clearSoftDraft();
@@ -3607,6 +3608,10 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
     eq(coolingA.indexOf("cpl-sl") === -1 && coolingA.indexOf(CPL.slTitle) === -1, "speaker timer waits during the pause");
     eq(coolingA.indexOf(ownA) !== -1 && coolingA.indexOf("Slow breathing") !== -1, "my calming list shows");
     eq(coolingA.indexOf(ownB) === -1 && coolingA.indexOf(bodyA) === -1 && coolingA.indexOf(thoughtA) === -1 && coolingA.indexOf(voiceA) === -1 && coolingA.indexOf(phraseB) === -1 && coolingA.indexOf(bodyB) === -1, "pause shows only my calming list");
+    onCplAction("cpl-switch", { dataset: {} });
+    var switchedMeta = loadCplMeta();
+    eq(switchedMeta.screen === "session" && switchedMeta.active === "b" && switchedMeta.openDay === "c4", "switch during a joint session stays on that session");
+    eq(pauseCool.running === true && pauseCool.left === 1200, "switch does not cancel the cool-down");
     saveCplMeta({ aName: "Lina", bName: "Omar", active: "b", screen: "session", openDay: "c4", safety: false });
     var coolingB = viewCouples();
     eq(coolingB.indexOf(ownB) !== -1 && coolingB.indexOf(ownA) === -1 && coolingB.indexOf(bodyA) === -1 && coolingB.indexOf(phraseA) === -1 && coolingB.indexOf(bodyB) === -1, "switch during pause shows only the current list");
