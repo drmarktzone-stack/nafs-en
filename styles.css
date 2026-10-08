@@ -962,6 +962,71 @@ textarea.cpl-to-box { min-height: 4.5rem; }
 .cpl-pause-shared h3 { margin-top: 10px; }
 .cpl-pause-shared p { overflow-wrap: anywhere; }
 
+/* Private progress check-in */
+.cpl-pr {
+  background: #f7f1e6;
+  border: 1px solid #e0d0b8;
+}
+.cpl-pr h2, .cpl-pr h1 { font-size: 1.35rem; }
+.cpl-pr p, .cpl-pr-shared p { overflow-wrap: anywhere; }
+.cpl-pr-area { margin: 0 0 12px; }
+.cpl-pr-slider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.cpl-pr-slider input[type="range"] {
+  flex: 1;
+  width: 100%;
+  min-height: 44px;
+  accent-color: var(--olive);
+}
+.cpl-pr-val {
+  min-width: 1.75rem;
+  text-align: center;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  font-size: 1.15rem;
+  color: var(--olive-deep);
+}
+.cpl-pr-track {
+  display: block;
+  height: 12px;
+  background: #efe4d4;
+  border-radius: 999px;
+  overflow: hidden;
+  margin: 0 0 10px;
+}
+.cpl-pr-track > span {
+  display: block;
+  height: 100%;
+  min-width: 0;
+  background: var(--gold);
+  border-radius: 999px;
+}
+.cpl-pr-track.is-up > span { background: var(--olive); }
+.cpl-pr-track.is-down > span { background: var(--clay); }
+.cpl-pr-track.is-flat > span { background: var(--gold); }
+.cpl-pr-arrow { font-weight: 700; }
+.cpl-pr-encourage {
+  background: var(--olive-soft);
+  border-radius: 12px;
+  padding: 10px 12px;
+}
+.cpl-pr textarea { min-height: 4.5rem; }
+.cpl-pr .btn, .cpl-pr-plan .btn { white-space: normal; text-align: center; }
+.cpl-pr-plan {
+  background: #f7f1e6;
+  border: 1px solid #e0d0b8;
+  border-radius: 14px;
+  padding: 12px;
+  margin: 0 0 12px;
+}
+.cpl-pr-plan p { margin-bottom: 8px; overflow-wrap: anywhere; }
+.cpl-pr-shared h2 { font-size: 1.15rem; }
+.cpl-pr-shared h3 { margin-top: 10px; }
+
 @media (prefers-reduced-motion: reduce) {
   .orb { transition: none !important; }
   .tile, .btn, .progress > span { transition: none !important; }
