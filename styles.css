@@ -1027,6 +1027,50 @@ textarea.cpl-to-box { min-height: 4.5rem; }
 .cpl-pr-shared h2 { font-size: 1.15rem; }
 .cpl-pr-shared h3 { margin-top: 10px; }
 
+/* Rituals of connection */
+.cpl-rit {
+  background: var(--olive-soft);
+  border: 1px solid #d5e3d8;
+}
+.cpl-rit h1, .cpl-rit h2 { font-size: 1.35rem; }
+.cpl-rit p, .cpl-rit-shared p, .cpl-rit-plan p { overflow-wrap: anywhere; }
+textarea.cpl-rit-box { min-height: 4.5rem; }
+.cpl-rit-list, .cpl-rit-shared-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 8px;
+}
+.cpl-rit-item, .cpl-rit-choice {
+  list-style: none;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 10px 12px;
+  margin: 0 0 8px;
+}
+.cpl-rit-item p, .cpl-rit-choice p { margin-bottom: 6px; }
+.cpl-rit-item .check, .cpl-rit-choice .check { margin-bottom: 0; }
+.cpl-rit-choice.is-overlap {
+  border-color: var(--olive);
+  background: #f3f8f4;
+}
+.cpl-rit-overlap {
+  color: var(--olive-deep);
+  font-weight: 700;
+}
+.cpl-rit-plan {
+  background: var(--olive-soft);
+  border: 1px solid #d5e3d8;
+  border-radius: 14px;
+  padding: 12px;
+  margin: 0 0 12px;
+}
+.cpl-rit-plan h2 { font-size: 1.15rem; }
+.cpl-rit-plan p { margin-bottom: 8px; }
+.cpl-rit-shared h2 { font-size: 1.15rem; }
+.cpl-rit-shared h3 { margin-top: 10px; }
+.cpl-rit .btn, .cpl-rit-plan .btn, .cpl-rit-shared .btn { white-space: normal; text-align: center; }
+
 @media (prefers-reduced-motion: reduce) {
   .orb { transition: none !important; }
   .tile, .btn, .progress > span { transition: none !important; }

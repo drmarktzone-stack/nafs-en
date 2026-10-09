@@ -310,7 +310,7 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
   "summaryOnly": "Shared picture only. Private venting is not copied here.",
   "startWeek": "Start the 7-day couples plan",
   "planTitle": "Seven days",
-  "planIntro": "Days 1 to 3 are individual. The guide alternates who the session is for: partner A, then B, then A. From day 4 the sessions are joint, and both should be present. Joint days include timed speaker–listener practice. Before a joint day, each person writes a private time-out and repair plan on their own side. A later day stays locked until that calendar day. After a few days, each partner can do a private progress check-in on their own side.",
+  "planIntro": "Days 1 to 3 are individual. The guide alternates who the session is for: partner A, then B, then A. From day 4 the sessions are joint, and both should be present. Joint days include timed speaker–listener practice. Before a joint day, each person writes a private time-out and repair plan on their own side. A later day stays locked until that calendar day. After a few days, each partner can do a private progress check-in on their own side. Each partner can also choose up to three small rituals of connection on their own side. On a joint day, you can agree on one for the week.",
   "planProgress": "{done} of {total} sessions done. Started {start}.",
   "dayLabel": "Day {n}",
   "openDay": "Open this session",
@@ -540,6 +540,54 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
   "pauseBackYes": "{name} promised to come back after a pause.",
   "pauseEmpty": "No pause phrase was shared. Each person can write one on their own side and tick it when they want it said aloud.",
   "pauseAway": "The cool-down keeps going if you leave this page. Open the joint session to see your own calming list.",
+  "ritTitle": "Rituals of connection",
+  "ritKicker": "Private to {name}",
+  "ritLesson": "Small, predictable rituals help two people stay connected. Behavioral couples work, and Gottman rituals of connection, both point to the same idea: a short moment you repeat, so it does not depend on a perfect day. This is self-help. It is not a licensed therapist, not a diagnosis, and not medication advice.",
+  "ritPrompt": "Choose up to 3. Pick from the list, or write a small one of your own, and say when you would do it. It stays on your side unless you tick share.",
+  "ritPickH": "A small ritual",
+  "ritOwn": "I will write my own",
+  "ritCustom": "Your own small ritual",
+  "ritWhen": "When, or how often",
+  "ritWhenBlank": "Choose when",
+  "ritWhenOwn": "Write when or how often",
+  "ritWhenLine": "When: {when}",
+  "ritSave": "Save this ritual",
+  "ritNeed": "Pick a ritual, or write a short one, and say when you would do it.",
+  "ritFull": "Three rituals is enough. You can remove one if you want to choose a different one.",
+  "ritShare": "Share this at the joint session",
+  "ritShareHint": "Sharing stays off unless you tick it. An unticked ritual is never shown to your partner and is not read in a joint session.",
+  "ritDate": "Saved on {date}",
+  "ritNoneYet": "No rituals yet. One small repeated moment is enough.",
+  "ritOpen": "Rituals of connection",
+  "ritRemove": "Remove",
+  "ritJointTitle": "Rituals you chose to share",
+  "ritJointHow": "Look at what each of you was willing to share. If the same ritual shows up for both of you, it is marked. Agree on one ritual for the coming week. A small one you can both keep is enough.",
+  "ritJointLocked": "Tick that you are both here to see rituals you chose to share, and to agree on one for the week.",
+  "ritEmpty": "No ritual was shared. Each person can choose some on their own side and tick share when they want them seen here.",
+  "ritFrom": "{name}’s ritual",
+  "ritOverlap": "You both named this.",
+  "ritPick": "Choose this one for the week",
+  "ritAgree": "Agree on this ritual for the week",
+  "ritAgreeNeed": "Choose one shared ritual first.",
+  "ritAgreed": "This week’s ritual: {text}. When: {when}.",
+  "ritPlanTitle": "Ritual for this week",
+  "ritPlanEmpty": "No ritual agreed yet. On a joint day, when you are both here, you can pick one from the rituals you chose to share.",
+  "ritDid": "We did it this week",
+  "ritDidWeek": "Week of {date}: we did it",
+  "ritList": [
+    { "id": "morning", "text": "A 2-minute morning check-in" },
+    { "id": "evening", "text": "A 10 to 15 minute evening “how was your day” talk. The listener only listens and supports, and does not give solutions." },
+    { "id": "walk", "text": "A weekly walk or tea together, phones put away" },
+    { "id": "thanks", "text": "A weekly thank-you moment" },
+    { "id": "quiet", "text": "A shared prayer, a quiet moment, or a family meal, if that fits your home" }
+  ],
+  "ritWhens": [
+    { "id": "morning", "label": "Each morning" },
+    { "id": "evening", "label": "Each evening" },
+    { "id": "once", "label": "Once this week" },
+    { "id": "few", "label": "A few times this week" },
+    { "id": "own", "label": "Another time I will write" }
+  ],
   "hitSample": "he hits me when he is angry",
   "safeSample": "we argue about dishes and bills",
   "questions": [
@@ -680,7 +728,7 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
   function loadProgram() { return loadJSON(K_PROGRAM, null); }
   function saveProgram(p) { saveJSON(K_PROGRAM, p); }
 
-  var state = { view: "home", dayId: null, crisis: null, hold: false, guideText: "", guide: null, pad: "", pst: {}, check: null, result: null, formError: "", confirmClear: false, cplErr: "", cplReset: false, cplNiceDraft: "", cplNiceErr: "", cplSoftDraft: { what: "", feel: "", feelPick: "", ask: "" }, cplSoftErr: "", cplToDraft: null, cplToDraftOwner: "", cplToErr: "", cplPauseErr: "", pauseRepairPick: "", pauseRepairOwn: "", pauseRepairLine: "", cplPrErr: "", cplPrDraft: null, cplPrOwner: "", cplBaseDraft: null, cplBaseOwner: "" };
+  var state = { view: "home", dayId: null, crisis: null, hold: false, guideText: "", guide: null, pad: "", pst: {}, check: null, result: null, formError: "", confirmClear: false, cplErr: "", cplReset: false, cplNiceDraft: "", cplNiceErr: "", cplSoftDraft: { what: "", feel: "", feelPick: "", ask: "" }, cplSoftErr: "", cplToDraft: null, cplToDraftOwner: "", cplToErr: "", cplPauseErr: "", pauseRepairPick: "", pauseRepairOwn: "", pauseRepairLine: "", cplPrErr: "", cplPrDraft: null, cplPrOwner: "", cplBaseDraft: null, cplBaseOwner: "", cplRitDraft: null, cplRitOwner: "", cplRitErr: "", cplRitPick: "", cplRitAgreeErr: "" };
   var breath = { running: false, timer: null, mode: "468", phaseIdx: 0, left: 4, cycle: 0, totalCycles: 5, dayId: null, finishedMsg: "" };
   var slClock = null;
   var slTurn = { running: false, left: 180, done: false };
@@ -1402,7 +1450,7 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
   }
 
   function cplBlank() {
-    return { answers: ["", "", "", "", "", "", "", ""], done: false, doneAt: null, qi: 0, notes: {}, nice: [], soft: [], baseline: null, progress: [] };
+    return { answers: ["", "", "", "", "", "", "", ""], done: false, doneAt: null, qi: 0, notes: {}, nice: [], soft: [], baseline: null, progress: [], rituals: [] };
   }
   function loadCplMeta() {
     var m = loadJSON(K_CPL_META, null) || {};
@@ -1425,6 +1473,7 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
     rec.timeout = normalizeTimeout(rec.timeout);
     rec.baseline = normalizeBaseline(rec.baseline);
     rec.progress = normalizeProgress(rec.progress);
+    rec.rituals = normalizeRituals(rec.rituals);
     return rec;
   }
   function saveCplSide(which, rec) { saveJSON(which === "b" ? K_CPL_B : K_CPL_A, rec); }
@@ -1784,6 +1833,7 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
     clearTimeoutDraft();
     clearProgressDraft();
     clearBaseDraft();
+    clearRitDraft();
     stopPause();
   }
   function scrubSide(which) {
@@ -1830,6 +1880,15 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
       else keptPr.push(prList[i]);
     }
     rec.progress = keptPr;
+    var keptRit = [];
+    var ritList = rec.rituals || [];
+    for (i = 0; i < ritList.length; i++) {
+      var rr = ritualRisk(ritList[i]);
+      if (rr === "crisis") hitC = true;
+      else if (rr === "violence") hitV = true;
+      else keptRit.push(ritList[i]);
+    }
+    rec.rituals = keptRit;
     saveCplSide(which, rec);
     return { hitV: hitV, hitC: hitC };
   }
@@ -1851,6 +1910,7 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
     clearTimeoutDraft();
     clearProgressDraft();
     clearBaseDraft();
+    clearRitDraft();
     stopPause();
     if (!skipRender) render();
   }
@@ -2277,6 +2337,7 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
       '<label class="check"><input type="radio" name="cpl-to-afraid" id="cpl-to-afraid-yes" value="yes" data-cpl="to-afraid"' + (draft.afraid === "yes" ? " checked" : "") + ">" + esc(CPL.toAfraidYes) + "</label>" +
       (state.cplToErr ? '<p class="err">' + esc(state.cplToErr) + "</p>" : "") +
       '<button type="button" class="btn block" data-action="cpl-to-save">' + esc(CPL.toSave) + "</button></section>" +
+      ritualOpenButton(meta) +
       '<p><button type="button" class="btn secondary block" data-action="' + backAction + '">' + esc(backLabel) + "</button></p>";
   }
   function actLabel(id) {
@@ -2495,6 +2556,16 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
       if (prHit === "crisis") { clearProgressDraft(); enterSafety(meta, true); triggerCrisis("text"); return "stop"; }
       if (prHit === "violence") { clearProgressDraft(); enterSafety(meta); return "stop"; }
     }
+    var ritCustom = readCplBox("cpl-rit-custom");
+    var ritWhenOwn = readCplBox("cpl-rit-when-own");
+    if (ritCustom != null || ritWhenOwn != null) {
+      var ritDraft = ensureRitDraft(meta);
+      if (ritCustom != null) ritDraft.custom = ritClean(ritCustom, 180);
+      if (ritWhenOwn != null) ritDraft.whenOwn = ritClean(ritWhenOwn, 80);
+      var ritHit = ritualRisk({ text: ritDraft.custom, when: ritDraft.whenOwn });
+      if (ritHit === "crisis") { clearRitDraft(); enterSafety(meta, true); triggerCrisis("text"); return "stop"; }
+      if (ritHit === "violence") { clearRitDraft(); enterSafety(meta); return "stop"; }
+    }
     return "ok";
   }
   function viewCplSetup(meta) {
@@ -2536,14 +2607,14 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
       (state.cplErr ? '<p class="err">' + esc(state.cplErr) + "</p>" : "") +
       '<div class="stack">' +
       (i > 0 ? '<button type="button" class="btn secondary block" data-action="cpl-prev">' + esc(CPL.back) + "</button>" : '<button type="button" class="btn secondary block" data-action="cpl-to-who">' + esc(CPL.backWho) + "</button>") +
-      '<button type="button" class="btn block" data-action="cpl-next">' + esc(i === 7 ? CPL.prToBase : CPL.next) + "</button></div></section>" + nicePrivateCard(meta) + softPrivateCard(meta) + (timeoutFeatureOn(meta) ? toOpenButton() : "");
+      '<button type="button" class="btn block" data-action="cpl-next">' + esc(i === 7 ? CPL.prToBase : CPL.next) + "</button></div></section>" + nicePrivateCard(meta) + softPrivateCard(meta) + (timeoutFeatureOn(meta) ? toOpenButton() : "") + ritualOpenButton(meta);
   }
   function viewCplWait(meta) {
     var other = otherOf(meta.active);
     return whoBanner(meta) + '<section class="card"><h1>' + esc(CPL.waitTitle) + "</h1>" +
       "<p>" + esc(fill(CPL.waitBody, { name: nameOf(meta, other) })) + "</p>" +
       '<button type="button" class="btn block" data-action="cpl-switch">' + esc(fill(CPL.theirTurn, { name: nameOf(meta, other) })) + "</button>" +
-      '<button type="button" class="btn secondary block" data-action="cpl-review">' + esc(CPL.reviewMine) + "</button></section>" + nicePrivateCard(meta) + softPrivateCard(meta) + (timeoutFeatureOn(meta) ? toOpenButton() : "");
+      '<button type="button" class="btn secondary block" data-action="cpl-review">' + esc(CPL.reviewMine) + "</button></section>" + nicePrivateCard(meta) + softPrivateCard(meta) + (timeoutFeatureOn(meta) ? toOpenButton() : "") + ritualOpenButton(meta);
   }
   function viewCplReview(meta) {
     var side = meta.active === "b" ? "b" : "a";
@@ -2553,7 +2624,7 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
     }).join("");
     return whoBanner(meta) + '<section class="card"><p class="kicker">' + esc(fill(CPL.privateTag, { name: nameOf(meta, side) })) + "</p>" +
       "<h1>" + esc(CPL.reviewTitle) + "</h1><p>" + esc(CPL.reviewNote) + "</p>" + rows +
-      '<button type="button" class="btn secondary block" data-action="cpl-to-who">' + esc(CPL.backWho) + "</button></section>" + nicePrivateCard(meta) + softPrivateCard(meta) + (timeoutFeatureOn(meta) ? toOpenButton() : "");
+      '<button type="button" class="btn secondary block" data-action="cpl-to-who">' + esc(CPL.backWho) + "</button></section>" + nicePrivateCard(meta) + softPrivateCard(meta) + (timeoutFeatureOn(meta) ? toOpenButton() : "") + ritualOpenButton(meta);
   }
   function viewCplSummary(meta) {
     var sum = loadJSON(K_CPL_SUM, null);
@@ -2574,6 +2645,7 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
       (niceFeatureOn(meta) ? niceOpenButton() : "") +
       (softFeatureOn(meta) ? softOpenButton() : "") +
       (timeoutFeatureOn(meta) ? toOpenButton() : "") +
+      ritualOpenButton(meta) +
       "</div></section>";
   }
   function viewCplPlan(meta) {
@@ -2599,6 +2671,7 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
       pauseAwayHTML() +
       toStatusHTML(meta) +
       progressPlanHTML(meta) +
+      ritualPlanHTML(meta) +
       niceCountsHTML(meta, plan) +
       (softFeatureOn(meta) ? softOpenButton() : "") +
       '<button type="button" class="btn secondary block" data-action="cpl-reopen-sum">' + esc(CPL.reopenSum) + "</button>" +
@@ -2649,13 +2722,13 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
     if (idx > todayIx) {
       return head + "<p>" + esc(CPL.lockedBody) + "</p>" +
         '<button type="button" class="btn secondary block" data-action="cpl-back-plan">' + esc(CPL.backPlan) + "</button></section>" +
-        (def.mode === "individual" ? toPromptCard(meta) + progressOpenButton(meta) + nicePrivateCard(meta) + softPrivateCard(meta) : (timeoutFeatureOn(meta) ? toOpenButton() : ""));
+        (def.mode === "individual" ? toPromptCard(meta) + progressOpenButton(meta) + nicePrivateCard(meta) + softPrivateCard(meta) + ritualOpenButton(meta) : (timeoutFeatureOn(meta) ? toOpenButton() : "") + ritualOpenButton(meta));
     }
     if (def.mode === "individual" && meta.active !== def.who) {
       return head + "<p>" + esc(fill(CPL.wrongPartner, { name: nameOf(meta, def.who) })) + "</p>" +
         '<button type="button" class="btn block" data-action="cpl-switch">' + esc(CPL.switchBtn) + "</button>" +
         '<button type="button" class="btn secondary block" data-action="cpl-back-plan">' + esc(CPL.backPlan) + "</button></section>" +
-        toPromptCard(meta) + progressOpenButton(meta) + nicePrivateCard(meta) + softPrivateCard(meta);
+        toPromptCard(meta) + progressOpenButton(meta) + nicePrivateCard(meta) + softPrivateCard(meta) + ritualOpenButton(meta);
     }
     if (def.mode === "joint" && pauseBlocking()) {
       return whoBanner(meta) + pauseCard(meta);
@@ -2689,6 +2762,7 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
     var niceHTML = def.mode === "joint" ? niceJointCard(meta, !!day.bothHere) : nicePrivateCard(meta);
     var softHTML = def.mode === "joint" ? softJointCard(meta, !!day.bothHere) : softPrivateCard(meta);
     var prHTML = def.mode === "joint" ? progressJointCard(meta, !!day.bothHere) : progressOpenButton(meta);
+    var ritHTML = def.mode === "joint" ? ritualJointCard(meta, !!day.bothHere) : ritualOpenButton(meta);
     return head + sumHTML +
       "<h2>" + esc(CPL.lessonH) + "</h2><p>" + esc(def.lesson) + "</p>" +
       "<h2>" + esc(CPL.exerciseH) + "</h2><p>" + esc(def.exercise) + "</p>" +
@@ -2699,6 +2773,7 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
       softHTML +
       niceHTML +
       prHTML +
+      ritHTML +
       '<label class="field">' + esc(def.mode === "joint" ? CPL.jointNote : CPL.noteLabel) +
       '<textarea id="cpl-note" data-cpl="note" data-day="' + esc(def.id) + '">' + esc(note) + "</textarea></label>" +
       (state.cplErr ? '<p class="err">' + esc(state.cplErr) + "</p>" : "") +
@@ -2710,12 +2785,14 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
     var backLabel = loadCplPlan() ? CPL.backPlan : CPL.backWho;
     return whoBanner(meta) + nicePrivateCard(meta) +
       (softFeatureOn(meta) ? softOpenButton() : "") +
+      ritualOpenButton(meta) +
       '<p><button type="button" class="btn secondary block" data-action="' + backAction + '">' + esc(backLabel) + "</button></p>";
   }
   function viewCplSoft(meta) {
     var backAction = loadCplPlan() ? "cpl-back-plan" : "cpl-to-who";
     var backLabel = loadCplPlan() ? CPL.backPlan : CPL.backWho;
     return whoBanner(meta) + softPrivateCard(meta) +
+      ritualOpenButton(meta) +
       '<p><button type="button" class="btn secondary block" data-action="' + backAction + '">' + esc(backLabel) + "</button></p>";
   }
   function viewCplSafety(meta) {
@@ -3235,6 +3312,396 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
     }
     return whoBanner(meta) + '<section class="card cpl-pr"><p class="kicker">' + esc(fill(CPL.prKicker, { name: name })) + "</p><h1>" + esc(CPL.prTitle) + "</h1>" +
       "<p>" + esc(CPL.prLesson) + "</p>" + result + form + "</section>" +
+      '<p><button type="button" class="btn secondary block" data-action="' + backAction + '">' + esc(backLabel) + "</button></p>" +
+      ritualOpenButton(meta);
+  }
+
+  function ritClean(s, max) {
+    return String(s || "").replace(/\s+/g, " ").trim().slice(0, max || 180);
+  }
+  function ritPresetById(id) {
+    var list = CPL.ritList || [];
+    for (var i = 0; i < list.length; i++) if (list[i].id === id) return list[i];
+    return null;
+  }
+  function ritWhenById(id) {
+    var list = CPL.ritWhens || [];
+    for (var i = 0; i < list.length; i++) if (list[i].id === id) return list[i];
+    return null;
+  }
+  function ritualRisk(item) {
+    var text = String(item && item.text || "") + " " + String(item && item.when || "") + " " + String(item && item.custom || "") + " " + String(item && item.whenOwn || "");
+    if (isCrisisText(text)) return "crisis";
+    if (cplViolent(text)) return "violence";
+    return "";
+  }
+  function ritualMatchKey(item) {
+    var text = norm(item && item.text || "");
+    var list = CPL.ritList || [];
+    var i;
+    if (item && item.preset) {
+      for (i = 0; i < list.length; i++) if (list[i].id === item.preset) return "p:" + list[i].id;
+    }
+    for (i = 0; i < list.length; i++) if (text && text === norm(list[i].text)) return "p:" + list[i].id;
+    return "t:" + text;
+  }
+  function normalizeRituals(list) {
+    if (!Array.isArray(list)) return [];
+    var out = [];
+    for (var i = 0; i < list.length; i++) {
+      var n = list[i];
+      if (!n || typeof n !== "object") continue;
+      var preset = ritPresetById(n.preset) ? n.preset : "";
+      var text = preset ? ritPresetById(preset).text : ritClean(n.text, 180);
+      var whenId = ritWhenById(n.whenId) ? n.whenId : "";
+      var when = whenId && whenId !== "own" ? ritWhenById(whenId).label : ritClean(n.when, 80);
+      var date = String(n.date || "");
+      if (!text || !when || !/^\d{4}-\d{2}-\d{2}$/.test(date)) continue;
+      out.push({
+        id: String(n.id || ("r" + i + text.length)),
+        preset: preset,
+        text: text,
+        whenId: whenId,
+        when: when,
+        date: date,
+        share: n.share === true
+      });
+    }
+    if (out.length > 3) out = out.slice(0, 3);
+    return out;
+  }
+  function blankRitDraft() {
+    return { preset: "", custom: "", whenId: "", whenOwn: "" };
+  }
+  function clearRitDraft() {
+    state.cplRitDraft = null;
+    state.cplRitOwner = "";
+    state.cplRitErr = "";
+    state.cplRitPick = "";
+    state.cplRitAgreeErr = "";
+  }
+  function ritualSide(meta) {
+    return meta && meta.active === "b" ? "b" : "a";
+  }
+  function ensureRitDraft(meta) {
+    var side = ritualSide(meta);
+    if (!state.cplRitDraft || state.cplRitOwner !== side) {
+      state.cplRitDraft = blankRitDraft();
+      state.cplRitOwner = side;
+    }
+    return state.cplRitDraft;
+  }
+  function ritualFeatureOn(meta) {
+    return !state.hold && !state.crisis && meta && !meta.safety;
+  }
+  function readRitDraft(meta) {
+    var d = ensureRitDraft(meta);
+    if (typeof document === "undefined") return d;
+    var presets = document.querySelectorAll("[data-cpl='rit-preset']");
+    if (presets && presets.length) {
+      d.preset = "";
+      for (var i = 0; i < presets.length; i++) if (presets[i].checked) d.preset = presets[i].value;
+    }
+    var custom = document.getElementById("cpl-rit-custom");
+    if (custom) d.custom = ritClean(custom.value, 180);
+    var when = document.getElementById("cpl-rit-when");
+    if (when) d.whenId = String(when.value || "");
+    var whenOwn = document.getElementById("cpl-rit-when-own");
+    if (whenOwn) d.whenOwn = ritClean(whenOwn.value, 80);
+    return d;
+  }
+  function resolveRitual(draft) {
+    var preset = draft && draft.preset === "own" ? null : ritPresetById(draft && draft.preset);
+    var whenId = ritWhenById(draft && draft.whenId) ? draft.whenId : "";
+    var when = "";
+    if (whenId === "own") when = ritClean(draft.whenOwn, 80);
+    else if (whenId) when = ritWhenById(whenId).label;
+    return {
+      preset: preset ? preset.id : "",
+      text: preset ? preset.text : ritClean(draft && draft.custom, 180),
+      whenId: whenId,
+      when: when
+    };
+  }
+  function sharedRituals(which) {
+    return loadCplSide(which).rituals.filter(function (n) { return n.share === true; });
+  }
+  function ritualOverlapCounts() {
+    var counts = {};
+    var sides = ["a", "b"];
+    for (var s = 0; s < sides.length; s++) {
+      var seen = {};
+      var list = sharedRituals(sides[s]);
+      for (var i = 0; i < list.length; i++) {
+        var key = ritualMatchKey(list[i]);
+        if (!seen[key]) { seen[key] = true; counts[key] = (counts[key] || 0) + 1; }
+      }
+    }
+    return counts;
+  }
+  function agreedRitualOf(plan) {
+    if (!plan || !plan.ritual || typeof plan.ritual !== "object") return null;
+    var text = ritClean(plan.ritual.text, 180);
+    var when = ritClean(plan.ritual.when, 80);
+    if (!text || !when) return null;
+    var weeks = {};
+    var src = plan.ritual.weeks;
+    if (src && typeof src === "object" && !Array.isArray(src)) {
+      Object.keys(src).forEach(function (k) {
+        if (/^\d{4}-\d{2}-\d{2}$/.test(k) && src[k] === true) weeks[k] = true;
+      });
+    }
+    return {
+      text: text,
+      when: when,
+      key: String(plan.ritual.key || ""),
+      side: plan.ritual.side === "b" ? "b" : "a",
+      id: String(plan.ritual.id || ""),
+      agreedOn: String(plan.ritual.agreedOn || ""),
+      weeks: weeks
+    };
+  }
+  function ritualWeekStarts(plan) {
+    var n = daysBetween(plan.startDate, jerusalemToday());
+    if (n < 0) n = 0;
+    var count = Math.floor(n / 7) + 1;
+    if (count > 12) count = 12;
+    var out = [];
+    for (var i = 0; i < count; i++) out.push(addDaysISO(plan.startDate, i * 7));
+    return out;
+  }
+  function scrubRituals(which) {
+    var rec = loadCplSide(which);
+    var hitV = false, hitC = false, kept = [];
+    for (var i = 0; i < rec.rituals.length; i++) {
+      var risk = ritualRisk(rec.rituals[i]);
+      if (risk === "crisis") hitC = true;
+      else if (risk === "violence") hitV = true;
+      else kept.push(rec.rituals[i]);
+    }
+    if (hitV || hitC) { rec.rituals = kept; saveCplSide(which, rec); }
+    return { hitV: hitV, hitC: hitC };
+  }
+  function absorbRitualRisk() {
+    var a = scrubRituals("a");
+    var b = scrubRituals("b");
+    var planHit = "";
+    var plan = loadCplPlan();
+    if (plan && plan.ritual) {
+      planHit = ritualRisk(plan.ritual);
+      if (planHit) {
+        plan.ritual = null;
+        saveJSON(K_CPL_PLAN, plan);
+      }
+    }
+    if (a.hitC || b.hitC || planHit === "crisis") return "crisis";
+    if (a.hitV || b.hitV || planHit === "violence") return "violence";
+    return "";
+  }
+  function commitRitual(meta) {
+    if (!ritualFeatureOn(meta)) return "stop";
+    var draft = readRitDraft(meta);
+    var resolved = resolveRitual(draft);
+    var risk = ritualRisk({ text: resolved.text + " " + (draft.custom || ""), when: resolved.when + " " + (draft.whenOwn || "") });
+    if (risk === "crisis") { clearRitDraft(); enterSafety(meta, true); triggerCrisis("text"); return "stop"; }
+    if (risk === "violence") { clearRitDraft(); enterSafety(meta); return "stop"; }
+    if (!resolved.text || resolved.text.length < 2 || !resolved.when || resolved.when.length < 2) return "short";
+    var side = ritualSide(meta);
+    var rec = loadCplSide(side);
+    if (rec.rituals.length >= 3) return "full";
+    rec.rituals.push({
+      id: "r" + Date.now().toString(36) + Math.floor(Math.random() * 1296).toString(36),
+      preset: resolved.preset,
+      text: resolved.text,
+      whenId: resolved.whenId,
+      when: resolved.when,
+      date: jerusalemToday(),
+      share: false
+    });
+    saveCplSide(side, rec);
+    clearRitDraft();
+    state.cplRitDraft = blankRitDraft();
+    state.cplRitOwner = side;
+    return "ok";
+  }
+  function setRitualShare(meta, id, share) {
+    if (!ritualFeatureOn(meta)) return;
+    var side = ritualSide(meta);
+    var rec = loadCplSide(side);
+    var found = false;
+    for (var i = 0; i < rec.rituals.length; i++) {
+      if (rec.rituals[i].id === id) { rec.rituals[i].share = !!share; found = true; }
+    }
+    if (found) saveCplSide(side, rec);
+  }
+  function removeRitual(meta, id) {
+    if (!ritualFeatureOn(meta)) return;
+    var side = ritualSide(meta);
+    var rec = loadCplSide(side);
+    var next = [];
+    for (var i = 0; i < rec.rituals.length; i++) if (rec.rituals[i].id !== id) next.push(rec.rituals[i]);
+    rec.rituals = next;
+    saveCplSide(side, rec);
+  }
+  function readRitPick() {
+    var pick = state.cplRitPick || "";
+    if (typeof document === "undefined") return pick;
+    var radios = document.querySelectorAll("[data-cpl='rit-pick']");
+    if (radios && radios.length) {
+      pick = "";
+      for (var i = 0; i < radios.length; i++) if (radios[i].checked) pick = radios[i].value;
+    }
+    return pick;
+  }
+  function agreeRitual(meta) {
+    if (!ritualFeatureOn(meta) || !jointSessionOpen(meta)) return "stop";
+    var plan = loadCplPlan();
+    var foundDay = cplDayDef(meta.openDay);
+    if (!plan || !foundDay || foundDay.def.mode !== "joint") return "stop";
+    var day = null;
+    var i;
+    for (i = 0; i < plan.days.length; i++) if (plan.days[i].id === foundDay.def.id) day = plan.days[i];
+    if (!day || !day.bothHere) return "needboth";
+    var pick = readRitPick();
+    state.cplRitPick = pick;
+    var parts = String(pick || "").split(":");
+    if ((parts[0] !== "a" && parts[0] !== "b") || parts.length < 2) return "short";
+    var side = parts[0];
+    var id = parts.slice(1).join(":");
+    var list = loadCplSide(side).rituals;
+    var item = null;
+    for (i = 0; i < list.length; i++) if (list[i].id === id) item = list[i];
+    if (!item || item.share !== true) return "short";
+    var risk = ritualRisk(item);
+    if (risk === "crisis") { enterSafety(meta, true); triggerCrisis("text"); return "stop"; }
+    if (risk === "violence") { enterSafety(meta); return "stop"; }
+    var prev = agreedRitualOf(plan);
+    var same = prev && prev.text === item.text && prev.when === item.when;
+    plan.ritual = {
+      text: item.text,
+      when: item.when,
+      key: ritualMatchKey(item),
+      side: side,
+      id: item.id,
+      agreedOn: jerusalemToday(),
+      weeks: same && prev ? prev.weeks : {}
+    };
+    saveJSON(K_CPL_PLAN, plan);
+    state.cplRitAgreeErr = "";
+    return "ok";
+  }
+  function setRitualTick(week, on) {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(String(week || ""))) return;
+    var meta = loadCplMeta();
+    if (!ritualFeatureOn(meta)) return;
+    var plan = loadCplPlan();
+    var agreed = agreedRitualOf(plan);
+    if (!plan || !agreed) return;
+    if (ritualWeekStarts(plan).indexOf(String(week)) === -1) return;
+    if (!plan.ritual.weeks || typeof plan.ritual.weeks !== "object" || Array.isArray(plan.ritual.weeks)) plan.ritual.weeks = {};
+    if (on) plan.ritual.weeks[week] = true;
+    else delete plan.ritual.weeks[week];
+    saveJSON(K_CPL_PLAN, plan);
+  }
+  function ritualOpenButton(meta) {
+    if (!ritualFeatureOn(meta)) return "";
+    return '<button type="button" class="btn secondary block" data-action="cpl-open-rituals">' + esc(CPL.ritOpen) + "</button>";
+  }
+  function ritualTicksHTML(plan, agreed) {
+    var weeks = ritualWeekStarts(plan);
+    var current = weeks[weeks.length - 1];
+    return weeks.map(function (start) {
+      var on = agreed.weeks && agreed.weeks[start] === true;
+      var label = start === current ? CPL.ritDid : fill(CPL.ritDidWeek, { date: start });
+      return '<label class="check"><input type="checkbox" data-cpl="rit-did" data-week="' + esc(start) + '"' + (on ? " checked" : "") + ">" + esc(label) + "</label>";
+    }).join("");
+  }
+  function ritualPlanHTML(meta) {
+    if (!ritualFeatureOn(meta)) return "";
+    var plan = loadCplPlan();
+    if (!plan) return "";
+    var agreed = agreedRitualOf(plan);
+    var body = agreed
+      ? "<h2>" + esc(CPL.ritPlanTitle) + "</h2><p><strong>" + esc(agreed.text) + "</strong></p><p>" + esc(fill(CPL.ritWhenLine, { when: agreed.when })) + "</p>" + ritualTicksHTML(plan, agreed)
+      : "<p>" + esc(CPL.ritPlanEmpty) + "</p>";
+    return '<div class="cpl-rit-plan">' + body + ritualOpenButton(meta) + "</div>";
+  }
+  function ritualJointCard(meta, bothHere) {
+    if (!ritualFeatureOn(meta)) return "";
+    if (!bothHere) {
+      return '<div class="banner cpl-rit-shared"><h2>' + esc(CPL.ritJointTitle) + "</h2><p>" + esc(CPL.ritJointLocked) + "</p></div>";
+    }
+    var plan = loadCplPlan();
+    var agreed = plan ? agreedRitualOf(plan) : null;
+    var counts = ritualOverlapCounts();
+    var groups = [["a", meta.aName], ["b", meta.bName]];
+    var chunks = "";
+    var any = false;
+    var picked = state.cplRitPick || "";
+    if (!picked && agreed && agreed.id) picked = agreed.side + ":" + agreed.id;
+    for (var g = 0; g < groups.length; g++) {
+      var notes = sharedRituals(groups[g][0]);
+      if (!notes.length) continue;
+      any = true;
+      var lis = notes.map(function (n) {
+        var overlap = counts[ritualMatchKey(n)] >= 2;
+        var value = groups[g][0] + ":" + n.id;
+        var mark = overlap ? '<p class="cpl-rit-overlap">' + esc(CPL.ritOverlap) + "</p>" : "";
+        return '<li class="cpl-rit-choice' + (overlap ? " is-overlap" : "") + '"><p>' + esc(n.text) + "</p>" +
+          '<p class="muted">' + esc(fill(CPL.ritWhenLine, { when: n.when })) + "</p>" + mark +
+          '<label class="check"><input type="radio" name="cpl-rit-agree" data-cpl="rit-pick" value="' + esc(value) + '"' + (picked === value ? " checked" : "") + ">" + esc(CPL.ritPick) + "</label></li>";
+      }).join("");
+      chunks += "<h3>" + esc(fill(CPL.ritFrom, { name: groups[g][1] || CPL.noname })) + "</h3><ul class=\"cpl-rit-shared-list\">" + lis + "</ul>";
+    }
+    var agreedHTML = agreed ? '<p class="okbox">' + esc(fill(CPL.ritAgreed, { text: agreed.text, when: agreed.when })) + "</p>" : "";
+    var body = any
+      ? chunks + agreedHTML +
+        (state.cplRitAgreeErr ? '<p class="err">' + esc(state.cplRitAgreeErr) + "</p>" : "") +
+        '<button type="button" class="btn block" data-action="cpl-rit-agree">' + esc(CPL.ritAgree) + "</button>"
+      : "<p>" + esc(CPL.ritEmpty) + "</p>";
+    return '<div class="banner cpl-rit-shared"><h2>' + esc(CPL.ritJointTitle) + "</h2><p>" + esc(CPL.ritJointHow) + "</p>" +
+      '<p class="muted">' + esc(CPL.ritLesson) + "</p>" + body + "</div>";
+  }
+  function viewCplRituals(meta) {
+    if (!ritualFeatureOn(meta)) return "";
+    var side = ritualSide(meta);
+    var name = nameOf(meta, side) || CPL.noname;
+    var rec = loadCplSide(side);
+    var draft = ensureRitDraft(meta);
+    var list;
+    if (!rec.rituals.length) list = '<p class="muted">' + esc(CPL.ritNoneYet) + "</p>";
+    else {
+      list = '<ul class="cpl-rit-list">' + rec.rituals.map(function (n) {
+        return '<li class="cpl-rit-item"><p>' + esc(n.text) + "</p>" +
+          '<p class="muted">' + esc(fill(CPL.ritWhenLine, { when: n.when })) + "</p>" +
+          '<p class="muted">' + esc(fill(CPL.ritDate, { date: n.date })) + "</p>" +
+          '<label class="check"><input type="checkbox" data-cpl="rit-share" data-id="' + esc(n.id) + '"' + (n.share === true ? " checked" : "") + ">" + esc(CPL.ritShare) + "</label>" +
+          '<button type="button" class="btn secondary" data-action="cpl-rit-remove" data-id="' + esc(n.id) + '">' + esc(CPL.ritRemove) + "</button></li>";
+      }).join("") + "</ul>";
+    }
+    var presets = (CPL.ritList || []).map(function (p) {
+      return '<label class="check"><input type="radio" name="cpl-rit-preset" data-cpl="rit-preset" value="' + esc(p.id) + '"' + (draft.preset === p.id ? " checked" : "") + ">" + esc(p.text) + "</label>";
+    }).join("");
+    presets += '<label class="check"><input type="radio" name="cpl-rit-preset" data-cpl="rit-preset" value="own"' + (draft.preset === "own" ? " checked" : "") + ">" + esc(CPL.ritOwn) + "</label>";
+    var whens = '<option value="">' + esc(CPL.ritWhenBlank) + "</option>" + (CPL.ritWhens || []).map(function (w) {
+      return '<option value="' + esc(w.id) + '"' + (draft.whenId === w.id ? " selected" : "") + ">" + esc(w.label) + "</option>";
+    }).join("");
+    var form = rec.rituals.length >= 3
+      ? '<p class="muted">' + esc(CPL.ritFull) + "</p>"
+      : "<h3>" + esc(CPL.ritPickH) + "</h3>" + presets +
+        '<label class="field">' + esc(CPL.ritCustom) +
+        '<textarea id="cpl-rit-custom" class="cpl-rit-box" maxlength="180" data-cpl="rit-custom">' + esc(draft.custom || "") + "</textarea></label>" +
+        '<label class="field">' + esc(CPL.ritWhen) +
+        '<select id="cpl-rit-when" data-cpl="rit-when">' + whens + "</select></label>" +
+        '<label class="field">' + esc(CPL.ritWhenOwn) +
+        '<input type="text" id="cpl-rit-when-own" maxlength="80" data-cpl="rit-when-own" value="' + esc(draft.whenOwn || "") + '"></label>' +
+        (state.cplRitErr ? '<p class="err">' + esc(state.cplRitErr) + "</p>" : "") +
+        '<button type="button" class="btn block" data-action="cpl-rit-save">' + esc(CPL.ritSave) + "</button>";
+    var backAction = loadCplPlan() ? "cpl-back-plan" : "cpl-to-who";
+    var backLabel = loadCplPlan() ? CPL.backPlan : CPL.backWho;
+    return whoBanner(meta) + '<section class="card cpl-rit"><p class="kicker">' + esc(fill(CPL.ritKicker, { name: name })) + "</p><h1>" + esc(CPL.ritTitle) + "</h1>" +
+      "<p>" + esc(CPL.ritLesson) + "</p><p>" + esc(CPL.ritPrompt) + "</p>" + list +
+      '<p class="muted">' + esc(CPL.ritShareHint) + "</p>" + form + "</section>" +
       '<p><button type="button" class="btn secondary block" data-action="' + backAction + '">' + esc(backLabel) + "</button></p>";
   }
 
@@ -3246,7 +3713,8 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
     var softRiskNow = absorbSoftRisk();
     var toRiskNow = absorbTimeoutRisk();
     var prRiskNow = absorbProgressRisk();
-    var risk = (niceRiskNow === "crisis" || softRiskNow === "crisis" || toRiskNow === "crisis" || prRiskNow === "crisis") ? "crisis" : ((niceRiskNow === "violence" || softRiskNow === "violence" || toRiskNow === "violence" || prRiskNow === "violence") ? "violence" : "");
+    var ritRiskNow = absorbRitualRisk();
+    var risk = (niceRiskNow === "crisis" || softRiskNow === "crisis" || toRiskNow === "crisis" || prRiskNow === "crisis" || ritRiskNow === "crisis") ? "crisis" : ((niceRiskNow === "violence" || softRiskNow === "violence" || toRiskNow === "violence" || prRiskNow === "violence" || ritRiskNow === "violence") ? "violence" : "");
     if (risk === "crisis") { triggerCrisis("text"); return holdHTML(); }
     if (risk === "violence") { enterSafety(meta, true); return viewCplSafety(meta); }
     if (progressIsSharp("a") || progressIsSharp("b")) { enterSafety(meta, true); return viewCplSafety(meta); }
@@ -3260,6 +3728,7 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
     if (meta.screen === "timeout") return viewCplTimeout(meta);
     if (meta.screen === "baseline") return viewCplBaseline(meta);
     if (meta.screen === "progress") return viewCplProgress(meta);
+    if (meta.screen === "rituals") return viewCplRituals(meta);
     if (meta.screen === "session") return viewCplSession(meta);
     if (meta.screen === "plan") return viewCplPlan(meta);
     return viewCplWho(meta);
@@ -3467,6 +3936,33 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
       setProgressShare(meta, el.dataset.id, !!el.checked);
       return;
     }
+    if (kind === "rit-preset" || kind === "rit-custom" || kind === "rit-when" || kind === "rit-when-own") {
+      if (!ritualFeatureOn(meta)) return;
+      var ritDraftNow = ensureRitDraft(meta);
+      if (kind === "rit-preset") ritDraftNow.preset = String(el.value || "");
+      else if (kind === "rit-when") ritDraftNow.whenId = String(el.value || "");
+      else if (kind === "rit-custom") ritDraftNow.custom = ritClean(el.value, 180);
+      else ritDraftNow.whenOwn = ritClean(el.value, 80);
+      var ritTyped = ritualRisk({ text: ritDraftNow.custom, when: ritDraftNow.whenOwn });
+      if (ritTyped === "crisis") { el.value = ""; clearRitDraft(); enterSafety(meta, true); triggerCrisis("text"); return; }
+      if (ritTyped === "violence") { el.value = ""; clearRitDraft(); enterSafety(meta); return; }
+      return;
+    }
+    if (kind === "rit-share") {
+      if (!ritualFeatureOn(meta)) return;
+      setRitualShare(meta, el.dataset.id, !!el.checked);
+      return;
+    }
+    if (kind === "rit-pick") {
+      if (!ritualFeatureOn(meta)) return;
+      state.cplRitPick = String(el.value || "");
+      return;
+    }
+    if (kind === "rit-did") {
+      if (!ritualFeatureOn(meta)) return;
+      setRitualTick(el.dataset.week, !!el.checked);
+      return;
+    }
     if (kind === "both") {
       var plan2 = loadCplPlan();
       if (!plan2) return;
@@ -3483,6 +3979,8 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
     if (action !== "cpl-to-save") state.cplToErr = "";
     if (action !== "cpl-pause-repair") state.cplPauseErr = "";
     if (action !== "cpl-pr-save") state.cplPrErr = "";
+    if (action !== "cpl-rit-save") state.cplRitErr = "";
+    if (action !== "cpl-rit-agree") state.cplRitAgreeErr = "";
     if (action === "cpl-reset-ask") { state.cplReset = true; render(); return; }
     if (action === "cpl-reset-no") { state.cplReset = false; render(); return; }
     if (action === "cpl-reset-yes") { cplWipe(); render(); return; }
@@ -3520,15 +4018,17 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
       var staySoft = action === "cpl-switch" && meta.screen === "soft";
       var stayTo = action === "cpl-switch" && meta.screen === "timeout";
       var stayPr = action === "cpl-switch" && meta.screen === "progress";
+      var stayRit = action === "cpl-switch" && meta.screen === "rituals";
       var staySession = action === "cpl-switch" && meta.screen === "session";
       meta.active = who;
-      meta.screen = stayNice ? "nice" : staySoft ? "soft" : stayTo ? "timeout" : stayPr ? "progress" : staySession ? "session" : screenFor(meta, who);
+      meta.screen = stayNice ? "nice" : staySoft ? "soft" : stayTo ? "timeout" : stayPr ? "progress" : stayRit ? "rituals" : staySession ? "session" : screenFor(meta, who);
       state.cplNiceDraft = "";
       state.cplNiceErr = "";
       clearSoftDraft();
       clearTimeoutDraft();
       clearProgressDraft();
       clearBaseDraft();
+      clearRitDraft();
       state.pauseRepairPick = "";
       state.pauseRepairOwn = "";
       state.pauseRepairLine = "";
@@ -3669,6 +4169,36 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
       if (addedPr === "stop") return;
       if (addedPr === "short") { state.cplPrErr = CPL.prNeed; render(); return; }
       state.cplPrErr = "";
+      render(); return;
+    }
+    if (action === "cpl-open-rituals") {
+      if (!ritualFeatureOn(meta)) return;
+      if (applyGuardToCurrent(meta) === "stop") return;
+      meta.screen = "rituals";
+      saveCplMeta(meta);
+      render(); return;
+    }
+    if (action === "cpl-rit-save") {
+      if (!ritualFeatureOn(meta)) return;
+      var addedRit = commitRitual(meta);
+      if (addedRit === "stop") return;
+      if (addedRit === "short") { state.cplRitErr = CPL.ritNeed; render(); return; }
+      if (addedRit === "full") { state.cplRitErr = CPL.ritFull; render(); return; }
+      state.cplRitErr = "";
+      render(); return;
+    }
+    if (action === "cpl-rit-remove") {
+      if (!ritualFeatureOn(meta)) return;
+      removeRitual(meta, t.dataset.id);
+      render(); return;
+    }
+    if (action === "cpl-rit-agree") {
+      if (!ritualFeatureOn(meta)) return;
+      var agreedRit = agreeRitual(meta);
+      if (agreedRit === "stop") return;
+      if (agreedRit === "needboth") { state.cplRitAgreeErr = CPL.needBoth; render(); return; }
+      if (agreedRit === "short") { state.cplRitAgreeErr = CPL.ritAgreeNeed; render(); return; }
+      state.cplRitAgreeErr = "";
       render(); return;
     }
     if (action === "cpl-review") { meta.screen = "review"; saveCplMeta(meta); render(); return; }
@@ -4580,6 +5110,191 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
     clearProgressDraft();
     clearBaseDraft();
     try { localStorage.removeItem(K_PENDING); } catch (ePr4) {}
+    cplWipe();
+    stopPause();
+    stopSlTurn();
+    state.hold = false;
+    state.crisis = null;
+    clearRitDraft();
+    eq(CPL.ritLesson.indexOf("%") === -1 && CPL.ritLesson.toLowerCase().indexOf("et al") === -1, "ritual lesson has no stats");
+    eq(CPL.ritLesson.indexOf("not a licensed therapist") !== -1 && CPL.ritLesson.indexOf("not a diagnosis") !== -1 && CPL.ritLesson.indexOf("not medication") !== -1, "ritual lesson stays self-help");
+    eq(CPL.ritLesson.toLowerCase().indexOf("gottman") !== -1, "ritual lesson names the idea");
+    eq(CPL.ritList.length >= 5, "ritual list");
+    var ritTexts = CPL.ritList.map(function (p) { return p.text; }).join(" ");
+    eq(ritTexts.indexOf("2-minute morning check-in") !== -1, "morning ritual");
+    eq(ritTexts.indexOf("how was your day") !== -1 && ritTexts.indexOf("does not give solutions") !== -1, "evening ritual");
+    eq(ritTexts.indexOf("phones put away") !== -1, "walk ritual");
+    eq(ritTexts.indexOf("thank-you") !== -1, "thanks ritual");
+    eq(ritTexts.indexOf("shared prayer") !== -1 && ritTexts.indexOf("family meal") !== -1, "quiet ritual");
+    eq(CPL.planIntro.indexOf("rituals of connection") !== -1 && CPL.planIntro.indexOf("timed speaker–listener practice") !== -1, "plan intro keeps the timer and adds rituals");
+    var todayRit = jerusalemToday();
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "a", screen: "rituals", safety: false });
+    state.view = "couples";
+    state.cplRitDraft = { preset: "morning", custom: "", whenId: "morning", whenOwn: "" };
+    state.cplRitOwner = "a";
+    eq(commitRitual(loadCplMeta()) === "ok", "save morning ritual");
+    var storedRit = loadCplSide("a").rituals;
+    eq(storedRit.length === 1 && storedRit[0].share === false && storedRit[0].preset === "morning", "ritual stored private");
+    eq(storedRit[0].text.indexOf("morning check-in") !== -1 && storedRit[0].when === "Each morning", "preset text and when");
+    eq(JSON.stringify(loadJSON(K_CPL_B, {})).indexOf("morning check-in") === -1, "B store has no A ritual");
+    var ownRit = viewCouples();
+    eq(ownRit.indexOf("morning check-in") !== -1, "own ritual on my screen");
+    eq(ownRit.indexOf('data-id="' + storedRit[0].id + '" checked') === -1, "share off by default");
+    eq(ownRit.indexOf(CPL.ritShare) !== -1 && ownRit.indexOf(CPL.ritLesson) !== -1, "share toggle and lesson");
+    state.cplRitDraft = { preset: "own", custom: "UNSHARED-tea-on-the-balcony", whenId: "own", whenOwn: "Sunday evening" };
+    state.cplRitOwner = "a";
+    eq(commitRitual(loadCplMeta()) === "ok", "save custom ritual");
+    state.cplRitDraft = { preset: "thanks", custom: "", whenId: "once", whenOwn: "" };
+    state.cplRitOwner = "a";
+    eq(commitRitual(loadCplMeta()) === "ok", "save third ritual");
+    state.cplRitDraft = { preset: "walk", custom: "", whenId: "few", whenOwn: "" };
+    state.cplRitOwner = "a";
+    eq(commitRitual(loadCplMeta()) === "full", "cap at three rituals");
+    eq(loadCplSide("a").rituals.length === 3, "three rituals stored");
+    var fullRit = viewCouples();
+    eq(fullRit.indexOf(CPL.ritFull) !== -1 && fullRit.indexOf('data-action="cpl-rit-save"') === -1, "full list hides the save form");
+    eq(fullRit.indexOf("UNSHARED-tea-on-the-balcony") !== -1, "custom ritual on my screen");
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "b", screen: "rituals", safety: false });
+    var otherRit = viewCouples();
+    eq(otherRit.indexOf("UNSHARED-tea-on-the-balcony") === -1, "other private screen hides my rituals");
+    eq(otherRit.indexOf(CPL.ritNoneYet) !== -1, "other side starts empty");
+    var recRitB = cplBlank();
+    recRitB.done = true;
+    recRitB.rituals = [{ id: "btea", preset: "", text: "B-ONLY-quiet-tea", whenId: "own", when: "Friday night", date: todayRit, share: false }];
+    saveCplSide("b", recRitB);
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "a", screen: "rituals", safety: false });
+    eq(viewCouples().indexOf("B-ONLY-quiet-tea") === -1, "A does not see B private ritual");
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "a", screen: "summary", safety: false });
+    var sumRit = viewCouples();
+    eq(sumRit.indexOf("UNSHARED-tea-on-the-balcony") === -1 && sumRit.indexOf("B-ONLY-quiet-tea") === -1, "summary hides rituals");
+    eq(sumRit.indexOf('data-action="cpl-open-rituals"') !== -1, "summary opens the planner");
+    var builtRit = JSON.stringify(buildCoupleSummary(loadCplSide("a"), loadCplSide("b"), "Lina", "Omar"));
+    eq(builtRit.indexOf("UNSHARED-tea-on-the-balcony") === -1 && builtRit.indexOf("morning check-in") === -1 && builtRit.indexOf("B-ONLY-quiet-tea") === -1, "summary builder hides rituals");
+    var mine = loadCplSide("a");
+    mine.rituals[0].share = true;
+    mine.rituals[1].share = false;
+    saveCplSide("a", mine);
+    var bShare = loadCplSide("b");
+    bShare.rituals[0].share = true;
+    bShare.rituals.push({ id: "bmorning", preset: "morning", text: CPL.ritList[0].text, whenId: "morning", when: "Each morning", date: todayRit, share: true });
+    saveCplSide("b", bShare);
+    var planRit = makeCplPlan();
+    planRit.startDate = todayRit;
+    saveJSON(K_CPL_PLAN, planRit);
+    saveJSON(K_CPL_SUM, buildCoupleSummary(loadCplSide("a"), loadCplSide("b"), "Lina", "Omar"));
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "a", screen: "plan", safety: false });
+    var planRitHtml = viewCouples();
+    eq(planRitHtml.indexOf(CPL.ritPlanEmpty) !== -1, "plan waits for an agreement");
+    eq(planRitHtml.indexOf("UNSHARED-tea-on-the-balcony") === -1 && planRitHtml.indexOf("morning check-in") === -1 && planRitHtml.indexOf("B-ONLY-quiet-tea") === -1, "plan hides unagreed ritual text");
+    eq(planRitHtml.indexOf('data-action="cpl-open-rituals"') !== -1, "plan opens the planner");
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "a", screen: "session", openDay: "c1", safety: false });
+    var indivRit = viewCouples();
+    eq(indivRit.indexOf("cpl-rit-shared") === -1 && indivRit.indexOf("B-ONLY-quiet-tea") === -1, "individual day does not show the joint list");
+    eq(indivRit.indexOf('data-action="cpl-open-rituals"') !== -1, "individual day opens the private planner");
+    var agoRit = new Date();
+    agoRit.setDate(agoRit.getDate() - 10);
+    planRit.startDate = jerusalemToday(agoRit);
+    for (var ri = 0; ri < planRit.days.length; ri++) if (planRit.days[ri].id === "c4") planRit.days[ri].bothHere = false;
+    saveJSON(K_CPL_PLAN, planRit);
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "a", screen: "session", openDay: "c4", safety: false });
+    var jointRitHidden = viewCouples();
+    eq(jointRitHidden.indexOf(CPL.ritJointLocked) !== -1, "joint day explains the share step");
+    eq(jointRitHidden.indexOf("morning check-in") === -1 && jointRitHidden.indexOf("UNSHARED-tea-on-the-balcony") === -1 && jointRitHidden.indexOf("B-ONLY-quiet-tea") === -1, "shared rituals stay hidden until both are here");
+    eq(jointRitHidden.indexOf('data-action="cpl-rit-agree"') === -1, "no agree button before both are here");
+    state.cplRitPick = "a:" + loadCplSide("a").rituals[0].id;
+    eq(agreeRitual(loadCplMeta()) === "needboth", "cannot agree before both are here");
+    eq(!loadCplPlan().ritual, "no agreement stored early");
+    for (ri = 0; ri < planRit.days.length; ri++) if (planRit.days[ri].id === "c4") planRit.days[ri].bothHere = true;
+    saveJSON(K_CPL_PLAN, planRit);
+    var jointRit = viewCouples();
+    eq(jointRit.indexOf("cpl-rit-shared") !== -1 && jointRit.indexOf("is-overlap") !== -1 && jointRit.indexOf(CPL.ritOverlap) !== -1, "overlap is highlighted");
+    eq(jointRit.indexOf("morning check-in") !== -1 && jointRit.indexOf("B-ONLY-quiet-tea") !== -1, "shared rituals from both partners");
+    eq(jointRit.indexOf("UNSHARED-tea-on-the-balcony") === -1, "unshared ritual stays out of the joint session");
+    eq(jointRit.indexOf(CPL.ritAgree) !== -1, "agree button");
+    state.cplRitPick = "a:not-a-real-id";
+    eq(agreeRitual(loadCplMeta()) === "short", "unknown ritual is not agreed");
+    state.cplRitPick = "a:" + loadCplSide("a").rituals[1].id;
+    eq(agreeRitual(loadCplMeta()) === "short", "unshared ritual cannot be agreed");
+    state.cplRitPick = "b:btea";
+    eq(agreeRitual(loadCplMeta()) === "ok", "agree on one shared ritual");
+    var agreedStore = loadCplPlan().ritual;
+    eq(agreedStore && agreedStore.text === "B-ONLY-quiet-tea" && agreedStore.when === "Friday night", "agreement stored on the couple plan");
+    eq(agreedStore.weeks && Object.keys(agreedStore.weeks).length === 0, "tick starts unticked");
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "b", screen: "plan", safety: false });
+    var agreedPlan = viewCouples();
+    eq(agreedPlan.indexOf(CPL.ritPlanTitle) !== -1 && agreedPlan.indexOf("B-ONLY-quiet-tea") !== -1, "plan shows the agreed ritual");
+    eq(agreedPlan.indexOf(CPL.ritDid) !== -1, "weekly we-did-it tick");
+    eq(agreedPlan.indexOf("UNSHARED-tea-on-the-balcony") === -1 && agreedPlan.indexOf("morning check-in") === -1, "plan still hides rituals that were not agreed");
+    var weekKey = ritualWeekStarts(loadCplPlan()).slice(-1)[0];
+    setRitualTick(weekKey, true);
+    eq(loadCplPlan().ritual.weeks[weekKey] === true, "tick saved per couple");
+    eq(viewCouples().indexOf('data-week="' + weekKey + '" checked') !== -1, "tick shows as done");
+    setRitualTick(weekKey, false);
+    eq(!loadCplPlan().ritual.weeks[weekKey], "tick can be cleared");
+    state.cplRitDraft = { preset: "own", custom: "UNSENT-RITUAL-LEAK", whenId: "own", whenOwn: "tonight" };
+    state.cplRitOwner = "a";
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "a", screen: "rituals", safety: false });
+    onCplAction("cpl-switch", { dataset: {} });
+    eq(loadCplMeta().active === "b" && loadCplMeta().screen === "rituals", "switch stays on rituals");
+    eq(!state.cplRitDraft, "switch clears the unsent ritual");
+    eq(viewCouples().indexOf("UNSENT-RITUAL-LEAK") === -1, "unsent ritual is not on the other side");
+    state.hold = true;
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "a", screen: "rituals", safety: false });
+    var heldRit = viewCouples();
+    eq(heldRit.indexOf("B-ONLY-quiet-tea") === -1 && heldRit.indexOf(CPL.ritTitle) === -1 && heldRit.indexOf("cpl-rit") === -1, "hold hides rituals");
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "a", screen: "session", openDay: "c4", safety: false });
+    eq(viewCouples().indexOf("B-ONLY-quiet-tea") === -1 && viewCouples().indexOf("cpl-rit-shared") === -1, "hold hides the joint ritual card");
+    state.hold = false;
+    cplWipe();
+    state.crisis = null;
+    clearRitDraft();
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "a", screen: "rituals", safety: false });
+    state.cplRitDraft = { preset: "own", custom: CPL.hitSample, whenId: "once", whenOwn: "" };
+    state.cplRitOwner = "a";
+    eq(commitRitual(loadCplMeta()) === "stop", "violence in a ritual stops");
+    eq(loadCplMeta().safety === true, "violence sets the safety screen");
+    eq(loadCplSide("a").rituals.length === 0, "violent ritual is not stored");
+    var violRit = viewCouples();
+    eq(violRit.indexOf("cpl-safety") !== -1 && violRit.indexOf(">100<") !== -1 && violRit.indexOf(">1201<") !== -1 && violRit.indexOf(CPL.prTherapist) !== -1, "ritual keyword shows the safety card");
+    eq(violRit.indexOf(CPL.hitSample) === -1 && violRit.indexOf(CPL.ritTitle) === -1, "violent ritual is not a planner");
+    cplWipe();
+    state.hold = false;
+    state.crisis = null;
+    clearRitDraft();
+    try { localStorage.removeItem(K_PENDING); } catch (eRit1) {}
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "a", screen: "rituals", safety: false });
+    state.cplRitDraft = { preset: "own", custom: "a short walk together", whenId: "own", whenOwn: "I want to die" };
+    state.cplRitOwner = "a";
+    eq(commitRitual(loadCplMeta()) === "stop", "self-harm in a ritual stops");
+    eq(state.crisis && state.hold === true, "self-harm holds the guide");
+    eq(loadCplSide("a").rituals.length === 0, "self-harm ritual is not stored");
+    state.hold = false;
+    state.crisis = null;
+    try { localStorage.removeItem(K_PENDING); } catch (eRit2) {}
+    var harmRit = viewCouples();
+    eq(harmRit.indexOf("cpl-safety") !== -1 && harmRit.indexOf(">100<") !== -1 && harmRit.indexOf(">1201<") !== -1, "self-harm leaves the safety card");
+    eq(harmRit.indexOf("I want to die") === -1 && harmRit.indexOf(CPL.ritTitle) === -1, "self-harm does not continue the planner");
+    cplWipe();
+    state.hold = false;
+    state.crisis = null;
+    clearRitDraft();
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "a", screen: "plan", safety: false });
+    var seededRit = cplBlank();
+    seededRit.done = true;
+    seededRit.rituals = [{ id: "badrit", preset: "", text: CPL.hitSample, whenId: "once", when: "Once this week", date: todayRit, share: true }];
+    saveCplSide("a", seededRit);
+    var seededRitView = viewCouples();
+    eq(seededRitView.indexOf("cpl-safety") !== -1 && seededRitView.indexOf(CPL.hitSample) === -1, "stored ritual keyword opens safety");
+    eq(loadCplSide("a").rituals.length === 0, "stored keyword ritual removed");
+    cplWipe();
+    state.hold = false;
+    state.crisis = null;
+    clearRitDraft();
+    stopPause();
+    stopSlTurn();
+    try { localStorage.removeItem(K_PENDING); } catch (eRit3) {}
+    eq(viewHome().indexOf(CPL.tile) !== -1, "home tile still there");
+    eq(isCrisisText("I want to die") === true, "crisis check still works");
     return errors;
   }
   function init() {
