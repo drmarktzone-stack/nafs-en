@@ -1,0 +1,30 @@
+{
+  "name": "Nafs | Free self-help guide",
+  "short_name": "Nafs",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "dir": "ltr",
+  "lang": "en",
+  "background_color": "#f4efe7",
+  "theme_color": "#3a5244",
+  "description": "Nafs is a free self-help guide: a short mood and anxiety check (not a diagnosis), multi-day plans, breathing, and a couples guide where each partner answers privately. No sign-up. Not a substitute for a licensed therapist.",
+  "icons": [
+    {
+      "src": "assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
