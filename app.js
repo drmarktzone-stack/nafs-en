@@ -331,7 +331,7 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
   "summaryOnly": "Shared picture only. Private venting is not copied here.",
   "startWeek": "Start the 7-day couples plan",
   "planTitle": "Seven days",
-  "planIntro": "Days 1 to 3 are individual. The guide alternates who the session is for: partner A, then B, then A. From day 4 the sessions are joint, and both should be present. Joint days include timed speaker–listener practice. Before a joint day, each person writes a private time-out and repair plan on their own side. A later day stays locked until that calendar day. After a few days, each partner can do a private progress check-in on their own side. Each partner can also choose up to three small rituals of connection on their own side. On a joint day, you can agree on one for the week.",
+  "planIntro": "Days 1 to 3 are individual. The guide alternates who the session is for: partner A, then B, then A. From day 4 the sessions are joint, and both should be present. Joint days include timed speaker–listener practice. Before a joint day, each person writes a private time-out and repair plan on their own side. A later day stays locked until that calendar day. After a few days, each partner can do a private progress check-in on their own side. Each partner can also choose up to three small rituals of connection on their own side. On a joint day, you can agree on one for the week. On the last day, or from a button on this plan, each partner can fill a private end-of-week review. On a joint day you can agree on a keep-going plan from the parts you choose to share.",
   "planProgress": "{done} of {total} sessions done. Started {start}.",
   "dayLabel": "Day {n}",
   "openDay": "Open this session",
@@ -609,6 +609,77 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
     { "id": "few", "label": "A few times this week" },
     { "id": "own", "label": "Another time I will write" }
   ],
+  "wkTitle": "End-of-week review",
+  "wkKicker": "Private to {name}",
+  "wkLesson": "This is a private look back at the week, and one thing you will keep doing. It is self-help. It is not a licensed couples therapist, not a diagnosis, and not medication advice.",
+  "wkPrompt": "Rate the same topics as your first answers. Pick 1 to 3 skills that helped, and write one commitment for the next month. Each part stays on your side unless you tick share.",
+  "wkFromProgress": "These ratings start from your progress check-in. You can move them. The change is compared with your first answers. It is not a diagnosis.",
+  "wkFromBase": "Move each rating for how it feels now. The change is compared with your first answers.",
+  "wkNoBase": "Move each rating for how it feels now. There is no first rating saved to compare.",
+  "wkSkillsH": "Skills that helped most",
+  "wkSkillsHint": "Pick 1 to 3.",
+  "wkFull": "Three skills is enough. Untick one if you want a different one.",
+  "wkNeedSkills": "Pick at least one skill, and no more than three.",
+  "wkCommitH": "One personal commitment for the next month",
+  "wkCommit": "What I will keep doing",
+  "wkNeedCommit": "Write a short commitment. One line is enough.",
+  "wkShareScores": "Share my ratings at the joint session",
+  "wkShareSkills": "Share the skills I picked",
+  "wkShareCommit": "Share my commitment",
+  "wkShareHint": "Each part stays private unless you tick it. An unticked part is never shown to your partner, never put in the keep-going summary, and never read in a joint session.",
+  "wkSave": "Save my review",
+  "wkOpen": "End-of-week review",
+  "wkSaved": "Your review is saved on {date}. The words stay on your side until you tick share.",
+  "wkLast": "The plan has reached its last day. This review is yours alone. Your partner fills their own on their side.",
+  "wkPlanTitle": "Keep-going plan",
+  "wkPlanEmpty": "No keep-going plan yet. On a joint day, when you are both here, you can agree on skills to keep, how often, and a check-in date about four weeks out. Only lines you each chose to share are used.",
+  "wkJointTitle": "Reviews you chose to share",
+  "wkJointHow": "Only the parts each person ticked are here. Together, agree on a short keep-going plan: which skills to keep, how often, and a date to check in, about four weeks from now.",
+  "wkJointLocked": "Tick that you are both here to see reviews you chose to share, and to agree on a keep-going plan.",
+  "wkJointEmpty": "No review lines were shared. Each person can write one on their own side and tick the parts they want seen here.",
+  "wkFrom": "{name} chose to share",
+  "wkSkillsLine": "Skills that helped: {list}",
+  "wkCommitLine": "Commitment: {text}",
+  "wkKeepH": "Agree on a keep-going plan",
+  "wkKeepSkills": "Skills to keep",
+  "wkKeepOften": "How often",
+  "wkKeepOftenBlank": "Choose how often",
+  "wkKeepOftenOwn": "Write how often",
+  "wkKeepDate": "Check-in date, about four weeks from now",
+  "wkKeepSave": "Save our keep-going plan",
+  "wkKeepNeed": "Choose at least one skill, how often, and a check-in date in the next few months.",
+  "wkAgreedSkills": "Skills to keep: {list}",
+  "wkAgreedOften": "How often: {often}",
+  "wkAgreedDate": "Check-in date: {date}",
+  "wkAgreedOn": "Agreed on {date}",
+  "wkChange": "To change this, open a joint day and tick that you are both here.",
+  "wkSharedMark": "A partner chose to share this skill.",
+  "wkCopy": "Copy the summary",
+  "wkCopied": "Copied. It stays on this device.",
+  "wkCopyFail": "The summary is in the box below. Select it and copy it if the button did not.",
+  "wkPrint": "Print the summary",
+  "wkSheetTitle": "Keep-going plan",
+  "wkSheetEmpty": "Nothing shared yet. Private reviews stay on each person's own side and are not in this summary.",
+  "wkSheetNote": "Saved on this device only. This summary leaves out anything a partner did not choose to share. Nothing here is sent to a server.",
+  "wkSheetDisc": "This is a self-help couples guide. It is not a licensed couples therapist and not a substitute for one. It does not diagnose and it does not suggest medication.",
+  "wkSeekTitle": "When to seek a licensed couples therapist",
+  "wkSeekBody": "A licensed couples therapist is the right person if the week felt the same or harder, or if there is fear, a threat, violence, or control. This guide is practice you choose. It is not a therapist, not a diagnosis, and not medication advice.",
+  "wkSeekScores": "These ratings did not move up, or some feel harder than when you first answered. A licensed couples therapist is the right next person. If you are afraid, or there has been a threat, violence, or control, use the numbers below and do not stay to finish an exercise. This is not a diagnosis and not medication advice.",
+  "wkSeekShared": "A shared rating did not move up, or feels harder than at the start. A licensed couples therapist is the right next person. If there is fear, a threat, violence, or control, use the numbers below. This is not a diagnosis and not medication advice.",
+  "wkScoreLine": "{heading} — {sentence} ({when} {base}, {nowLabel} {now})",
+  "wkSkillList": [
+    { "id": "timer", "label": "Speaker–listener timer" },
+    { "id": "nice", "label": "Nice-things log" },
+    { "id": "soft", "label": "Soft start-up" },
+    { "id": "timeout", "label": "Time-out and repair" },
+    { "id": "rituals", "label": "Rituals of connection" }
+  ],
+  "wkOftens": [
+    { "id": "daily", "label": "Most days" },
+    { "id": "few", "label": "A few times a week" },
+    { "id": "once", "label": "Once a week" },
+    { "id": "own", "label": "Another rhythm I will write" }
+  ],
   "hitSample": "he hits me when he is angry",
   "safeSample": "we argue about dishes and bills",
   "questions": [
@@ -676,7 +747,16 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
     "will not let me leave",
     "doesnt let me leave",
     "domestic violence",
-    "abusive"
+    "abusive",
+    "controls me",
+    "controlling me",
+    "coercive control",
+    "wont let me see my family",
+    "wont let me see my friends",
+    "will not let me see my family",
+    "isolates me from",
+    "tracks my phone",
+    "monitors my phone"
   ],
   "days": [
     {
@@ -749,7 +829,7 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
   function loadProgram() { return loadJSON(K_PROGRAM, null); }
   function saveProgram(p) { saveJSON(K_PROGRAM, p); }
 
-  var state = { view: "home", dayId: null, crisis: null, hold: false, guideText: "", guide: null, pad: "", pst: {}, check: null, result: null, formError: "", confirmClear: false, cplErr: "", cplReset: false, cplNiceDraft: "", cplNiceErr: "", cplSoftDraft: { what: "", feel: "", feelPick: "", ask: "" }, cplSoftErr: "", cplToDraft: null, cplToDraftOwner: "", cplToErr: "", cplPauseErr: "", pauseRepairPick: "", pauseRepairOwn: "", pauseRepairLine: "", cplPrErr: "", cplPrDraft: null, cplPrOwner: "", cplBaseDraft: null, cplBaseOwner: "", cplRitDraft: null, cplRitOwner: "", cplRitErr: "", cplRitPick: "", cplRitAgreeErr: "" };
+  var state = { view: "home", dayId: null, crisis: null, hold: false, guideText: "", guide: null, pad: "", pst: {}, check: null, result: null, formError: "", confirmClear: false, cplErr: "", cplReset: false, cplNiceDraft: "", cplNiceErr: "", cplSoftDraft: { what: "", feel: "", feelPick: "", ask: "" }, cplSoftErr: "", cplToDraft: null, cplToDraftOwner: "", cplToErr: "", cplPauseErr: "", pauseRepairPick: "", pauseRepairOwn: "", pauseRepairLine: "", cplPrErr: "", cplPrDraft: null, cplPrOwner: "", cplBaseDraft: null, cplBaseOwner: "", cplRitDraft: null, cplRitOwner: "", cplRitErr: "", cplRitPick: "", cplRitAgreeErr: "", cplWkDraft: null, cplWkOwner: "", cplWkErr: "", cplKeepDraft: null, cplKeepTouched: false, cplKeepErr: "", cplWkCopied: "" };
   var breath = { running: false, timer: null, mode: "468", phaseIdx: 0, left: 4, cycle: 0, totalCycles: 5, dayId: null, finishedMsg: "" };
   var slClock = null;
   var slTurn = { running: false, left: 180, done: false };
@@ -1474,7 +1554,7 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
   }
 
   function cplBlank() {
-    return { answers: ["", "", "", "", "", "", "", ""], done: false, doneAt: null, qi: 0, notes: {}, nice: [], soft: [], baseline: null, progress: [], rituals: [] };
+    return { answers: ["", "", "", "", "", "", "", ""], done: false, doneAt: null, qi: 0, notes: {}, nice: [], soft: [], baseline: null, progress: [], rituals: [], wrap: null };
   }
   function loadCplMeta() {
     var m = loadJSON(K_CPL_META, null) || {};
@@ -1498,6 +1578,7 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
     rec.baseline = normalizeBaseline(rec.baseline);
     rec.progress = normalizeProgress(rec.progress);
     rec.rituals = normalizeRituals(rec.rituals);
+    rec.wrap = normalizeWrap(rec.wrap);
     return rec;
   }
   function saveCplSide(which, rec) { saveJSON(which === "b" ? K_CPL_B : K_CPL_A, rec); }
@@ -1858,6 +1939,8 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
     clearProgressDraft();
     clearBaseDraft();
     clearRitDraft();
+    clearWrapDraft();
+    clearKeepDraft();
     stopPause();
   }
   function scrubSide(which) {
@@ -1913,6 +1996,11 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
       else keptRit.push(ritList[i]);
     }
     rec.rituals = keptRit;
+    if (rec.wrap) {
+      var wr = wrapRisk(rec.wrap);
+      if (wr === "crisis") { rec.wrap = null; hitC = true; }
+      else if (wr === "violence") { rec.wrap = null; hitV = true; }
+    }
     saveCplSide(which, rec);
     return { hitV: hitV, hitC: hitC };
   }
@@ -1935,6 +2023,8 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
     clearProgressDraft();
     clearBaseDraft();
     clearRitDraft();
+    clearWrapDraft();
+    clearKeepDraft();
     stopPause();
     if (!skipRender) render();
   }
@@ -2590,6 +2680,22 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
       if (ritHit === "crisis") { clearRitDraft(); enterSafety(meta, true); triggerCrisis("text"); return "stop"; }
       if (ritHit === "violence") { clearRitDraft(); enterSafety(meta); return "stop"; }
     }
+    var wkCommit = readCplBox("cpl-wk-commit");
+    if (wkCommit != null) {
+      var wkDraft = ensureWrapDraft(meta);
+      wkDraft.commitment = prClean(wkCommit);
+      var wkHit = progressTextRisk(wkDraft.commitment);
+      if (wkHit === "crisis") { clearWrapDraft(); enterSafety(meta, true); triggerCrisis("text"); return "stop"; }
+      if (wkHit === "violence") { clearWrapDraft(); enterSafety(meta); return "stop"; }
+    }
+    var wkOftenOwn = readCplBox("cpl-wk-often-own");
+    if (wkOftenOwn != null) {
+      var keepDraft = ensureKeepDraft();
+      keepDraft.oftenOwn = prClean(wkOftenOwn).slice(0, 80);
+      var keepHit = progressTextRisk(keepDraft.oftenOwn);
+      if (keepHit === "crisis") { clearKeepDraft(); enterSafety(meta, true); triggerCrisis("text"); return "stop"; }
+      if (keepHit === "violence") { clearKeepDraft(); enterSafety(meta); return "stop"; }
+    }
     return "ok";
   }
   function viewCplSetup(meta) {
@@ -2696,6 +2802,7 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
       toStatusHTML(meta) +
       progressPlanHTML(meta) +
       ritualPlanHTML(meta) +
+      wrapPlanHTML(meta) +
       niceCountsHTML(meta, plan) +
       (softFeatureOn(meta) ? softOpenButton() : "") +
       '<button type="button" class="btn secondary block" data-action="cpl-reopen-sum">' + esc(CPL.reopenSum) + "</button>" +
@@ -2787,6 +2894,7 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
     var softHTML = def.mode === "joint" ? softJointCard(meta, !!day.bothHere) : softPrivateCard(meta);
     var prHTML = def.mode === "joint" ? progressJointCard(meta, !!day.bothHere) : progressOpenButton(meta);
     var ritHTML = def.mode === "joint" ? ritualJointCard(meta, !!day.bothHere) : ritualOpenButton(meta);
+    var wkHTML = def.mode === "joint" ? wrapJointCard(meta, !!day.bothHere) : "";
     return head + sumHTML +
       "<h2>" + esc(CPL.lessonH) + "</h2><p>" + esc(def.lesson) + "</p>" +
       "<h2>" + esc(CPL.exerciseH) + "</h2><p>" + esc(def.exercise) + "</p>" +
@@ -2798,6 +2906,7 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
       niceHTML +
       prHTML +
       ritHTML +
+      wkHTML +
       '<label class="field">' + esc(def.mode === "joint" ? CPL.jointNote : CPL.noteLabel) +
       '<textarea id="cpl-note" data-cpl="note" data-day="' + esc(def.id) + '">' + esc(note) + "</textarea></label>" +
       (state.cplErr ? '<p class="err">' + esc(state.cplErr) + "</p>" : "") +
@@ -2825,10 +2934,7 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
       "<p>" + esc(CPL.prTherapist) + "</p>" +
       "<p><strong>" + esc(CPL.safetyLeave) + "</strong></p>" +
       "<p><strong>" + esc(CPL.toNotForViolence) + "</strong></p>" +
-      '<a class="call" href="tel:100"><span>' + esc(CPL.policeLabel) + "</span><b>100</b></a>" +
-      '<a class="call" href="tel:1201"><span>' + esc(CPL.eranShort) + "</span><b>1201</b></a>" +
-      '<a class="call" href="tel:101"><span>' + esc(C.ui.emergencyLabel) + "</span><b>101</b></a>" +
-      "<p>" + esc(CPL.safetyCall) + "</p>" +
+      safetyCallsHTML() +
       '<p class="disclaimer">' + esc(CPL.disc) + "</p>" +
       cplResetBlock() + "</section>";
   }
@@ -3729,6 +3835,613 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
       '<p><button type="button" class="btn secondary block" data-action="' + backAction + '">' + esc(backLabel) + "</button></p>";
   }
 
+  function safetyCallsHTML() {
+    return '<a class="call" href="tel:100"><span>' + esc(CPL.policeLabel) + "</span><b>100</b></a>" +
+      '<a class="call" href="tel:1201"><span>' + esc(CPL.eranShort) + "</span><b>1201</b></a>" +
+      '<a class="call" href="tel:101"><span>' + esc(C.ui.emergencyLabel) + "</span><b>101</b></a>" +
+      "<p>" + esc(CPL.safetyCall) + "</p>";
+  }
+  function wkSkillIds() {
+    var list = CPL.wkSkillList || [];
+    var out = [];
+    var i;
+    for (i = 0; i < list.length; i++) out.push(list[i].id);
+    return out;
+  }
+  function normalizeWrapSkills(list) {
+    var want = {};
+    var i;
+    if (Array.isArray(list)) {
+      for (i = 0; i < list.length; i++) want[String(list[i])] = true;
+    }
+    var ids = wkSkillIds();
+    var out = [];
+    for (i = 0; i < ids.length; i++) if (want[ids[i]]) out.push(ids[i]);
+    return out;
+  }
+  function wkSkillLabel(id) {
+    var list = CPL.wkSkillList || [];
+    var i;
+    for (i = 0; i < list.length; i++) if (list[i].id === id) return list[i].label;
+    return "";
+  }
+  function wkSkillLabels(ids) {
+    var out = [];
+    var i;
+    for (i = 0; i < ids.length; i++) {
+      var label = wkSkillLabel(ids[i]);
+      if (label) out.push(label);
+    }
+    return out.join(", ");
+  }
+  function wkOftenById(id) {
+    var list = CPL.wkOftens || [];
+    var i;
+    for (i = 0; i < list.length; i++) if (list[i].id === id) return list[i];
+    return null;
+  }
+  function normalizeWrap(raw) {
+    if (!raw || typeof raw !== "object" || Array.isArray(raw)) return null;
+    var now = normalizeBaseline(raw.now);
+    var date = String(raw.date || "");
+    var commitment = prClean(raw.commitment);
+    var skills = normalizeWrapSkills(raw.skills);
+    if (!now || !/^\d{4}-\d{2}-\d{2}$/.test(date) || commitment.length < 2) return null;
+    if (skills.length < 1 || skills.length > 3) return null;
+    return {
+      date: date,
+      now: now,
+      skills: skills,
+      commitment: commitment,
+      shareScores: raw.shareScores === true,
+      shareSkills: raw.shareSkills === true,
+      shareCommitment: raw.shareCommitment === true,
+      seeded: raw.seeded === "progress" ? "progress" : ""
+    };
+  }
+  function clearWrapDraft() {
+    state.cplWkDraft = null;
+    state.cplWkOwner = "";
+    state.cplWkErr = "";
+  }
+  function clearKeepDraft() {
+    state.cplKeepDraft = null;
+    state.cplKeepTouched = false;
+    state.cplKeepErr = "";
+    state.cplWkCopied = "";
+  }
+  function wrapSide(meta) {
+    return meta && meta.active === "b" ? "b" : "a";
+  }
+  function wrapFeatureOn(meta) {
+    return !state.hold && !state.crisis && meta && !meta.safety;
+  }
+  function wrapLastStage(plan) {
+    if (!plan || !plan.days || !plan.days.length) return false;
+    return todayIndex(plan, jerusalemToday()) >= plan.days.length - 1;
+  }
+  function wrapRisk(wrap) {
+    if (!wrap) return "";
+    return progressTextRisk(String(wrap.commitment || ""));
+  }
+  function wrapSeedScores(rec) {
+    var last = rec && rec.progress && rec.progress.length ? rec.progress[rec.progress.length - 1] : null;
+    if (last && last.now) return { now: copyScores(last.now), seeded: "progress" };
+    if (rec && rec.baseline) return { now: copyScores(rec.baseline), seeded: "baseline" };
+    return { now: blankScores(), seeded: "blank" };
+  }
+function wrapNeedsTherapist(baseline, now) {
+  if (!baseline || !now) return false;
+  var i;
+  for (i = 0; i < PR_IDS.length; i++) {
+    if (Number(now[PR_IDS[i]]) <= Number(baseline[PR_IDS[i]])) return true;
+  }
+  return false;
+}
+  function wrapRatingsReady(rec, draft) {
+    if (rec && rec.wrap) return true;
+    if (!draft) return false;
+    if (draft.seeded === "progress") return true;
+    if (!rec || !rec.baseline) return false;
+    var i;
+    for (i = 0; i < PR_IDS.length; i++) {
+      if (Number(draft.now[PR_IDS[i]]) !== Number(rec.baseline[PR_IDS[i]])) return true;
+    }
+    return false;
+  }
+  function ensureWrapDraft(meta) {
+    var side = wrapSide(meta);
+    if (state.cplWkDraft && state.cplWkOwner === side) return state.cplWkDraft;
+    var rec = loadCplSide(side);
+    if (rec.wrap) {
+      state.cplWkDraft = {
+        now: copyScores(rec.wrap.now),
+        skills: rec.wrap.skills.slice(),
+        commitment: rec.wrap.commitment,
+        shareScores: rec.wrap.shareScores === true,
+        shareSkills: rec.wrap.shareSkills === true,
+        shareCommitment: rec.wrap.shareCommitment === true,
+        seeded: rec.wrap.seeded || ""
+      };
+    } else {
+      var seed = wrapSeedScores(rec);
+      state.cplWkDraft = {
+        now: seed.now,
+        skills: [],
+        commitment: "",
+        shareScores: false,
+        shareSkills: false,
+        shareCommitment: false,
+        seeded: seed.seeded
+      };
+    }
+    state.cplWkOwner = side;
+    return state.cplWkDraft;
+  }
+  function sharedSkillIds() {
+    var want = {};
+    var sides = ["a", "b"];
+    var s;
+    var i;
+    for (s = 0; s < sides.length; s++) {
+      var w = loadCplSide(sides[s]).wrap;
+      if (!w || w.shareSkills !== true) continue;
+      for (i = 0; i < w.skills.length; i++) want[w.skills[i]] = true;
+    }
+    return normalizeWrapSkills(Object.keys(want));
+  }
+  function ensureKeepDraft() {
+    var agreed = agreedKeepOf(loadCplPlan());
+    var suggested = sharedSkillIds();
+    if (!state.cplKeepDraft) {
+      state.cplKeepDraft = agreed ? {
+        skills: agreed.skills.slice(),
+        oftenId: agreed.oftenId || "once",
+        oftenOwn: agreed.oftenId === "own" ? agreed.often : "",
+        checkIn: agreed.checkIn
+      } : {
+        skills: suggested,
+        oftenId: "once",
+        oftenOwn: "",
+        checkIn: addDaysISO(jerusalemToday(), 28)
+      };
+      state.cplKeepTouched = false;
+    } else if (!state.cplKeepTouched && !agreed) {
+      state.cplKeepDraft.skills = suggested;
+    }
+    return state.cplKeepDraft;
+  }
+  function wrapScoreLines(rec, now) {
+    var areas = CPL.prAreas || [];
+    var lines = [];
+    var i;
+    for (i = 0; i < areas.length; i++) {
+      var heading = areas[i].heading;
+      var n = now[areas[i].id];
+      if (!rec.baseline) {
+        lines.push(heading + ": " + n);
+        continue;
+      }
+      var base = rec.baseline[areas[i].id];
+      var sentence = n > base ? CPL.prUp : n < base ? CPL.prDown : CPL.prFlat;
+      lines.push(fill(CPL.wkScoreLine, {
+        heading: heading,
+        sentence: sentence,
+        when: CPL.prWhen,
+        base: base,
+        nowLabel: CPL.prNowShort,
+        now: n
+      }));
+    }
+    return lines;
+  }
+  function wrapSharedBits(side) {
+    var rec = loadCplSide(side);
+    var w = rec.wrap;
+    if (!w) return [];
+    var bits = [];
+    if (w.shareScores === true) bits = bits.concat(wrapScoreLines(rec, w.now));
+    if (w.shareSkills === true && w.skills.length) bits.push(fill(CPL.wkSkillsLine, { list: wkSkillLabels(w.skills) }));
+    if (w.shareCommitment === true && w.commitment) bits.push(fill(CPL.wkCommitLine, { text: w.commitment }));
+    return bits;
+  }
+  function wrapSharedNeedsTherapist() {
+    var sides = ["a", "b"];
+    var s;
+    for (s = 0; s < sides.length; s++) {
+      var rec = loadCplSide(sides[s]);
+      if (!rec.wrap || rec.wrap.shareScores !== true) continue;
+      if (wrapNeedsTherapist(rec.baseline, rec.wrap.now)) return true;
+    }
+    return false;
+  }
+  function wkDateOk(iso) {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(String(iso || ""))) return false;
+    var today = jerusalemToday();
+    if (iso < today) return false;
+    return iso <= addDaysISO(today, 120);
+  }
+  function agreedKeepOf(plan) {
+    if (!plan || !plan.keep || typeof plan.keep !== "object") return null;
+    var skills = normalizeWrapSkills(plan.keep.skills);
+    var oftenMeta = wkOftenById(plan.keep.oftenId);
+    var oftenId = oftenMeta ? oftenMeta.id : "";
+    var often = oftenId && oftenId !== "own" ? oftenMeta.label : prClean(plan.keep.often).slice(0, 80);
+    var checkIn = String(plan.keep.checkIn || "");
+    if (!skills.length || !often || often.length < 2 || !/^\d{4}-\d{2}-\d{2}$/.test(checkIn)) return null;
+    return {
+      skills: skills,
+      oftenId: oftenId,
+      often: often,
+      checkIn: checkIn,
+      agreedOn: String(plan.keep.agreedOn || "")
+    };
+  }
+  function keepSummaryText(meta) {
+    var lines = [CPL.wkSheetTitle, CPL.wkSheetDisc, ""];
+    var any = false;
+    var groups = [["a", meta && meta.aName], ["b", meta && meta.bName]];
+    var g;
+    for (g = 0; g < groups.length; g++) {
+      var bits = wrapSharedBits(groups[g][0]);
+      if (!bits.length) continue;
+      any = true;
+      lines.push(fill(CPL.wkFrom, { name: groups[g][1] || CPL.noname }));
+      var i;
+      for (i = 0; i < bits.length; i++) lines.push(bits[i]);
+      lines.push("");
+    }
+    var agreed = agreedKeepOf(loadCplPlan());
+    if (agreed) {
+      any = true;
+      lines.push(CPL.wkPlanTitle);
+      lines.push(fill(CPL.wkAgreedSkills, { list: wkSkillLabels(agreed.skills) }));
+      lines.push(fill(CPL.wkAgreedOften, { often: agreed.often }));
+      lines.push(fill(CPL.wkAgreedDate, { date: agreed.checkIn }));
+      if (agreed.agreedOn) lines.push(fill(CPL.wkAgreedOn, { date: agreed.agreedOn }));
+      lines.push("");
+    }
+    if (!any) {
+      lines.push(CPL.wkSheetEmpty);
+      lines.push("");
+    }
+    lines.push(CPL.wkSeekTitle);
+    if (wrapSharedNeedsTherapist()) {
+      lines.push(CPL.wkSeekShared);
+      lines.push(CPL.policeLabel + ": 100");
+      lines.push(CPL.eranShort + ": 1201");
+      lines.push(CPL.safetyCall);
+    } else lines.push(CPL.wkSeekBody);
+    lines.push("");
+    lines.push(CPL.wkSheetNote);
+    return lines.join("\n");
+  }
+  function scrubWrapSide(which) {
+    var rec = loadCplSide(which);
+    if (!rec.wrap) return { hitV: false, hitC: false };
+    var risk = wrapRisk(rec.wrap);
+    if (!risk) return { hitV: false, hitC: false };
+    rec.wrap = null;
+    saveCplSide(which, rec);
+    return { hitV: risk === "violence", hitC: risk === "crisis" };
+  }
+  function absorbWrapRisk() {
+    var a = scrubWrapSide("a");
+    var b = scrubWrapSide("b");
+    var planHit = "";
+    var plan = loadCplPlan();
+    if (plan && plan.keep) {
+      planHit = progressTextRisk(String(plan.keep.often || ""));
+      if (planHit) {
+        plan.keep = null;
+        saveJSON(K_CPL_PLAN, plan);
+      }
+    }
+    if (a.hitC || b.hitC || planHit === "crisis") return "crisis";
+    if (a.hitV || b.hitV || planHit === "violence") return "violence";
+    return "";
+  }
+  function readWrapFields(meta) {
+    var d = ensureWrapDraft(meta);
+    var now = copyScores(d.now);
+    var skills = d.skills.slice();
+    var commitment = d.commitment || "";
+    var shareScores = d.shareScores === true;
+    var shareSkills = d.shareSkills === true;
+    var shareCommitment = d.shareCommitment === true;
+    if (typeof document !== "undefined") {
+      var nodes = document.querySelectorAll("[data-cpl='wk-score']");
+      var i;
+      if (nodes && nodes.length) {
+        for (i = 0; i < nodes.length; i++) {
+          var id = nodes[i].getAttribute("data-area");
+          if (progressAreaById(id)) now[id] = prClamp(nodes[i].value);
+        }
+      }
+      var skillNodes = document.querySelectorAll("[data-cpl='wk-skill']");
+      if (skillNodes && skillNodes.length) {
+        skills = [];
+        for (i = 0; i < skillNodes.length; i++) if (skillNodes[i].checked) skills.push(skillNodes[i].value);
+      }
+      var box = readCplBox("cpl-wk-commit");
+      if (box != null) commitment = box;
+      var ss = document.getElementById("cpl-wk-share-scores");
+      var sk = document.getElementById("cpl-wk-share-skills");
+      var sc = document.getElementById("cpl-wk-share-commit");
+      if (ss) shareScores = !!ss.checked;
+      if (sk) shareSkills = !!sk.checked;
+      if (sc) shareCommitment = !!sc.checked;
+    }
+    return {
+      now: now,
+      skills: normalizeWrapSkills(skills),
+      commitment: prClean(commitment),
+      shareScores: shareScores,
+      shareSkills: shareSkills,
+      shareCommitment: shareCommitment,
+      seeded: d.seeded || ""
+    };
+  }
+  function commitWrap(meta) {
+    if (!wrapFeatureOn(meta)) return "stop";
+    var fields = readWrapFields(meta);
+    state.cplWkDraft = {
+      now: fields.now,
+      skills: fields.skills.slice(),
+      commitment: fields.commitment,
+      shareScores: fields.shareScores,
+      shareSkills: fields.shareSkills,
+      shareCommitment: fields.shareCommitment,
+      seeded: fields.seeded
+    };
+    state.cplWkOwner = wrapSide(meta);
+    var risk = progressTextRisk(fields.commitment);
+    if (risk === "crisis") { clearWrapDraft(); enterSafety(meta, true); triggerCrisis("text"); return "stop"; }
+    if (risk === "violence") { clearWrapDraft(); enterSafety(meta); return "stop"; }
+    if (fields.skills.length < 1 || fields.skills.length > 3) return "skills";
+    if (fields.commitment.length < 2) return "short";
+    var side = wrapSide(meta);
+    var rec = loadCplSide(side);
+    rec.wrap = {
+      date: jerusalemToday(),
+      now: copyScores(fields.now),
+      skills: fields.skills.slice(),
+      commitment: fields.commitment,
+      shareScores: !!fields.shareScores,
+      shareSkills: !!fields.shareSkills,
+      shareCommitment: !!fields.shareCommitment,
+      seeded: fields.seeded === "progress" ? "progress" : ""
+    };
+    saveCplSide(side, rec);
+    clearWrapDraft();
+    return "ok";
+  }
+  function setWrapShare(meta, part, on) {
+    if (!wrapFeatureOn(meta)) return;
+    var draft = ensureWrapDraft(meta);
+    var flag = !!on;
+    if (part === "scores") draft.shareScores = flag;
+    else if (part === "skills") draft.shareSkills = flag;
+    else if (part === "commitment") draft.shareCommitment = flag;
+    else return;
+    var side = wrapSide(meta);
+    var rec = loadCplSide(side);
+    if (!rec.wrap) return;
+    if (part === "scores") rec.wrap.shareScores = flag;
+    else if (part === "skills") rec.wrap.shareSkills = flag;
+    else rec.wrap.shareCommitment = flag;
+    saveCplSide(side, rec);
+  }
+  function readKeepFields() {
+    var d = ensureKeepDraft();
+    var skills = d.skills.slice();
+    var oftenId = d.oftenId || "";
+    var oftenOwn = d.oftenOwn || "";
+    var checkIn = d.checkIn || addDaysISO(jerusalemToday(), 28);
+    if (typeof document === "undefined") return { skills: skills, oftenId: oftenId, oftenOwn: oftenOwn, checkIn: checkIn };
+    var boxes = document.querySelectorAll("[data-cpl='wk-keep-skill']");
+    var i;
+    if (boxes && boxes.length) {
+      skills = [];
+      for (i = 0; i < boxes.length; i++) if (boxes[i].checked) skills.push(boxes[i].value);
+    }
+    var often = document.getElementById("cpl-wk-often");
+    if (often) oftenId = String(often.value || "");
+    var own = document.getElementById("cpl-wk-often-own");
+    if (own) oftenOwn = prClean(own.value).slice(0, 80);
+    var date = document.getElementById("cpl-wk-date");
+    if (date && date.value) checkIn = String(date.value);
+    return { skills: skills, oftenId: oftenId, oftenOwn: oftenOwn, checkIn: checkIn };
+  }
+  function agreeKeep(meta) {
+    if (!wrapFeatureOn(meta) || !jointSessionOpen(meta)) return "stop";
+    var plan = loadCplPlan();
+    var foundDay = cplDayDef(meta.openDay);
+    if (!plan || !foundDay || foundDay.def.mode !== "joint") return "stop";
+    var day = null;
+    var i;
+    for (i = 0; i < plan.days.length; i++) if (plan.days[i].id === foundDay.def.id) day = plan.days[i];
+    if (!day || !day.bothHere) return "needboth";
+    var fields = readKeepFields();
+    state.cplKeepDraft = fields;
+    state.cplKeepTouched = true;
+    var risk = progressTextRisk(fields.oftenOwn || "");
+    if (risk === "crisis") { clearKeepDraft(); enterSafety(meta, true); triggerCrisis("text"); return "stop"; }
+    if (risk === "violence") { clearKeepDraft(); enterSafety(meta); return "stop"; }
+    var skills = normalizeWrapSkills(fields.skills);
+    var oftenMeta = wkOftenById(fields.oftenId);
+    var often = "";
+    if (oftenMeta && oftenMeta.id === "own") often = prClean(fields.oftenOwn).slice(0, 80);
+    else if (oftenMeta) often = oftenMeta.label;
+    if (!skills.length || !often || often.length < 2 || !wkDateOk(fields.checkIn)) return "short";
+    plan.keep = {
+      skills: skills,
+      oftenId: oftenMeta.id,
+      often: often,
+      checkIn: fields.checkIn,
+      agreedOn: jerusalemToday()
+    };
+    saveJSON(K_CPL_PLAN, plan);
+    clearKeepDraft();
+    return "ok";
+  }
+  function copyKeepFallback(text) {
+    try {
+      if (typeof document === "undefined") return false;
+      var ta = document.createElement("textarea");
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      var ok = document.execCommand("copy");
+      document.body.removeChild(ta);
+      return !!ok;
+    } catch (e) { return false; }
+  }
+  function copyKeepSummary(meta) {
+    var text = keepSummaryText(meta);
+    function mark(ok) {
+      state.cplWkCopied = ok ? "ok" : "fail";
+      render();
+    }
+    if (typeof navigator !== "undefined" && navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () { mark(true); }, function () { mark(copyKeepFallback(text)); });
+      return;
+    }
+    mark(copyKeepFallback(text));
+  }
+  function printKeepSummary() {
+    if (typeof document === "undefined" || typeof window === "undefined" || !window.print) return;
+    document.body.classList.add("print-keep");
+    try { window.print(); } catch (e) {}
+    document.body.classList.remove("print-keep");
+  }
+  function wrapSeekBlock(showCard, shared) {
+    var body = showCard ? (shared ? CPL.wkSeekShared : CPL.wkSeekScores) : CPL.wkSeekBody;
+    return '<section class="cpl-wk-seek"><h2>' + esc(CPL.wkSeekTitle) + "</h2><p>" + esc(body) + "</p>" +
+      (showCard ? safetyCallsHTML() : "") + "</section>";
+  }
+  function wrapSheetHTML(meta) {
+    var copied = state.cplWkCopied === "ok" ? '<p class="okbox no-print">' + esc(CPL.wkCopied) + "</p>" : (state.cplWkCopied === "fail" ? '<p class="err no-print">' + esc(CPL.wkCopyFail) + "</p>" : "");
+    return '<pre class="cpl-wk-sheet" id="cpl-keep-sheet">' + esc(keepSummaryText(meta)) + "</pre>" + copied +
+      '<div class="stack no-print">' +
+      '<button type="button" class="btn secondary block" data-action="cpl-wk-copy">' + esc(CPL.wkCopy) + "</button>" +
+      '<button type="button" class="btn secondary block" data-action="cpl-wk-print">' + esc(CPL.wkPrint) + "</button></div>";
+  }
+  function wrapAreasHTML(meta, scores) {
+    var rec = loadCplSide(wrapSide(meta));
+    var areas = CPL.prAreas || [];
+    var html = "";
+    var i;
+    for (i = 0; i < areas.length; i++) {
+      var area = areas[i];
+      var val = scores && scores[area.id] != null ? prClamp(scores[area.id]) : 5;
+      var clip = cplClip((rec.answers || [])[area.qi] || "");
+      var baseLine = rec.baseline ? '<p class="muted">' + esc(CPL.prWhen) + " · " + rec.baseline[area.id] + "</p>" : "";
+      html += '<div class="cpl-pr-area"><p><strong>' + esc(area.heading) + "</strong></p>" +
+        '<p class="muted">' + esc(fill(CPL.prYouWrote, { text: clip })) + "</p>" + baseLine +
+        '<label class="field">' + esc(CPL.prNow) +
+        '<span class="cpl-pr-slider"><input type="range" min="0" max="10" step="1" value="' + val + '" data-cpl="wk-score" data-area="' + esc(area.id) + '" id="cpl-wk-' + area.id + '" aria-valuemin="0" aria-valuemax="10" aria-valuenow="' + val + '">' +
+        '<span class="cpl-pr-val" id="cpl-wk-' + area.id + '-val">' + val + "</span></span></label></div>";
+    }
+    return html;
+  }
+  function wrapPlanHTML(meta) {
+    if (!wrapFeatureOn(meta) || !loadCplPlan()) return "";
+    var plan = loadCplPlan();
+    var agreed = agreedKeepOf(plan);
+    var mine = loadCplSide(wrapSide(meta)).wrap;
+    var due = wrapLastStage(plan) && !mine ? '<p class="cpl-wk-due">' + esc(CPL.wkLast) + "</p>" : "";
+    var saved = mine ? '<p class="muted">' + esc(fill(CPL.wkSaved, { date: mine.date })) + "</p>" : "";
+    var body = agreed
+      ? "<h2>" + esc(CPL.wkPlanTitle) + "</h2><p>" + esc(fill(CPL.wkAgreedSkills, { list: wkSkillLabels(agreed.skills) })) + "</p><p>" + esc(fill(CPL.wkAgreedOften, { often: agreed.often })) + "</p><p>" + esc(fill(CPL.wkAgreedDate, { date: agreed.checkIn })) + '</p><p class="muted">' + esc(CPL.wkChange) + "</p>"
+      : "<h2>" + esc(CPL.wkPlanTitle) + "</h2><p>" + esc(CPL.wkPlanEmpty) + "</p>";
+    return '<div class="cpl-wk-plan">' + due + saved + body + wrapSheetHTML(meta) +
+      '<button type="button" class="btn secondary block no-print" data-action="cpl-open-wrap">' + esc(CPL.wkOpen) + "</button>" +
+      wrapSeekBlock(wrapSharedNeedsTherapist(), true) + "</div>";
+  }
+  function keepFormHTML() {
+    var draft = ensureKeepDraft();
+    var shared = {};
+    var sides = ["a", "b"];
+    var s;
+    var i;
+    for (s = 0; s < sides.length; s++) {
+      var saved = loadCplSide(sides[s]).wrap;
+      if (!saved || saved.shareSkills !== true) continue;
+      for (i = 0; i < saved.skills.length; i++) shared[saved.skills[i]] = true;
+    }
+    var skills = (CPL.wkSkillList || []).map(function (skill) {
+      var on = draft.skills.indexOf(skill.id) !== -1;
+      var mark = shared[skill.id] ? '<p class="cpl-wk-mark">' + esc(CPL.wkSharedMark) + "</p>" : "";
+      return '<div class="cpl-wk-skill"><label class="check"><input type="checkbox" data-cpl="wk-keep-skill" value="' + esc(skill.id) + '"' + (on ? " checked" : "") + ">" + esc(skill.label) + "</label>" + mark + "</div>";
+    }).join("");
+    var whens = '<option value="">' + esc(CPL.wkKeepOftenBlank) + "</option>" + (CPL.wkOftens || []).map(function (w) {
+      return '<option value="' + esc(w.id) + '"' + (draft.oftenId === w.id ? " selected" : "") + ">" + esc(w.label) + "</option>";
+    }).join("");
+    var agreed = agreedKeepOf(loadCplPlan());
+    var agreedHTML = agreed ? '<p class="okbox">' + esc(fill(CPL.wkAgreedSkills, { list: wkSkillLabels(agreed.skills) })) + " " + esc(fill(CPL.wkAgreedOften, { often: agreed.often })) + " " + esc(fill(CPL.wkAgreedDate, { date: agreed.checkIn })) + "</p>" : "";
+    return "<h3>" + esc(CPL.wkKeepH) + "</h3>" + agreedHTML +
+      "<p><strong>" + esc(CPL.wkKeepSkills) + "</strong></p>" + skills +
+      '<label class="field">' + esc(CPL.wkKeepOften) + '<select id="cpl-wk-often" data-cpl="wk-often">' + whens + "</select></label>" +
+      '<label class="field">' + esc(CPL.wkKeepOftenOwn) + '<input type="text" id="cpl-wk-often-own" maxlength="80" data-cpl="wk-often-own" value="' + esc(draft.oftenOwn || "") + '"></label>' +
+      '<label class="field">' + esc(CPL.wkKeepDate) + '<input type="date" id="cpl-wk-date" data-cpl="wk-date" value="' + esc(draft.checkIn || "") + '"></label>' +
+      (state.cplKeepErr ? '<p class="err">' + esc(state.cplKeepErr) + "</p>" : "") +
+      '<button type="button" class="btn block" data-action="cpl-wk-agree">' + esc(CPL.wkKeepSave) + "</button>";
+  }
+  function wrapJointCard(meta, bothHere) {
+    if (!wrapFeatureOn(meta)) return "";
+    if (!bothHere) return '<div class="banner cpl-wk-shared"><h2>' + esc(CPL.wkJointTitle) + "</h2><p>" + esc(CPL.wkJointLocked) + "</p></div>";
+    var groups = [["a", meta.aName], ["b", meta.bName]];
+    var chunks = "";
+    var any = false;
+    var g;
+    for (g = 0; g < groups.length; g++) {
+      var bits = wrapSharedBits(groups[g][0]);
+      if (!bits.length) continue;
+      any = true;
+      var html = "";
+      var i;
+      for (i = 0; i < bits.length; i++) html += "<p>" + esc(bits[i]) + "</p>";
+      chunks += "<h3>" + esc(fill(CPL.wkFrom, { name: groups[g][1] || CPL.noname })) + "</h3>" + html;
+    }
+    var body = any ? chunks : "<p>" + esc(CPL.wkJointEmpty) + "</p>";
+    return '<div class="banner cpl-wk-shared"><h2>' + esc(CPL.wkJointTitle) + "</h2><p>" + esc(CPL.wkJointHow) + "</p>" +
+      '<p class="muted">' + esc(CPL.wkLesson) + "</p>" + body + keepFormHTML() + wrapSheetHTML(meta) +
+      wrapSeekBlock(wrapSharedNeedsTherapist(), true) + "</div>";
+  }
+  function viewCplWrap(meta) {
+    if (!wrapFeatureOn(meta)) return "";
+    var side = wrapSide(meta);
+    var name = nameOf(meta, side) || CPL.noname;
+    var rec = loadCplSide(side);
+    var draft = ensureWrapDraft(meta);
+    var seedNote = draft.seeded === "progress" ? CPL.wkFromProgress : (rec.baseline ? CPL.wkFromBase : CPL.wkNoBase);
+    var skills = (CPL.wkSkillList || []).map(function (skill) {
+      var on = draft.skills.indexOf(skill.id) !== -1;
+      return '<label class="check"><input type="checkbox" data-cpl="wk-skill" value="' + esc(skill.id) + '"' + (on ? " checked" : "") + ">" + esc(skill.label) + "</label>";
+    }).join("");
+    var compare = rec.baseline ? progressCompareHTML(rec, { now: draft.now }) : "";
+    var backAction = loadCplPlan() ? "cpl-back-plan" : "cpl-to-who";
+    var backLabel = loadCplPlan() ? CPL.backPlan : CPL.backWho;
+    return whoBanner(meta) + '<section class="card cpl-wk"><p class="kicker">' + esc(fill(CPL.wkKicker, { name: name })) + "</p><h1>" + esc(CPL.wkTitle) + "</h1>" +
+      "<p>" + esc(CPL.wkLesson) + "</p><p>" + esc(CPL.wkPrompt) + "</p><p>" + esc(seedNote) + "</p>" +
+      '<p class="muted">' + esc(CPL.prScale) + "</p>" +
+      wrapAreasHTML(meta, draft.now) + compare +
+      "<h2>" + esc(CPL.wkSkillsH) + "</h2><p class=\"muted\">" + esc(CPL.wkSkillsHint) + "</p>" + skills +
+      "<h2>" + esc(CPL.wkCommitH) + "</h2>" +
+      '<label class="field">' + esc(CPL.wkCommit) +
+      '<textarea id="cpl-wk-commit" class="cpl-wk-box" maxlength="240" data-cpl="wk-commit">' + esc(draft.commitment || "") + "</textarea></label>" +
+      '<label class="check"><input type="checkbox" id="cpl-wk-share-scores" data-cpl="wk-share" data-part="scores"' + (draft.shareScores ? " checked" : "") + ">" + esc(CPL.wkShareScores) + "</label>" +
+      '<label class="check"><input type="checkbox" id="cpl-wk-share-skills" data-cpl="wk-share" data-part="skills"' + (draft.shareSkills ? " checked" : "") + ">" + esc(CPL.wkShareSkills) + "</label>" +
+      '<label class="check"><input type="checkbox" id="cpl-wk-share-commit" data-cpl="wk-share" data-part="commitment"' + (draft.shareCommitment ? " checked" : "") + ">" + esc(CPL.wkShareCommit) + "</label>" +
+      '<p class="muted">' + esc(CPL.wkShareHint) + "</p>" +
+      (state.cplWkErr ? '<p class="err">' + esc(state.cplWkErr) + "</p>" : "") +
+      '<button type="button" class="btn block" data-action="cpl-wk-save">' + esc(CPL.wkSave) + "</button>" +
+      wrapSeekBlock(wrapRatingsReady(rec, draft) && wrapNeedsTherapist(rec.baseline, draft.now), false) +
+      "</section>" +
+      '<p class="no-print"><button type="button" class="btn secondary block" data-action="' + backAction + '">' + esc(backLabel) + "</button></p>";
+  }
+
   function viewCouples() {
     if (state.hold) return holdHTML();
     var meta = loadCplMeta();
@@ -3738,7 +4451,8 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
     var toRiskNow = absorbTimeoutRisk();
     var prRiskNow = absorbProgressRisk();
     var ritRiskNow = absorbRitualRisk();
-    var risk = (niceRiskNow === "crisis" || softRiskNow === "crisis" || toRiskNow === "crisis" || prRiskNow === "crisis" || ritRiskNow === "crisis") ? "crisis" : ((niceRiskNow === "violence" || softRiskNow === "violence" || toRiskNow === "violence" || prRiskNow === "violence" || ritRiskNow === "violence") ? "violence" : "");
+    var wkRiskNow = absorbWrapRisk();
+    var risk = (niceRiskNow === "crisis" || softRiskNow === "crisis" || toRiskNow === "crisis" || prRiskNow === "crisis" || ritRiskNow === "crisis" || wkRiskNow === "crisis") ? "crisis" : ((niceRiskNow === "violence" || softRiskNow === "violence" || toRiskNow === "violence" || prRiskNow === "violence" || ritRiskNow === "violence" || wkRiskNow === "violence") ? "violence" : "");
     if (risk === "crisis") { triggerCrisis("text"); return holdHTML(); }
     if (risk === "violence") { enterSafety(meta, true); return viewCplSafety(meta); }
     if (progressIsSharp("a") || progressIsSharp("b")) { enterSafety(meta, true); return viewCplSafety(meta); }
@@ -3753,6 +4467,7 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
     if (meta.screen === "baseline") return viewCplBaseline(meta);
     if (meta.screen === "progress") return viewCplProgress(meta);
     if (meta.screen === "rituals") return viewCplRituals(meta);
+    if (meta.screen === "wrap") return viewCplWrap(meta);
     if (meta.screen === "session") return viewCplSession(meta);
     if (meta.screen === "plan") return viewCplPlan(meta);
     return viewCplWho(meta);
@@ -3987,6 +4702,85 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
       setRitualTick(el.dataset.week, !!el.checked);
       return;
     }
+    if (kind === "wk-score") {
+      if (!wrapFeatureOn(meta)) return;
+      var wkArea = String(el.dataset.area || "");
+      if (!progressAreaById(wkArea)) return;
+      var wkScore = prClamp(el.value);
+      ensureWrapDraft(meta).now[wkArea] = wkScore;
+      var wkVal = document.getElementById(el.id + "-val");
+      if (wkVal) wkVal.textContent = String(wkScore);
+      el.setAttribute("aria-valuenow", String(wkScore));
+      return;
+    }
+    if (kind === "wk-skill") {
+      if (!wrapFeatureOn(meta)) return;
+      var wkDraftNow = ensureWrapDraft(meta);
+      var wkId = String(el.value || "");
+      var wkNext = [];
+      var wkI;
+      for (wkI = 0; wkI < wkDraftNow.skills.length; wkI++) if (wkDraftNow.skills[wkI] !== wkId) wkNext.push(wkDraftNow.skills[wkI]);
+      if (el.checked) {
+        if (wkNext.length >= 3) {
+          el.checked = false;
+          state.cplWkErr = CPL.wkFull;
+          render();
+          return;
+        }
+        wkNext.push(wkId);
+      }
+      wkDraftNow.skills = normalizeWrapSkills(wkNext);
+      state.cplWkErr = "";
+      return;
+    }
+    if (kind === "wk-commit") {
+      if (!wrapFeatureOn(meta)) return;
+      var wkTyped = prClean(el.value);
+      ensureWrapDraft(meta).commitment = wkTyped;
+      var wkTypedRisk = progressTextRisk(wkTyped);
+      if (wkTypedRisk === "crisis") { el.value = ""; clearWrapDraft(); enterSafety(meta, true); triggerCrisis("text"); return; }
+      if (wkTypedRisk === "violence") { el.value = ""; clearWrapDraft(); enterSafety(meta); return; }
+      return;
+    }
+    if (kind === "wk-share") {
+      if (!wrapFeatureOn(meta)) return;
+      setWrapShare(meta, el.dataset.part, !!el.checked);
+      return;
+    }
+    if (kind === "wk-keep-skill") {
+      if (!wrapFeatureOn(meta)) return;
+      var keepDraftNow = ensureKeepDraft();
+      state.cplKeepTouched = true;
+      var keepId = String(el.value || "");
+      var keepNext = [];
+      var keepI;
+      for (keepI = 0; keepI < keepDraftNow.skills.length; keepI++) if (keepDraftNow.skills[keepI] !== keepId) keepNext.push(keepDraftNow.skills[keepI]);
+      if (el.checked) keepNext.push(keepId);
+      keepDraftNow.skills = normalizeWrapSkills(keepNext);
+      return;
+    }
+    if (kind === "wk-often") {
+      if (!wrapFeatureOn(meta)) return;
+      ensureKeepDraft().oftenId = String(el.value || "");
+      state.cplKeepTouched = true;
+      return;
+    }
+    if (kind === "wk-often-own") {
+      if (!wrapFeatureOn(meta)) return;
+      var keepOwn = prClean(el.value).slice(0, 80);
+      ensureKeepDraft().oftenOwn = keepOwn;
+      state.cplKeepTouched = true;
+      var keepOwnRisk = progressTextRisk(keepOwn);
+      if (keepOwnRisk === "crisis") { el.value = ""; clearKeepDraft(); enterSafety(meta, true); triggerCrisis("text"); return; }
+      if (keepOwnRisk === "violence") { el.value = ""; clearKeepDraft(); enterSafety(meta); return; }
+      return;
+    }
+    if (kind === "wk-date") {
+      if (!wrapFeatureOn(meta)) return;
+      ensureKeepDraft().checkIn = String(el.value || "");
+      state.cplKeepTouched = true;
+      return;
+    }
     if (kind === "both") {
       var plan2 = loadCplPlan();
       if (!plan2) return;
@@ -4005,6 +4799,9 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
     if (action !== "cpl-pr-save") state.cplPrErr = "";
     if (action !== "cpl-rit-save") state.cplRitErr = "";
     if (action !== "cpl-rit-agree") state.cplRitAgreeErr = "";
+    if (action !== "cpl-wk-save") state.cplWkErr = "";
+    if (action !== "cpl-wk-agree") state.cplKeepErr = "";
+    if (action !== "cpl-wk-copy") state.cplWkCopied = "";
     if (action === "cpl-reset-ask") { state.cplReset = true; render(); return; }
     if (action === "cpl-reset-no") { state.cplReset = false; render(); return; }
     if (action === "cpl-reset-yes") { cplWipe(); render(); return; }
@@ -4044,9 +4841,10 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
       var stayTo = action === "cpl-switch" && meta.screen === "timeout";
       var stayPr = action === "cpl-switch" && meta.screen === "progress";
       var stayRit = action === "cpl-switch" && meta.screen === "rituals";
+      var stayWk = action === "cpl-switch" && meta.screen === "wrap";
       var staySession = action === "cpl-switch" && meta.screen === "session";
       meta.active = who;
-      meta.screen = stayNice ? "nice" : staySoft ? "soft" : stayTo ? "timeout" : stayPr ? "progress" : stayRit ? "rituals" : staySession ? "session" : screenFor(meta, who);
+      meta.screen = stayNice ? "nice" : staySoft ? "soft" : stayTo ? "timeout" : stayPr ? "progress" : stayRit ? "rituals" : stayWk ? "wrap" : staySession ? "session" : screenFor(meta, who);
       state.cplNiceDraft = "";
       state.cplNiceErr = "";
       clearSoftDraft();
@@ -4054,6 +4852,7 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
       clearProgressDraft();
       clearBaseDraft();
       clearRitDraft();
+      clearWrapDraft();
       state.pauseRepairPick = "";
       state.pauseRepairOwn = "";
       state.pauseRepairLine = "";
@@ -4226,6 +5025,41 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
       state.cplRitAgreeErr = "";
       render(); return;
     }
+    if (action === "cpl-open-wrap") {
+      if (!wrapFeatureOn(meta) || !loadCplPlan()) return;
+      if (applyGuardToCurrent(meta) === "stop") return;
+      meta.screen = "wrap";
+      saveCplMeta(meta);
+      render(); return;
+    }
+    if (action === "cpl-wk-save") {
+      if (!wrapFeatureOn(meta)) return;
+      var addedWk = commitWrap(meta);
+      if (addedWk === "stop") return;
+      if (addedWk === "skills") { state.cplWkErr = CPL.wkNeedSkills; render(); return; }
+      if (addedWk === "short") { state.cplWkErr = CPL.wkNeedCommit; render(); return; }
+      state.cplWkErr = "";
+      render(); return;
+    }
+    if (action === "cpl-wk-agree") {
+      if (!wrapFeatureOn(meta)) return;
+      var agreedWk = agreeKeep(meta);
+      if (agreedWk === "stop") return;
+      if (agreedWk === "needboth") { state.cplKeepErr = CPL.needBoth; render(); return; }
+      if (agreedWk === "short") { state.cplKeepErr = CPL.wkKeepNeed; render(); return; }
+      state.cplKeepErr = "";
+      render(); return;
+    }
+    if (action === "cpl-wk-copy") {
+      if (!wrapFeatureOn(meta)) return;
+      copyKeepSummary(meta);
+      return;
+    }
+    if (action === "cpl-wk-print") {
+      if (!wrapFeatureOn(meta)) return;
+      printKeepSummary();
+      return;
+    }
     if (action === "cpl-review") { meta.screen = "review"; saveCplMeta(meta); render(); return; }
     if (action === "cpl-start-plan") {
       if (!loadCplSide("a").done || !loadCplSide("b").done) return;
@@ -4316,6 +5150,10 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
       day.completedAt = new Date().toISOString();
       saveJSON(K_CPL_PLAN, plan);
       state.cplErr = "";
+      if (found.index >= plan.days.length - 1 && wrapFeatureOn(meta)) {
+        meta.screen = "wrap";
+        saveCplMeta(meta);
+      }
       render(); return;
     }
   }
@@ -5318,6 +6156,228 @@ var C = {"prefix":"nafs_en","norm":"en","locale":"en","dir":"ltr","htmlLang":"en
     stopPause();
     stopSlTurn();
     try { localStorage.removeItem(K_PENDING); } catch (eRit3) {}
+    cplWipe();
+    state.hold = false;
+    state.crisis = null;
+    clearWrapDraft();
+    clearKeepDraft();
+    eq(cplViolent("he controls me") === true, "control phrase");
+    eq(cplViolent("coercive control at home") === true, "coercive control");
+    eq(cplViolent("I will control my temper") === false, "temper is not control");
+    eq(cplViolent(CPL.safeSample) === false, "safe sample still safe");
+    saveJSON(K_CPL_A, { answers: ["a1", "a2", "a3", "a4", "a5", "a6", "a7", "a8"], done: true, qi: 0, notes: { c1: "kept note" }, nice: [{ id: "n1", text: "tea", date: "2026-10-01", share: false }] });
+    var oldSide = loadCplSide("a");
+    eq(oldSide.wrap == null, "old save has no review");
+    eq(oldSide.notes.c1 === "kept note", "old note kept");
+    eq(oldSide.nice.length === 1 && oldSide.nice[0].text === "tea", "old nice kept");
+    eq(loadJSON(K_CPL_A, {}).wrap == null && loadJSON(K_CPL_A, {}).notes.c1 === "kept note", "loading does not rewrite an old save");
+    var baseOnly = cplBlank();
+    baseOnly.done = true;
+    baseOnly.baseline = { topic: 5, start: 5, hurt: 5, ask: 5 };
+    saveCplSide("a", baseOnly);
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "a", screen: "wrap", safety: false });
+    clearWrapDraft();
+    var baseView = viewCouples();
+    eq(baseView.indexOf(CPL.wkFromBase) !== -1, "baseline is the starting rating");
+    eq(baseView.indexOf('href="tel:100"') === -1 && baseView.indexOf(CPL.wkSeekTitle) !== -1, "the first look explains when to seek help");
+    state.cplWkDraft = { now: { topic: 5, start: 5, hurt: 5, ask: 5 }, skills: ["rituals"], commitment: "I will keep one walk a week", shareScores: true, shareSkills: false, shareCommitment: false, seeded: "baseline" };
+    state.cplWkOwner = "a";
+    eq(commitWrap(loadCplMeta()) === "ok", "saving unchanged ratings");
+    clearWrapDraft();
+    eq(viewCouples().indexOf('href="tel:100"') !== -1 && viewCouples().indexOf('href="tel:1201"') !== -1, "ratings that did not improve show the safety card");
+    eq(loadCplMeta().safety !== true && loadCplSide("a").wrap, "the safety card does not erase the review");
+    var todayWk = jerusalemToday();
+    var baseLow = { topic: 3, start: 3, hurt: 3, ask: 3 };
+    var progUp = { topic: 6, start: 6, hurt: 6, ask: 6 };
+    var recSeed = cplBlank();
+    recSeed.done = true;
+    recSeed.answers = ["money", "a sharp tone", "I talk more", "a calm reply", "private example", "cooking", "talk more", "text if late"];
+    recSeed.baseline = baseLow;
+    recSeed.progress = [{ id: "p1", date: todayWk, now: progUp, helped: "the timer helped", hard: "mornings are still sharp", share: false }];
+    saveCplSide("a", recSeed);
+    saveCplSide("b", cplBlank());
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "a", screen: "wrap", safety: false });
+    clearWrapDraft();
+    var seededWk = ensureWrapDraft(loadCplMeta());
+    eq(seededWk.now.topic === 6 && seededWk.now.ask === 6 && seededWk.seeded === "progress", "review starts from the progress check-in");
+    eq(seededWk.shareScores === false && seededWk.shareSkills === false && seededWk.shareCommitment === false, "share starts off");
+    var seededView = viewCouples();
+    eq(seededView.indexOf(CPL.wkFromProgress) !== -1, "progress note");
+    eq(seededView.indexOf(CPL.wkTitle) !== -1 && seededView.indexOf("cpl-wk-commit") !== -1, "wrap screen");
+    eq(seededView.indexOf('href="tel:100"') === -1, "improved ratings skip the safety card");
+    eq(seededView.indexOf(CPL.wkSeekTitle) !== -1, "therapist section still shows");
+    eq(seededView.indexOf('data-cpl="wk-skill" value="timer"') !== -1, "timer skill");
+    eq(seededView.indexOf('data-cpl="wk-skill" value="nice"') !== -1, "nice skill");
+    eq(seededView.indexOf('data-cpl="wk-skill" value="soft"') !== -1, "soft skill");
+    eq(seededView.indexOf('data-cpl="wk-skill" value="timeout"') !== -1, "timeout skill");
+    eq(seededView.indexOf('data-cpl="wk-skill" value="rituals"') !== -1, "rituals skill");
+    seededWk.now = { topic: 3, start: 3, hurt: 3, ask: 3 };
+    var flatView = viewCouples();
+    eq(flatView.indexOf('href="tel:100"') !== -1 && flatView.indexOf('href="tel:1201"') !== -1, "flat ratings show the safety card");
+    eq(flatView.indexOf(CPL.wkSeekScores) !== -1, "flat ratings suggest a licensed therapist");
+    eq(loadCplMeta().safety !== true, "flat ratings do not wipe the couples guide");
+    state.cplWkDraft = {
+      now: { topic: 4, start: 4, hurt: 2, ask: 5 },
+      skills: ["timer", "soft"],
+      commitment: "PRIVATE-COMMIT-A-ONLY",
+      shareScores: false,
+      shareSkills: false,
+      shareCommitment: false,
+      seeded: "progress"
+    };
+    state.cplWkOwner = "a";
+    eq(commitWrap(loadCplMeta()) === "ok", "save private review");
+    var storedWk = loadCplSide("a").wrap;
+    eq(storedWk && storedWk.commitment === "PRIVATE-COMMIT-A-ONLY" && storedWk.shareCommitment === false && storedWk.skills.length === 2, "review stored private");
+    eq(JSON.stringify(loadJSON(K_CPL_B, {})).indexOf("PRIVATE-COMMIT-A-ONLY") === -1, "other save has no review");
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "b", screen: "wrap", safety: false });
+    clearWrapDraft();
+    var otherWk = viewCouples();
+    eq(otherWk.indexOf("PRIVATE-COMMIT-A-ONLY") === -1, "other partner does not see a private review");
+    eq(otherWk.indexOf(CPL.wkTitle) !== -1, "other partner gets their own review");
+    var planWk = makeCplPlan();
+    planWk.startDate = todayWk;
+    saveJSON(K_CPL_PLAN, planWk);
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "b", screen: "plan", safety: false });
+    var earlyPlan = viewCouples();
+    eq(earlyPlan.indexOf('data-action="cpl-open-wrap"') !== -1, "plan button");
+    eq(earlyPlan.indexOf(CPL.wkLast) === -1, "button before the last day is not the last-day prompt");
+    eq(earlyPlan.indexOf("PRIVATE-COMMIT-A-ONLY") === -1, "plan hides a private commitment");
+    eq(earlyPlan.indexOf('href="tel:100"') === -1, "unshared flat ratings stay off the plan");
+    var agoWk = new Date();
+    agoWk.setDate(agoWk.getDate() - 10);
+    planWk.startDate = jerusalemToday(agoWk);
+    saveJSON(K_CPL_PLAN, planWk);
+    var lastPlan = viewCouples();
+    eq(lastPlan.indexOf(CPL.wkLast) !== -1, "last day prompts the review");
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "a", screen: "wrap", safety: false });
+    clearWrapDraft();
+    setWrapShare(loadCplMeta(), "commitment", true);
+    setWrapShare(loadCplMeta(), "skills", true);
+    eq(loadCplSide("a").wrap.shareCommitment === true && loadCplSide("a").wrap.shareScores === false, "commitment and skills can be shared apart from ratings");
+    var recBwk = cplBlank();
+    recBwk.done = true;
+    recBwk.baseline = { topic: 4, start: 4, hurt: 4, ask: 4 };
+    recBwk.wrap = {
+      date: todayWk,
+      now: { topic: 8, start: 8, hurt: 8, ask: 8 },
+      skills: ["nice"],
+      commitment: "SHARED-COMMIT-B",
+      shareScores: true,
+      shareSkills: false,
+      shareCommitment: true,
+      seeded: ""
+    };
+    saveCplSide("b", recBwk);
+    for (var wi = 0; wi < planWk.days.length; wi++) if (planWk.days[wi].id === "c7") planWk.days[wi].bothHere = false;
+    saveJSON(K_CPL_PLAN, planWk);
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "a", screen: "session", openDay: "c7", safety: false });
+    state.view = "couples";
+    var jointWkHidden = viewCouples();
+    eq(jointWkHidden.indexOf(CPL.wkJointLocked) !== -1, "joint review waits for both");
+    eq(jointWkHidden.indexOf("PRIVATE-COMMIT-A-ONLY") === -1 && jointWkHidden.indexOf("SHARED-COMMIT-B") === -1, "shared lines stay hidden until both are here");
+    eq(agreeKeep(loadCplMeta()) === "needboth", "cannot agree before both are here");
+    for (wi = 0; wi < planWk.days.length; wi++) if (planWk.days[wi].id === "c7") planWk.days[wi].bothHere = true;
+    saveJSON(K_CPL_PLAN, planWk);
+    clearKeepDraft();
+    var jointWk = viewCouples();
+    eq(jointWk.indexOf("PRIVATE-COMMIT-A-ONLY") !== -1, "shared commitment is on the joint session");
+    eq(jointWk.indexOf("Speaker–listener timer") !== -1 && jointWk.indexOf("Soft start-up") !== -1, "shared skills are on the joint session");
+    eq(jointWk.indexOf("SHARED-COMMIT-B") !== -1, "the other shared commitment is there too");
+    eq(jointWk.indexOf("Nice-things log") === -1 || jointWk.indexOf(CPL.wkSharedMark) !== -1, "unshared skill is not presented as theirs");
+    eq(jointWk.indexOf(CPL.prWhen) === -1 || jointWk.indexOf("SHARED-COMMIT-B") !== -1, "unshared ratings are not required");
+    var scoreBits = wrapSharedBits("a").join(" ");
+    eq(scoreBits.indexOf("PRIVATE-COMMIT-A-ONLY") !== -1 && scoreBits.indexOf(CPL.prWhen) === -1, "unticked ratings stay out of the shared lines");
+    eq(wrapSharedBits("b").join(" ").indexOf(CPL.prUp) !== -1, "shared improved ratings show the change");
+    state.cplKeepDraft = { skills: ["timer", "nice", "rituals"], oftenId: "few", oftenOwn: "", checkIn: addDaysISO(todayWk, 28) };
+    state.cplKeepTouched = true;
+    eq(agreeKeep(loadCplMeta()) === "ok", "agree on a keep-going plan");
+    var kept = agreedKeepOf(loadCplPlan());
+    eq(kept && kept.skills.length === 3 && kept.often === "A few times a week" && kept.checkIn === addDaysISO(todayWk, 28), "keep plan stored on the couple plan");
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "b", screen: "plan", safety: false });
+    var keptPlan = viewCouples();
+    eq(keptPlan.indexOf(CPL.wkPlanTitle) !== -1 && keptPlan.indexOf("A few times a week") !== -1 && keptPlan.indexOf(kept.checkIn) !== -1, "plan shows the keep-going plan");
+    eq(keptPlan.indexOf("PRIVATE-COMMIT-A-ONLY") !== -1 && keptPlan.indexOf("SHARED-COMMIT-B") !== -1, "plan summary includes shared commitments");
+    var sheet = keepSummaryText(loadCplMeta());
+    eq(sheet.indexOf("PRIVATE-COMMIT-A-ONLY") !== -1 && sheet.indexOf("SHARED-COMMIT-B") !== -1, "copy text includes shared commitments");
+    eq(sheet.indexOf("the timer helped") === -1 && sheet.indexOf("mornings are still sharp") === -1, "copy text leaves out the progress check-in");
+    eq(sheet.indexOf("private example") === -1, "copy text leaves out interview answers");
+    eq(sheet.indexOf(CPL.wkSheetDisc) !== -1 && sheet.indexOf("not a licensed couples therapist") !== -1, "summary stays a self-help guide");
+    var hiddenCommit = "B-PRIVATE-ONLY";
+    var recBprivate = loadCplSide("b");
+    recBprivate.wrap.commitment = hiddenCommit;
+    recBprivate.wrap.shareCommitment = false;
+    saveCplSide("b", recBprivate);
+    eq(keepSummaryText(loadCplMeta()).indexOf(hiddenCommit) === -1, "unticked commitment leaves the summary");
+    eq(viewCouples().indexOf(hiddenCommit) === -1, "unticked commitment leaves the plan");
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "a", screen: "session", openDay: "c7", safety: false });
+    eq(viewCouples().indexOf(hiddenCommit) === -1, "unticked commitment leaves the joint session");
+    state.cplWkDraft = { now: { topic: 5, start: 5, hurt: 5, ask: 5 }, skills: ["nice"], commitment: "UNSENT-WK-LEAK", shareScores: false, shareSkills: false, shareCommitment: false, seeded: "" };
+    state.cplWkOwner = "a";
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "a", screen: "wrap", safety: false });
+    onCplAction("cpl-switch", { dataset: {} });
+    eq(loadCplMeta().active === "b" && loadCplMeta().screen === "wrap", "switch stays on the review");
+    eq(!state.cplWkDraft, "switch clears an unsent review");
+    eq(viewCouples().indexOf("UNSENT-WK-LEAK") === -1, "unsent review is not on the other side");
+    planWk.days[6].note = "we each said one repair line";
+    planWk.days[6].bothHere = true;
+    planWk.days[6].completed = false;
+    saveJSON(K_CPL_PLAN, planWk);
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "a", screen: "session", openDay: "c7", safety: false });
+    onCplAction("cpl-done", { dataset: { day: "c7" }, checked: true });
+    eq(loadCplPlan().days[6].completed === true, "last day completes");
+    eq(loadCplMeta().screen === "wrap", "last day opens the review");
+    state.hold = true;
+    var heldWk = viewCouples();
+    eq(heldWk.indexOf(CPL.wkTitle) === -1 && heldWk.indexOf("PRIVATE-COMMIT-A-ONLY") === -1 && heldWk.indexOf("cpl-wk") === -1, "hold hides the review");
+    state.hold = false;
+    cplWipe();
+    state.crisis = null;
+    clearWrapDraft();
+    clearKeepDraft();
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "a", screen: "wrap", safety: false });
+    state.cplWkDraft = { now: { topic: 5, start: 5, hurt: 5, ask: 5 }, skills: ["timeout"], commitment: "he controls me", shareScores: false, shareSkills: false, shareCommitment: true, seeded: "" };
+    state.cplWkOwner = "a";
+    eq(commitWrap(loadCplMeta()) === "stop", "control in a commitment stops");
+    eq(loadCplMeta().safety === true, "control opens the safety screen");
+    eq(!loadCplSide("a").wrap, "controlling commitment is not stored");
+    var controlView = viewCouples();
+    eq(controlView.indexOf("cpl-safety") !== -1 && controlView.indexOf(">100<") !== -1 && controlView.indexOf(">1201<") !== -1, "control shows the safety card");
+    eq(controlView.indexOf("he controls me") === -1 && controlView.indexOf(CPL.wkTitle) === -1, "control is not a review");
+    cplWipe();
+    state.hold = false;
+    state.crisis = null;
+    clearWrapDraft();
+    clearKeepDraft();
+    try { localStorage.removeItem(K_PENDING); } catch (eWk1) {}
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "a", screen: "wrap", safety: false });
+    state.cplWkDraft = { now: { topic: 5, start: 5, hurt: 5, ask: 5 }, skills: ["nice"], commitment: "I want to die", shareScores: false, shareSkills: false, shareCommitment: false, seeded: "" };
+    state.cplWkOwner = "a";
+    eq(commitWrap(loadCplMeta()) === "stop", "self-harm in a commitment stops");
+    eq(state.crisis && state.hold === true, "self-harm holds the guide");
+    eq(!loadCplSide("a").wrap, "self-harm commitment is not stored");
+    state.hold = false;
+    state.crisis = null;
+    try { localStorage.removeItem(K_PENDING); } catch (eWk2) {}
+    cplWipe();
+    clearWrapDraft();
+    clearKeepDraft();
+    saveCplMeta({ aName: "Lina", bName: "Omar", active: "a", screen: "plan", safety: false });
+    var seededWrap = cplBlank();
+    seededWrap.done = true;
+    seededWrap.wrap = { date: todayWk, now: { topic: 5, start: 5, hurt: 5, ask: 5 }, skills: ["nice"], commitment: CPL.hitSample, shareScores: false, shareSkills: false, shareCommitment: false, seeded: "" };
+    saveCplSide("a", seededWrap);
+    var seededWrapView = viewCouples();
+    eq(seededWrapView.indexOf("cpl-safety") !== -1 && seededWrapView.indexOf(CPL.hitSample) === -1, "stored review keyword opens safety");
+    eq(!loadCplSide("a").wrap, "stored keyword review removed");
+    cplWipe();
+    state.hold = false;
+    state.crisis = null;
+    clearWrapDraft();
+    clearKeepDraft();
+    stopPause();
+    stopSlTurn();
+    try { localStorage.removeItem(K_PENDING); } catch (eWk3) {}
     eq(viewHome().indexOf(CPL.tile) !== -1, "home tile still there");
     eq(isCrisisText("I want to die") === true, "crisis check still works");
     return errors;
